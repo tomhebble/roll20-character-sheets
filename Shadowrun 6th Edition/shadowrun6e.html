@@ -54,58 +54,67 @@
 			<h1 data-i18n="attributes" data-i18-title="attributes" title="attributes">attributes</h1>
 		</div>
 		<div class="grid grid-pc-attributes">
-			<button class="left" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{body}}}{{base=^{attributes}}}{{dice=[[(@{body}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+			<!-- BODY -->
+			<button class="left" name="roll_body" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{body}}}{{base=^{attributes}}}{{dice=[[(@{body}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 				<span data-i18n="body">body</span>
 			</button>
-			<label class="left" title="body input">
+			<label class="left" data-i18n-title="b7t" title="body input">
 				<input data-i18n-placeholder="10" name="attr_body" placeholder="10" title="@{body}" type="number" value="" />
 			</label>
-			<button class="left" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{agility}}}{{base=^{attributes}}}{{dice=[[(@{agility}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+			<!-- AGILITY -->
+			<button class="left" name="roll_agility" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{agility}}}{{base=^{attributes}}}{{dice=[[(@{agility}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 				<span data-i18n="agility">agility</span>
 			</button>
-			<label class="left" title="agility input">
+			<label class="left" data-i18n-title="b7t" title="agility input">
 				<input data-i18n-placeholder="10" name="attr_agility" placeholder="10" title="@{agility}" type="number" value="" />
 			</label>
-			<button class="left" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{reaction}}}{{base=^{attributes}}}{{dice=[[(@{reaction}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+			<!-- REACTION -->
+			<button class="left" name="roll_reaction" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{reaction}}}{{base=^{attributes}}}{{dice=[[(@{reaction}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 				<span data-i18n="reaction">reaction</span>
 			</button>
-			<label class="left" title="reaction input">
+			<label class="left" data-i18n-title="r11t" title="reaction input">
 				<input data-i18n-placeholder="10" name="attr_reaction" placeholder="10" title="@{reaction}" type="number" value="" />
 			</label>
-			<button class="left" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{strength}}}{{base=^{attributes}}}{{dice=[[(@{strength}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+			<!-- STRENGHT -->
+			<button class="left" name="roll_strength" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{strength}}}{{base=^{attributes}}}{{dice=[[(@{strength}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 				<span data-i18n="strength">strength</span>
 			</button>
-			<label class="left" title="strength input">
+			<label class="left" data-i18n-title="s11t" title="strength input">
 				<input data-i18n-placeholder="10" name="attr_strength" placeholder="10" title="@{strength}" type="number" value="" />
 			</label>
-			<button class="left" data type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{willpower}}}{{base=^{attributes}}}{{dice=[[(@{willpower}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+			<!-- WILLPOWER -->
+			<button class="left" name="roll_willpower" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{willpower}}}{{base=^{attributes}}}{{dice=[[(@{willpower}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 				<span data-i18n="willpower">willpower</span>
 			</button>
-			<label class="left" title="willpower input">
+			<label class="left" data-i18n-title="w12t" title="willpower input">
 				<input data-i18n-placeholder="10" name="attr_willpower" placeholder="10" title="@{willpower}" type="number" value="" />
 			</label>
-			<button class="left" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{logic}}}{{base=^{attributes}}}{{dice=[[(@{logic}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+			<!-- LOGIC -->
+			<button class="left" name="roll_logic" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{logic}}}{{base=^{attributes}}}{{dice=[[(@{logic}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 				<span data-i18n="logic">logic</span>
 			</button>
-			<label class="left" title="logic input">
+			<label class="left" data-i18n-title="l8t" title="logic input">
 				<input data-i18n-placeholder="10" name="attr_logic" placeholder="10" title="@{logic}" type="number" value="" />
 			</label>
-			<button class="left" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{intuition}}}{{base=^{attributes}}}{{dice=[[(@{intuition}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+			<!-- INTUITION -->
+			<button class="left" name="roll_intuition" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{intuition}}}{{base=^{attributes}}}{{dice=[[(@{intuition}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 				<span data-i18n="intuition">intuition</span>
 			</button>
-			<label class="left" title="intuition input">
+			<label class="left" data-i18n-title="i12t"  title="intuition input">
 				<input data-i18n-placeholder="10" name="attr_intuition" placeholder="10" title="@{intuition}" type="number" value="" />
 			</label>
-			<button class="left" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{charisma}}}{{base=^{attributes}}}{{dice=[[(@{charisma}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+			<!-- CHARISMA -->
+			<button class="left" name="roll_charisma" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{charisma}}}{{base=^{attributes}}}{{dice=[[(@{charisma}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 				<span data-i18n="charisma">charisma</span>
 			</button>
-			<label class="left" title="charisma input">
+			<label class="left" data-i18n-title="c11t"  title="charisma input">
 				<input data-i18n-placeholder="10" name="attr_charisma" placeholder="10" title="@{charisma}" type="number" value="" />
 			</label>
-			<button class="left" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{edge}}}{{base=^{attributes}}}{{dice=[[(@{edge}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+			<!-- EDGE -->
+			<button class="left" name="roll_edge" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{edge}}}{{base=^{attributes}}}{{dice=[[(@{edge}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 				<span data-i18n="edge">edge</span>
 			</button>
-			<label class="left" title="edge input">
+			<label class="left" data-i18n-title="e7t" title="edge input">
 				<input data-i18n-placeholder="3" name="attr_edge" placeholder="3" title="@{edge}" type="number" value="" />
 			</label>
 			<span class="left" data-i18n="e8s">edge points</span>
@@ -113,11 +122,22 @@
 				<input name="attr_edge_point" title="@{edge_point}" type="radio" value="0" /><span>0</span>
 				<input name="attr_edge_point" title="@{edge_point}" type="radio" value="1" /><span>1</span>
 			</label>
+			<!-- UNARMED -->
 			<button class="left" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{unarmed}}}{{base=^{attributes}}}{{dice=[[(@{edge}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 				<span data-i18n="unarmed">unarmed</span>
 			</button>
-			<label class="left" title="unarmed input">
+			<label class="left" data-i18n-title="u10t" title="unarmed input">
 				<input data-i18n-placeholder="10" name="attr_unarmed" placeholder="10" title="@{unarmed}" type="text" value="" />
+			</label>
+			<!-- ESSENCE -->
+			<span class="right" data-i18n="essence">Essence</span>
+			<label class="right" data-i18n-title="e10t" title="essence input">
+				<input data-i18n-placeholder="6" name="attr_essence" placeholder="6" title="@{essence}" type="number" value="" />
+			</label>
+			<!-- MAGIC/RESONANCE -->
+			<span class="right" data-i18n="m12e">Magic/Resonance</span>
+			<label class="right" data-i18n-title="m19t" title="magic or resonance input">
+				<input data-i18n-placeholder="6" name="attr_special" placeholder="6" title="@{special}" type="number" value="" />
 			</label>
 		</div>
 	</div>

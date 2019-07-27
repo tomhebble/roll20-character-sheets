@@ -45,6 +45,12 @@
 		text-transform: capitalize;
 	}
 
+	//.item {
+	//  	grid-area: <name> | <row-start> / <column-start> / <row-end> / <column-end>;
+	//}
+	//<name> - a name of your choosing
+	//<row-start> / <column-start> / <row-end> / <column-end> - can be numbers or named lines
+
 /* GLOBAL SETTINGS
     =============================  */
 	* {
@@ -303,6 +309,16 @@
 	   		border-bottom-right-radius: 0em;
 			@include border(border-bottom);
 			@include button-like();
+		}
+
+		span.sheet-right[data-i18n="essence"] {
+			@include border(border-bottom);
+			@include grid-column(3, 3);
+		}
+
+		label.sheet-right {
+			@include border(border-bottom);
+			@include grid-column(4, 4);
 		}
 
 	   	button > span[data-i18n="agility"],
