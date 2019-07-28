@@ -1,0 +1,324 @@
+<!-- TABS
+   ============================= -->
+<input class="display_string" name="attr_character_settings" type="hidden" value="character">
+
+<!-- TABS & LOGO
+   ============================= -->
+<div class="tabs">
+	<div class="flex">
+		<img alt="Shadowrun Sixth World logo" src="https://s3.amazonaws.com/files.d20.io/images/84479331/VxMyZtZk9HJP7kkHGGhyDA/max.png" />
+	</div>
+	<div class="flex info-flex">
+		<div class="grid grid-tab-inputs">
+			<!-- CHARACTER NAME -->
+			<span data-i18n="character">character</span>
+			<label data-i18n-title="c11e" title="character name">
+				<input data-i18n-placeholder="c11e" name="attr_character_name" placeholder="character name" title="@{character_name}" type="text" value="" />
+			</label>
+			<!-- PLAYER NAME -->
+			<span data-i18n="player">player</span>
+			<label data-i18n-title="p8e" title="player name">
+				<input data-i18n-placeholder="p8e" name="attr_player_name" placeholder="player name" title="@{player_name}" type="text" value="" />
+			</label>
+			<!-- NOTES -->
+			<span data-i18n="notes">notes</span>
+			<label data-i18n-title="c12s" title="character notes">
+				<input data-i18n-placeholder="c12s" name="attr_character_notes" placeholder="character notes" title="@{character_notes}" type="text" value="" />
+			</label>
+		</div>
+		<div class="grid grid-tab-buttons">
+			<!-- Buttons to toggle on GM whisper -->
+			<input class="whisper-toggle" name="attr_gm_toggle" type="hidden"  value=" " />
+			<button name="act_whisper" data-i18n-title="gm-whisper" title="gm whisper" type="action">
+				<span class="hidden">gm whisper</span>
+				<span class="hidden" name="attr_gm_toggle"></span>
+				q
+			</button>
+			<!-- CHARACTER SHEETS -->
+		    <button data-i18n="pc" data-i18n-title="p19n" name="act_toggle_character" title="player character button" type="action">pc</button>
+		    <button data-i18n="notes" data-i18n-title="n9n" name="act_toggle_notes" title="notes button" type="action">notes</button>
+		    <button data-i18n="npc" data-i18n-title="n16r" name="act_toggle_npc" title="non player character" type="action">npc</button>
+		    <input type="hidden" name="attr_wound_toggle" value="@{wounds}" />
+		    <button type="action" name="act_wound" title="@{wound_toggle}" data-i18n="wounds">wounds</button>
+			<input type="hidden" name="attr_modifier_toggle" value="?{Modifiers +/-|0}" />
+			<button type="action" name="act_modifier" title="@{modifier_toggle}" data-i18n="modifiers">modifiers</button>
+			<input type="hidden" name="attr_edge_toggle" value="@{edge}" />
+			<button type="action" name="act_edge" title="@{edge_toggle}" data-i18n="edge">edge</button>
+			<button type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{d6}}}{{base=^{d6}}}{{dice=[[(?{d6s|0}d6>5)]]}}" title="Roll D6s">
+				<span class="d6">L</span>
+			</button>
+		</div>
+	</div>
+</div>
+
+<!-- NPC SHEET
+   ============================= -->
+<div class="npc">
+	<div class="box npc-flex">
+	</div>
+	<div class="box npc-flex">
+	</div>
+</div>
+
+<!-- PC SHEET
+   ============================= -->
+<div class="pc">
+	<div class="flex pc-flex">
+		<div class="grid grid-header">
+			<button class="pictos" data-i18n-title="p23s" name="act_toggle_attributes" title="player character attributes" type="action">y</button>
+			<h1 data-i18n="attributes" data-i18-title="attributes" title="attributes">attributes</h1>
+			<h2 data-i18n="attributes" data-i18-title="attributes" title="attributes">attributes</h2>
+			<hr />
+		</div>
+		<div class="grid grid-pc-attributes">
+			<!-- BODY -->
+			<button name="body" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{body}}}{{base=^{attributes}}}{{dice=[[(@{body}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+				<h2 class="alt-color" data-i18n="body">body</h2>
+			</button>
+			<label data-i18n-title="b7t" title="body input">
+				<input data-i18n-placeholder="10" name="attr_body" placeholder="10" title="@{body}" type="number" value="" />
+			</label>
+			<!-- AGILITY -->
+			<button name="agility" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{agility}}}{{base=^{attributes}}}{{dice=[[(@{agility}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+				<h2 class="alt-color" data-i18n="agility">agility</h2>
+			</button>
+			<label data-i18n-title="b7t" title="agility input">
+				<input data-i18n-placeholder="10" name="attr_agility" placeholder="10" title="@{agility}" type="number" value="" />
+			</label>
+			<!-- REACTION -->
+			<button name="reaction" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{reaction}}}{{base=^{attributes}}}{{dice=[[(@{reaction}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+				<h2 class="alt-color" data-i18n="reaction">reaction</h2>
+			</button>
+			<label data-i18n-title="r11t" title="reaction input">
+				<input data-i18n-placeholder="10" name="attr_reaction" placeholder="10" title="@{reaction}" type="number" value="" />
+			</label>
+			<!-- STRENGHT -->
+			<button name="strength" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{strength}}}{{base=^{attributes}}}{{dice=[[(@{strength}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+				<h2 class="alt-color" data-i18n="strength">strength</h2>
+			</button>
+			<label data-i18n-title="s11t" title="strength input">
+				<input data-i18n-placeholder="10" name="attr_strength" placeholder="10" title="@{strength}" type="number" value="" />
+			</label>
+			<!-- WILLPOWER -->
+			<button name="willpower" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{willpower}}}{{base=^{attributes}}}{{dice=[[(@{willpower}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+				<h2 data-i18n="willpower">willpower</h2>
+			</button>
+			<label data-i18n-title="w12t" title="willpower input">
+				<input data-i18n-placeholder="10" name="attr_willpower" placeholder="10" title="@{willpower}" type="number" value="" />
+			</label>
+			<!-- LOGIC -->
+			<button name="logic" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{logic}}}{{base=^{attributes}}}{{dice=[[(@{logic}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+				<h2 data-i18n="logic">logic</h2>
+			</button>
+			<label data-i18n-title="l8t" title="logic input">
+				<input data-i18n-placeholder="10" name="attr_logic" placeholder="10" title="@{logic}" type="number" value="" />
+			</label>
+			<!-- INTUITION -->
+			<button name="intuition" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{intuition}}}{{base=^{attributes}}}{{dice=[[(@{intn}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+				<h2 data-i18n="intuition">intuition</h2>
+			</button>
+			<label data-i18n-title="i12t"  title="intuition input">
+				<input data-i18n-placeholder="10" name="attr_intuition" placeholder="10" title="@{intuition}" type="number" value="" />
+			</label>
+			<!-- CHARISMA -->
+			<button name="charisma" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{charisma}}}{{base=^{attributes}}}{{dice=[[(@{charisma}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+				<h2 data-i18n="charisma">charisma</h2>
+			</button>
+			<label data-i18n-title="c11t"  title="charisma input">
+				<input data-i18n-placeholder="10" name="attr_charisma" placeholder="10" title="@{charisma}" type="number" value="" />
+			</label>
+			<!-- EDGE -->
+			<button name="edge" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{edge}}}{{base=^{attributes}}}{{dice=[[(@{edge}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+				<h2 data-i18n="edge">edge</h2>
+			</button>
+			<label data-i18n-title="e7t" title="edge input">
+				<input data-i18n-placeholder="3" name="attr_edge" placeholder="3" title="@{edge}" type="number" value="" />
+			</label>
+			<!-- UNARMED -->
+			<button name="unarmed" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{unarmed}}}{{base=^{attributes}}}{{dice=[[(@{edge}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+				<h2 data-i18n="unarmed">unarmed</h2>
+			</button>
+			<label data-i18n-title="u10t" title="unarmed input">
+				<input data-i18n-placeholder="10" name="attr_unarmed" placeholder="10" title="@{unarmed}" type="text" value="" />
+			</label>
+		</div>
+		<div class="grid grid-pc-attributes">
+			<!-- ESSENCE -->
+			<h2 class="label" data-i18n="essence">essence</h2>
+			<label data-i18n-title="e10t" title="essence input">
+				<input data-i18n-placeholder="6" name="attr_essence" placeholder="6" title="@{essence}" type="number" value="" />
+			</label>
+			<!-- MAGIC/RESONANCE -->
+			<h2  class="label" data-i18n="m12e">magic/resonance</h2>
+			<label data-i18n-title="m19t" title="magic or resonance input">
+				<input data-i18n-placeholder="6" name="attr_special" placeholder="6" title="@{special}" type="number" value="" />
+			</label>
+			<!-- INITIATIVE -->
+			<button name="initiative" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{initiative}}}{{base=^{attributes}}}{{dice=[[(@{edge}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+				<h2 data-i18n="initiative">initiative</h2>
+			</button>
+			<label data-i18n-title="" title="magic or resonance input">
+				<input data-i18n-placeholder="6" name="attr_special" placeholder="6" title="@{special}" type="number" value="" />
+			</label>
+			<!-- MATRIX INITIATIVE-->
+			<button name="matrix_initiative" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{matrix_initiative}}}{{base=^{attributes}}}{{dice=[[(@{edge}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+				<h2 data-i18n="matrix_initiative">matrix initiative</h2>
+			</button>
+			<label data-i18n-title="" title="magic or resonance input">
+				<input data-i18n-placeholder="6" name="attr_special" placeholder="6" title="@{special}" type="number" value="" />
+			</label>
+			<!-- ASTRAL INITIATIVE -->
+			<button name="astral_initiative" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{astral_initiative}}}{{base=^{attributes}}}{{dice=[[(@{edge}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+				<h2 data-i18n="astral_initiative">astral initiative</h2>
+			</button>
+			<label data-i18n-title="" title="magic or resonance input">
+				<input data-i18n-placeholder="6" name="attr_special" placeholder="6" title="@{special}" type="number" value="" />
+			</label>
+			<!-- COMPOSURE -->
+			<button name="roll_unarmed" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{composure}}}{{base=^{attributes}}}{{dice=[[(@{edge}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+				<h2 data-i18n="composure">composure</h2>
+			</button>
+			<label data-i18n-title="" title="magic or resonance input">
+				<input data-i18n-placeholder="6" name="attr_special" placeholder="6" title="@{special}" type="number" value="" />
+			</label>
+			<!-- JUDGE INTENTIONS -->
+			<button name="roll_unarmed" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{judge_intentions}}}{{base=^{attributes}}}{{dice=[[(@{edge}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+				<h2 data-i18n="judge_intentions">judge intentions</h2>
+			</button>
+			<label data-i18n-title="" title="magic or resonance input">
+				<input data-i18n-placeholder="6" name="attr_special" placeholder="6" title="@{special}" type="number" value="" />
+			</label>
+			<!-- MEMORY -->
+			<button name="roll_unarmed" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{memory}}}{{base=^{attributes}}}{{dice=[[(@{edge}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+				<h2 data-i18n="memory">memory</h2>
+			</button>
+			<label data-i18n-title="" title="magic or resonance input">
+				<input data-i18n-placeholder="6" name="attr_special" placeholder="6" title="@{special}" type="number" value="" />
+			</label>
+			<!-- LIFT/CARRY -->
+			<button name="roll_unarmed" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{lift_carry}}}{{base=^{attributes}}}{{dice=[[(@{edge}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+				<h2 data-i18n="lift_carry">lift/carry</h2>
+			</button>
+			<label data-i18n-title="" title="magic or resonance input">
+				<input data-i18n-placeholder="6" name="attr_special" placeholder="6" title="@{special}" type="number" value="" />
+			</label>
+			<!-- MOVEMENT -->
+			<h2  class="label" data-i18n="m12e">movement</h2>
+			<label data-i18n-title="" title="magic or resonance input">
+				<input data-i18n-placeholder="6" name="attr_special" placeholder="6" title="@{special}" type="number" value="" />
+			</label>
+			<!-- DEFENSE RATING -->
+			<h2  class="label" data-i18n="m12e">defense rating</h2>
+			<label data-i18n-title="" title="magic or resonance input">
+				<input data-i18n-placeholder="6" name="attr_special" placeholder="6" title="@{special}" type="number" value="" />
+			</label>
+		</div>
+		<div class="grid grid-pc-edge">
+			<!-- EDGE POINTS -->
+			<h2 class="label" data-i18n="e8s">edge points</h2>
+			<label data-i18n-title="e7t" title="edge points checkboxes">
+				<input name="attr_edge_point" title="@{edge_point}" type="radio" value="0" /><span>0</span>
+				<input name="attr_edge_point" title="@{edge_point}" type="radio" value="1" /><span>1</span>
+			</label>
+		</div>
+	</div>
+	<div class="flex pc-flex">
+		<h1 data-i18n="h1" data-i18-title="h1" title="header 1">Header 1</h1>
+		<h2 data-i18n="h2" data-i18-title="h2" title="header 2">Header 2</h2>
+		<h3 data-i18n="h3" data-i18-title="h3" title="header 3">Header 3</h3>
+	</div>
+</div>
+
+<!-- NOTES SHEET
+   ============================= -->
+<div class="notes">
+</div>
+
+<!-- OPTIONS SHEET
+   ============================= -->
+<div class="options">
+</div>
+
+<!-- FOOTER
+   ============================= -->
+<div class="footer">
+	<span>Disclaimer</span>
+	<span>Version </span><span name="attr_version"></span>
+</div>
+
+<!-- HIDDEN ATTRIBUTES
+   ============================= -->
+	<input name="attr_version" type="hidden" value="1" />
+
+
+
+<!-- ROLL TEMPLATE
+   ============================= -->
+	<div class="rolltemplates">
+		<rolltemplate class="sheet-rolltemplate-rolls">
+		 	<!--- Display a header on the template --->
+    		<div class="sheet-template-header">
+    			{{#header}}{{header}}{{/header}}
+    		</div>
+    		<!--- Display the dice roll in the template --->
+	    	<div class="sheet-template-body">
+	    		{{#dice}}
+	    			<div class="sheet-template-row">{{dice}}</div>
+	    		{{/dice}}
+	    		<!--- Display a description. This is great for text included with a roll --->
+		    	{{#desc}}
+		    		<div class="sheet-template-row">
+		    			<span class="sheet-template-desc">
+		    			</span>
+		    		</div>
+	    		{{/desc}}
+	    	</div>
+		</rolltemplate>
+	</div>
+
+<!-- SCRIPTS
+   ============================= -->
+<script type="text/worker">
+
+const setAttributes = (update, silent) => { 
+	(silent === true) ? setAttrs(update, {silent:true}) : setAttrs(update); 
+};
+
+// === SETTINGS TOGGLES
+	const sheets = ["character", "npc", "notes"];
+
+    //Switch between sheet types.
+    sheets.forEach(attr => {
+        on(`clicked:toggle_${attr}`, (eventinfo) => {
+            let update = {
+				character_settings: eventinfo.triggerName.split("_")[1]
+			};
+			setAttributes(update, true);
+        });
+    });
+
+// === GM WHISPER TOGGLES
+	on("clicked:whisper", (eventinfo) => {
+		getAttrs(["gm_toggle"], (v) => {
+			setAttrs({
+				gm_toggle : (v.gm_toggle.includes("gm")) ?  " " : "/w gm"
+			}); 
+		});
+	});
+
+// === SHEET VERSIONING
+	on("sheet:opened", () => {
+		getAttrs(["version"], (v) => { versioning(parseFloat(v.version) || 1); });
+	});			
+
+	const versioning = (version) => {
+	   console.log(`%c Versioning, ${version}`, "color: blue; font-weight:bold");
+	   if (version >= 1) {
+			console.log(`%c Version is update to date`, "color: maroon; font-weight:bold");
+	    } else {
+			setAttrs({version: 1}, () => {versioning(1)});
+		};
+	};
+
+
+</script>
