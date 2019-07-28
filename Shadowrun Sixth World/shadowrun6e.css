@@ -5,12 +5,13 @@
   font-family: sans-serif; }
 
 button {
-  background-position: 0em; }
+  overflow: hidden; }
   button:before {
     display: none; }
   button:focus, button:hover, button:active {
     color: whitesmoke;
-    background-color: #79016f !important; }
+    background-color: #79016f !important;
+    background-position: 0em; }
   button:focus > h2, button:hover > h2, button:active > h2 {
     color: whitesmoke;
     text-shadow: 1px 1px 2px black, 0 0 25px rgba(136, 121, 190, 0.25), 0 0 5px #79016f; }
@@ -26,6 +27,7 @@ button {
     padding: 0.1em !important; }
 
 div {
+  overflow: hidden;
   background-color: transparent;
   width: 100%; }
 
@@ -33,10 +35,12 @@ fieldset {
   background-color: transparent; }
 
 h1 {
+  overflow: hidden;
   color: #79016f;
   text-transform: uppercase; }
 
 h2 {
+  overflow: hidden;
   font-size: 1em;
   line-height: 1.4em; }
   h2.sheet-alt-color {
@@ -50,17 +54,18 @@ h2 {
     margin-left: 3%; }
 
 h3 {
+  overflow: hidden;
   font-size: 1.25em;
   line-height: 36px; }
 
+hr {
+  border-top: 0.02em solid black; }
+
 input[type="text"], input[type="number"] {
   background-color: transparent;
-  border-bottom: 0.15em solid black;
   text-align: center;
-  border-left: 0em;
+  border: none;
   border-radius: 0em;
-  border-right: 0em;
-  border-top: 0em;
   height: 2.1em; }
 input::placeholder {
   background-color: rgba(136, 121, 190, 0.25);
@@ -70,6 +75,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   margin: 0; }
 
 label {
+  overflow: hidden;
   margin-bottom: 0px;
   padding-right: 0px; }
 
@@ -154,6 +160,8 @@ div.sheet-tabs {
 /* INPUTS FOR CHARACTER, PLAYER, NOTES..... */
 div.sheet-grid-tab-inputs {
   grid-template-columns: 8em 73%; }
+  div.sheet-grid-tab-inputs label {
+    border-bottom: 0.15em solid black; }
   div.sheet-grid-tab-inputs span {
     font-weight: bold;
     text-transform: uppercase; }
@@ -170,78 +178,130 @@ div.sheet-grid-tab-buttons {
     text-transform: capitalize;
     font-variant: small-caps; }
 
+.sheet-d6 {
+  font-family: "dicefontd6"; }
+
 /* NPC SHEET
     ============================= */
 /* PC SHEET
    ============================= */
-div.sheet-grid-header {
-  grid-template-columns: 2em 1fr; }
-  div.sheet-grid-header button {
-    grid-area: 1 / 1 / 1 / 1; }
-  div.sheet-grid-header h1 {
-    grid-area: 1 / 2 / 1 / 3; }
+div.sheet-bot-border {
+  border-bottom: 0.15em solid black; }
 
-div.sheet-pc-flex {
+div.sheet-grid-header {
+  grid-template-columns: 10em 2.5em 2.5em 10em 2.5em 2.5em; }
+  div.sheet-grid-header button {
+    grid-area: 1 / 1 / 1 / 1;
+    font-family: "pictos";
+    height: 1em;
+    width: 1em; }
+  div.sheet-grid-header h1 {
+    margin-left: 10%;
+    grid-area: 1 / 1 / 1 / 7; }
+  div.sheet-grid-header h2 {
+    text-transform: uppercase; }
+    div.sheet-grid-header h2:nth-of-type(1) {
+      grid-area: 2 / 2 / 2 / 2; }
+    div.sheet-grid-header h2:nth-of-type(2) {
+      grid-area: 2 / 3 / 2 / 3; }
+    div.sheet-grid-header h2:nth-of-type(3) {
+      grid-area: 2 / 5 / 2 / 5; }
+    div.sheet-grid-header h2:nth-of-type(4) {
+      grid-area: 2 / 6 / 2 / 6; }
+  div.sheet-grid-header hr {
+    grid-area: 3 / 1 / 3 / 7; }
+
+div.sheet-border {
   border: 0.15em solid #79016f;
-  border-radius: 0.8em; }
+  border-radius: 0.8em;
+  margin-bottom: 2%; }
 
 /* ATTRIBUTES
 ----------------------------- */
-div.sheet-grid-pc-attributes {
-  grid-template-columns: 10em 1fr;
+div.sheet-grid-attributes {
   width: 48%; }
-  div.sheet-grid-pc-attributes button[type="roll"] {
+  div.sheet-grid-attributes button[type="roll"] {
     border-bottom-left-radius: 0em;
     border-bottom-right-radius: 0em;
     border-bottom: 0.15em solid black;
     font-size: 1.1em;
     font-weight: bold;
     text-transform: capitalize; }
-  div.sheet-grid-pc-attributes input[type="text"] {
+  div.sheet-grid-attributes h2 {
+    text-align: right;
+    padding-right: 2%; }
+  div.sheet-grid-attributes input[type="hidden"][value=""] ~ div.sheet-grid div > span.sheet-total, div.sheet-grid-attributes input[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total, div.sheet-grid-attributes input[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total::after, div.sheet-grid-attributes input[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total::before {
+    display: none; }
+  div.sheet-grid-attributes input[type="text"] {
     width: 3.5em; }
-  div.sheet-grid-pc-attributes button:nth-of-type(1) {
-    grid-area: 1 / 1 / 1 / 1; }
-  div.sheet-grid-pc-attributes label:nth-of-type(1) {
-    grid-area: 1 / 2 / 1 / 2; }
-  div.sheet-grid-pc-attributes button:nth-of-type(2) {
-    grid-area: 2 / 1 / 2 / 1; }
-  div.sheet-grid-pc-attributes label:nth-of-type(2) {
-    grid-area: 2 / 2 / 2 / 2; }
-  div.sheet-grid-pc-attributes button:nth-of-type(3) {
-    grid-area: 3 / 1 / 3 / 1; }
-  div.sheet-grid-pc-attributes label:nth-of-type(3) {
-    grid-area: 3 / 2 / 3 / 2; }
-  div.sheet-grid-pc-attributes button:nth-of-type(4) {
-    grid-area: 4 / 1 / 4 / 1; }
-  div.sheet-grid-pc-attributes label:nth-of-type(4) {
-    grid-area: 4 / 2 / 4 / 2; }
-  div.sheet-grid-pc-attributes button:nth-of-type(5) {
-    grid-area: 5 / 1 / 5 / 1; }
-  div.sheet-grid-pc-attributes label:nth-of-type(5) {
-    grid-area: 5 / 2 / 5 / 2; }
-  div.sheet-grid-pc-attributes button:nth-of-type(6) {
-    grid-area: 6 / 1 / 6 / 1; }
-  div.sheet-grid-pc-attributes label:nth-of-type(6) {
-    grid-area: 6 / 2 / 6 / 2; }
-  div.sheet-grid-pc-attributes button:nth-of-type(7) {
-    grid-area: 7 / 1 / 7 / 1; }
-  div.sheet-grid-pc-attributes label:nth-of-type(7) {
-    grid-area: 7 / 2 / 7 / 2; }
-  div.sheet-grid-pc-attributes button:nth-of-type(8) {
-    grid-area: 8 / 1 / 8 / 1; }
-  div.sheet-grid-pc-attributes label:nth-of-type(8) {
-    grid-area: 8 / 2 / 8 / 2; }
-  div.sheet-grid-pc-attributes button:nth-of-type(9) {
-    grid-area: 9 / 1 / 9 / 1; }
-  div.sheet-grid-pc-attributes label:nth-of-type(9) {
-    grid-area: 9 / 2 / 9 / 2; }
-  div.sheet-grid-pc-attributes button:nth-of-type(10) {
-    grid-area: 10 / 1 / 10 / 1; }
-  div.sheet-grid-pc-attributes label:nth-of-type(10) {
-    grid-area: 10 / 2 / 10 / 2; }
+  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(1) {
+    grid-area: 1 / 1 / 1 / 3; }
+  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(2) {
+    grid-area: 2 / 1 / 2 / 3; }
+  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(3) {
+    grid-area: 3 / 1 / 3 / 3; }
+  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(4) {
+    grid-area: 4 / 1 / 4 / 3; }
+  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(5) {
+    grid-area: 5 / 1 / 5 / 3; }
+  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(6) {
+    grid-area: 6 / 1 / 6 / 3; }
+  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(7) {
+    grid-area: 7 / 1 / 7 / 3; }
+  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(8) {
+    grid-area: 8 / 1 / 8 / 3; }
+  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(9) {
+    grid-area: 9 / 1 / 9 / 3; }
+  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(10) {
+    grid-area: 10 / 1 / 10 / 3; }
+  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(11) {
+    grid-area: 11 / 1 / 11 / 3; }
+  div.sheet-grid-attributes div.sheet-grid-row {
+    grid-template-columns: 10em 1fr;
+    margin-bottom: 2%; }
+    div.sheet-grid-attributes div.sheet-grid-row button, div.sheet-grid-attributes div.sheet-grid-row h2.sheet-label {
+      grid-area: 1 / 1 / 1 / 1; }
+    div.sheet-grid-attributes div.sheet-grid-row div.sheet-display {
+      grid-area: 1 / 2 / 1 / 2;
+      text-align: center; }
+      div.sheet-grid-attributes div.sheet-grid-row div.sheet-display span.sheet-total::after {
+        content: ")"; }
+      div.sheet-grid-attributes div.sheet-grid-row div.sheet-display span.sheet-total::before {
+        content: "("; }
+    div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings {
+      grid-area: 2 / 1 / 2 / 4;
+      grid-template-columns: 1fr 1fr 1fr 1fr; }
+      div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings div.sheet-arrow-up {
+        grid-area: 1 / 2 / 1 / 3; }
+      div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings h2:nth-of-type(1) {
+        grid-area: 2 / 1 / 2 / 1; }
+      div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings h2:nth-of-type(2) {
+        grid-area: 2 / 3 / 2 / 3; }
+      div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings label:nth-of-type(1) {
+        grid-area: 2 / 2 / 2 / 2; }
+      div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings label:nth-of-type(2) {
+        grid-area: 2 / 4 / 2 / 4; }
+  div.sheet-grid-attributes div.sheet-grid-pc-edge {
+    grid-template-columns: 1fr; }
 
-div.sheet-grid-pc-edge {
-  grid-template-columns: 10em 1fr; }
+/* SHARED SETTINGS
+  ============================= */
+div.sheet-settings {
+  border-left: 0.2em solid #79016f;
+  margin-left: 1%;
+  margin-top: 2%;
+  background: rgba(136, 121, 190, 0.25); }
+  div.sheet-settings div.sheet-arrow-up {
+    border-bottom: 5px solid #79016f;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    height: 0;
+    left: 21%;
+    position: relative;
+    top: -15%;
+    width: 0; }
+  div.sheet-settings h2 {
+    text-transform: capitalize; }
 
 /* FOOTER
    ============================= */
