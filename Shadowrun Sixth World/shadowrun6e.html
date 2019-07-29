@@ -1,6 +1,7 @@
 <!-- TABS
    ============================= -->
-<input class="display_string" name="attr_character_settings" type="hidden" value="character">
+  <input class="type" name="attr_sheet_type" type="hidden" value="character">
+  <input name="attr_toggles" type="hidden" value="" />
 
 <!-- TABS & LOGO
    ============================= -->
@@ -26,6 +27,29 @@
 				<input data-i18n-placeholder="c12s" name="attr_character_notes" placeholder="character notes" title="@{character_notes}" type="text" value="" />
 			</label>
 		</div>
+		<div class="grid grid-tab-buttons">
+			<!-- Buttons to toggle on GM whisper -->
+			<input class="whisper-toggle" name="attr_gm_toggle" type="hidden"  value=" " />
+			<button class="pictos" name="act_whisper" data-i18n-title="gm-whisper" title="gm whisper" type="action">
+				<span class="hidden" data-i18n="gm_whisper">gm whisper</span>
+				<span class="hidden" name="attr_gm_toggle"></span>
+				q
+			</button>
+			<!-- CHARACTER SHEETS -->
+		    <button data-i18n="pc" data-i18n-title="p19n" name="act_toggle_character" title="player character button" type="action">pc</button>
+		    <button data-i18n="notes" data-i18n-title="n9n" name="act_toggle_notes" title="notes button" type="action">notes</button>
+		    <button data-i18n="npc" data-i18n-title="n16r" name="act_toggle_npc" title="non player character" type="action">npc</button>
+		    <button name="roll d6s" title="Roll D6s" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{d6}}}{{base=^{d6}}}{{dice=[[(?{d6s|0}d6>5)]]}}">
+				<span class="hidden" data-i18n="roll_d6">roll d6s</span>
+				<span class="d6">L</span>
+			</button>
+			<input name="attr_edge_toggle" type="hidden" value="@{edge}" />
+			<button data-i18n="edge" name="act_edge" title="@{edge_toggle}" type="action">edge</button>
+			<input name="attr_modifier_toggle" value="?{Modifiers +/-|0}" type="hidden" />
+			<button data-i18n="modifiers" name="act_modifier" title="@{modifier_toggle}" type="action">modifiers</button>
+		    <input name="attr_wound_toggle" type="hidden"  value="@{wounds}" />
+		    <button data-i18n="wounds" name="act_wound" title="@{wound_toggle}" type="action">wounds</button>
+		</div>
 	</div>
 </div>
 
@@ -41,40 +65,20 @@
 <!-- PC SHEET
    ============================= -->
 <div class="pc">
-	<div class="grid grid-tab-buttons">
-		<!-- Buttons to toggle on GM whisper -->
-		<input class="whisper-toggle" name="attr_gm_toggle" type="hidden"  value=" " />
-		<button name="act_whisper" data-i18n-title="gm-whisper" title="gm whisper" type="action">
-			<span class="hidden" data-i18n="gm_whisper">gm whisper</span>
-			<span class="hidden" name="attr_gm_toggle"></span>
-			q
-		</button>
-		<!-- CHARACTER SHEETS -->
-	    <button data-i18n="pc" data-i18n-title="p19n" name="act_toggle_character" title="player character button" type="action">pc</button>
-	    <button data-i18n="notes" data-i18n-title="n9n" name="act_toggle_notes" title="notes button" type="action">notes</button>
-	    <button data-i18n="npc" data-i18n-title="n16r" name="act_toggle_npc" title="non player character" type="action">npc</button>
-	    <input name="attr_wound_toggle" type="hidden"  value="@{wounds}" />
-	    <button data-i18n="wounds" name="act_wound" title="@{wound_toggle}" type="action">wounds</button>
-		<input name="attr_modifier_toggle" value="?{Modifiers +/-|0}" type="hidden" />
-		<button data-i18n="modifiers" name="act_modifier" title="@{modifier_toggle}" type="action">modifiers</button>
-		<input name="attr_edge_toggle" type="hidden" value="@{edge}" />
-		<button data-i18n="edge" name="act_edge" title="@{edge_toggle}" type="action">edge</button>
-		<button title="Roll D6s" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{d6}}}{{base=^{d6}}}{{dice=[[(?{d6s|0}d6>5)]]}}">
-			<span class="hidden" data-i18n="roll_d6">roll d6s</span>
-			<span class="d6">L</span>
-		</button>
+	<div class="flex info-flex">
 		<!-- TAB BUTTONS -->
-		<button data-i18n="all" data-i18n-title="tab_all" name="act_tab_all" title="all tabs" type="action">all</button>
-		<button data-i18n="core" data-i18n-title="tab_core" name="act_tab_core" title="core tab" type="action">core</button>
-		<button data-i18n="arms" data-i18n-title="tab_arms" name="act_tab_arms" title="arms tab" type="action">arms</button>
-		<button data-i18n="gear" data-i18n-title="tab_gear" name="act_tab_gear" title="gear tab" type="action">gear</button>
-		<button data-i18n="magic" data-i18n-title="tab_magic" name="act_tab_magic" title="magic tab" type="action">magic</button>
-		<button data-i18n="matrix" data-i18n-title="tab_matrix" name="act_tab_matrix" title="matrix tab" type="action">matrix</button>
-		<button data-i18n="social" data-i18n-title="tab_social" name="act_tab_social" title="social tab" type="action">social</button>
-		<button data-i18n="vehicle" data-i18n-title="tab_vehicle" name="act_tab_vehicle" title="vehicle tab" type="action">vehicle</button>
-		<button class="pictos" data-i18n-title="tab_options" name="act_tab_options" title="options tab" type="action">y</button>
+		<div class="grid grid-tab-buttons">
+			<button data-i18n="all" data-i18n-title="tab_all" name="act_tab_all" title="all tabs" type="action">all</button>
+			<button data-i18n="core" data-i18n-title="tab_core" name="act_tab_core" title="core tab" type="action">core</button>
+			<button data-i18n="arms" data-i18n-title="tab_arms" name="act_tab_arms" title="arms tab" type="action">arms</button>
+			<button data-i18n="gear" data-i18n-title="tab_gear" name="act_tab_gear" title="gear tab" type="action">gear</button>
+			<button data-i18n="magic" data-i18n-title="tab_magic" name="act_tab_magic" title="magic tab" type="action">magic</button>
+			<button data-i18n="matrix" data-i18n-title="tab_matrix" name="act_tab_matrix" title="matrix tab" type="action">matrix</button>
+			<button data-i18n="social" data-i18n-title="tab_social" name="act_tab_social" title="social tab" type="action">social</button>
+			<button data-i18n="vehicle" data-i18n-title="tab_vehicle" name="act_tab_vehicle" title="vehicle tab" type="action">vehicle</button>
+			<button class="pictos" data-i18n-title="tab_options" name="act_tab_options" title="options tab" type="action">y</button>
+		</div>
 	</div>
-
 	<div class="flex pc-flex static">
 		<div class="border">
 			<div class="grid grid-header">
@@ -91,7 +95,7 @@
 			<div class="grid grid-attributes">
 				<!-- BODY -->
 				<div class="grid grid-row">
-					<input type="hidden" name="attr_body" value="" />
+					<input name="attr_body" type="hidden" value="" />
 					<button name="body" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{body}}}{{base=^{attributes}}}{{dice=[[(@{body}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 						<h2 class="alt-color" data-i18n="body">body</h2>
 					</button>
@@ -113,7 +117,7 @@
 				</div>
 				<!-- AGILITY -->
 				<div class="grid grid-row">
-					<input type="hidden" name="attr_agility" value="" />
+					<input name="attr_agility" type="hidden" value="" />
 					<button name="agility" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{agility}}}{{base=^{attributes}}}{{dice=[[(@{agility}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 						<h2 class="alt-color" data-i18n="agility">agility</h2>
 					</button>
@@ -135,7 +139,7 @@
 				</div>
 				<!-- REACTION -->
 				<div class="grid grid-row">
-					<input type="hidden" name="attr_reaction" value="" />
+					<input name="attr_reaction" type="hidden" value="" />
 					<button name="reaction" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{reaction}}}{{base=^{attributes}}}{{dice=[[(@{reaction}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 						<h2 class="alt-color" data-i18n="reaction">reaction</h2>
 					</button>
@@ -157,7 +161,7 @@
 				</div>
 				<!-- STRENGHT -->
 				<div class="grid grid-row">
-					<input type="hidden" name="attr_strength" value="" />
+					<input name="attr_strength" type="hidden" value="" />
 					<button name="strength" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{strength}}}{{base=^{attributes}}}{{dice=[[(@{strength}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 						<h2 class="alt-color" data-i18n="strength">strength</h2>
 					</button>
@@ -179,7 +183,7 @@
 				</div>
 				<!-- WILLPOWER -->
 				<div class="grid grid-row">
-					<input type="hidden" name="attr_willpower" value="" />
+					<input name="attr_willpower" type="hidden" value="" />
 					<button name="willpower" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{willpower}}}{{base=^{attributes}}}{{dice=[[(@{willpower}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 						<h2 data-i18n="willpower">willpower</h2>
 					</button>
@@ -201,7 +205,7 @@
 				</div>
 				<!-- LOGIC -->
 				<div class="grid grid-row">
-					<input type="hidden" name="attr_logic" value="" />
+					<input name="attr_logic" type="hidden" value="" />
 					<button name="logic" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{logic}}}{{base=^{attributes}}}{{dice=[[(@{logic}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 						<h2 data-i18n="logic">logic</h2>
 					</button>
@@ -223,7 +227,7 @@
 				</div>
 				<!-- INTUITION -->
 				<div class="grid grid-row">
-					<input type="hidden" name="attr_intuition" value="" />
+					<input name="attr_intuition" type="hidden" value="" />
 					<button name="intuition" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{intuition}}}{{base=^{attributes}}}{{dice=[[(@{intuition}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 						<h2 data-i18n="intuition">intuition</h2>
 					</button>
@@ -245,7 +249,7 @@
 				</div>
 				<!-- CHARISMA -->
 				<div class="grid grid-row">
-					<input type="hidden" name="attr_charisma" value="" />
+					<input name="attr_charisma" type="hidden" value="" />
 					<button name="charisma" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{charisma}}}{{base=^{attributes}}}{{dice=[[(@{charisma}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 						<h2 data-i18n="charisma">charisma</h2>
 					</button>
@@ -296,7 +300,7 @@
 				</div>
 				<!-- UNARMED -->
 				<div class="grid grid-row">
-					<input type="hidden" name="attr_unarmed" value="" />
+					<input name="attr_unarmed" type="hidden" value="" />
 					<button name="unarmed" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{unarmed}}}{{base=^{attributes}}}{{dice=[[(@{edge}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 						<h2 data-i18n="unarmed">unarmed</h2>
 					</button>
@@ -337,7 +341,7 @@
 				</div>
 				<!-- MAGIC/RESONANCE -->
 				<div class="grid grid-row">
-					<input type="hidden" name="attr_special" value="3" />
+					<input name="attr_special" type="hidden" value="3" />
 					<h2 class="label" data-i18n="m12e">magic/resonance</h2>
 					<div class="display bot-border">
 						<span name="attr_special_base"></span>
@@ -359,14 +363,34 @@
 				<!-- Review -->
 				<div class="grid grid-row">
 					<button name="initiative" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{initiative}}}{{base=^{attributes}}}{{dice=[[(@{edge}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
-						<h2 data-i18n="initiative">initiative</h2>
+						<h2 class="alt-color" data-i18n="initiative">initiative</h2>
 					</button>
 					<div class="display bot-border">
+						<span name="attr_initiative_base"></span>
+						<span class="total" name="attr_initiative"></span>
+						<span>+</span>
+						<span name="attr_initiative_dice"></span>
+						<span>d6</span>
 					</div>
 					<div class="grid settings">
+						<input name="attr_initiative" type="hidden" value="6" />
+						<input name="attr_initiative_dice"  value="1" />
 						<div class="arrow-up"></div>
-						<label data-i18n-title="" title="magic or resonance input">
-							<input data-i18n-placeholder="6" name="attr_special" placeholder="6" title="@{special}" type="text" value="" />
+						<h2 data-i18n="base" data-i18-title="base" title="base">base</h2>
+						<label data-i18n-title="i15y" title="initiative display">
+							<span name="attr_initiative_base" title="@{initiative_base}"></span>
+						</label>
+						<h2 data-i18n="mod" data-i18-title="mod" title="mod">mod</h2>
+						<label data-i18n-title="i34t" title="initiative permanent modification input">
+							<input data-i18n-placeholder="0" name="attr_initiative_modifier" placeholder="0" title="@{initiative_modifier}" type="text" value="" />
+						</label>
+						<h2 data-i18n="dice" data-i18-title="dice" title="dice">dice</h2>
+						<label data-i18n-title="i19y" title="initiative dice display">
+							<span name="attr_iinitiative_dice" title="@{initiative_dice}"></span>
+						</label>
+						<h2 data-i18n="mod" data-i18-title="mod" title="mod">mod</h2>
+						<label data-i18n-title="i38t" title="initiative dice permanent modification input">
+							<input data-i18n-placeholder="0" name="attr_initiative_dice_modifier" placeholder="0" title="@{initiative_dice_modifier}" type="text" value="" />
 						</label>
 					</div>
 				</div>
@@ -374,7 +398,7 @@
 				<!-- Review -->
 				<div class="grid grid-row">
 					<button name="matrix_initiative" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{matrix_initiative}}}{{base=^{attributes}}}{{dice=[[(@{edge}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
-						<h2 data-i18n="matrix_initiative">matrix initiative</h2>
+						<h2 class="alt-color" data-i18n="matrix_initiative">matrix initiative</h2>
 					</button>
 					<div class="display bot-border">
 					</div>
@@ -389,7 +413,7 @@
 				<!-- Review -->
 				<div class="grid grid-row">
 					<button name="astral_initiative" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{astral_initiative}}}{{base=^{attributes}}}{{dice=[[(@{edge}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
-						<h2 data-i18n="astral_initiative">astral initiative</h2>
+						<h2 class="alt-color" data-i18n="astral_initiative">astral initiative</h2>
 					</button>
 					<div class="display bot-border">
 					</div>
@@ -668,6 +692,165 @@
 		</div>
 	</div>
 	<div class="flex pc-flex options">
+		<div class="border">
+			<div class="grid grid-header">
+				<h1 data-i18n="character" data-i18-title="character" title="character">character</h1>
+			</div>
+			<div class="grid">
+				<label data-i18-title="mundane" title="mundane">
+					<input name="attr_flag_special" title="@{flag_special}" type="checkbox" value="mundane" checked />
+					<span data-i18n="mundane">Mundane</span>
+				</label>
+				<label data-i18-title="awakened" title="mundane">
+					<input name="attr_flag_special" title="@{flag_special}" type="checkbox" value="awakened" checked />
+					<span data-i18n="awakened">Mundane</span>
+				</label>
+				<label data-i18-title="emerged" title="emerged">
+					<input name="attr_flag_special" title="@{flag_special}" type="checkbox" value="emerged" checked />
+					<span data-i18n="emerged">emerged</span>
+				</label>
+			</div>
+		</div>
+		<div class="border">
+			<div class="grid grid-header">
+				<h1 data-i18n="sheet_select" data-i18-title="sheet_select" title="sheet select">sheet select</h1>
+			</div>
+			<div class="grid">
+				<select name="attr_sheet_type" title="@{sheet_type}">
+					<option value="pc" data-i18n="pc">PC</option>
+					<option value="grunt" data-i18n="grunt">grunt</option>
+					<option value="host" data-i18n="host">Host</option>
+					<option value="sprite" data-i18n="sprite">Sprite</option>
+					<option value="vehicle" data-i18n="vehicle">Vehicle</option>
+				</select>
+			</div>
+		</div>
+		<div class="border">
+			<div class="grid grid-header">
+				<h1 data-i18n="temporary_modifiers" data-i18-title="temporary_modifiers" title="temporary modifiers">temporary modifiers</h1>
+			</div>
+			<div class="grid">
+				<div class="grid grid-row">
+					<span data-i18n="defense">defense</span>
+					<label data-i18-title="" title="defense temproary input">
+						<input name="attr_defense_temp" title="@{defense_temp}" type="number" />
+					</label>
+					<label data-i18-title="" title="defense temproary toggle">
+						<input name="attr_defense_temporary_flag" title="@{defense_temporary_flag}" type="checkbox" value="on" checked />
+					</label>
+				</div>
+				<div class="grid grid-row">
+					<span data-i18n="defense_rating">defense rating</span>
+					<label data-i18-title="" title="defense temproary input">
+						<input name="attr_defense_rating_temp" title="@{defense_rating_temp}" type="number" />
+					</label>
+					<label data-i18-title="" title="defense temproary toggle">
+						<input name="attr_defense_rating_temporary_flag" title="@{defense_rating_temporary_flag}" type="checkbox" value="on" checked />
+					</label>
+				</div>
+				<hr />
+				<div class="grid grid-row">
+					<span data-i18n="agility">agility</span>
+					<label data-i18-title="" title="agility temproary input">
+						<input name="attr_agility_temp" title="@{agility_temp}" type="number" />
+					</label>
+					<label data-i18-title="" title="agility temproary toggle">
+						<input name="attr_agility_temporary_flag" title="@{agility_temporary_flag}" type="checkbox" value="on" checked />
+					</label>
+				</div>
+				<div class="grid grid-row">
+					<span data-i18n="body">body</span>
+					<label data-i18-title="" title="body temproary input">
+						<input name="attr_body_temp" title="@{body_temp}" type="number" />
+					</label>
+					<label data-i18-title="" title="body temproary toggle">
+						<input name="attr_body_temporary_flag" title="@{body_temporary_flag}" type="checkbox" value="on" checked />
+					</label>
+				</div>
+				<div class="grid grid-row">
+					<span data-i18n="reaction">reaction</span>
+					<label data-i18-title="" title="reaction temproary input">
+						<input name="attr_reaction_temp" title="@{reaction_temp}" type="number" />
+					</label>
+					<label data-i18-title="" title="reaction temproary toggle">
+						<input name="attr_reaction_temporary_flag" title="@{reaction_temporary_flag}" type="checkbox" value="on" checked />
+					</label>
+				</div>
+				<div class="grid grid-row">
+					<span data-i18n="strength">strength</span>
+					<label data-i18-title="" title="strength temproary input">
+						<input name="attr_strength_temp" title="@{strength_temp}" type="number" />
+					</label>
+					<label data-i18-title="" title="strength temproary toggle">
+						<input name="attr_strength_temporary_flag" title="@{strength_temporary_flag}" type="checkbox" value="on" checked />
+					</label>
+				</div>
+				<div class="grid grid-row">
+					<span data-i18n="willpower">willpower</span>
+					<label data-i18-title="" title="willpower temproary input">
+						<input name="attr_willpower_temp" title="@{willpower_temp}" type="number" />
+					</label>
+					<label data-i18-title="" title="willpower temproary toggle">
+						<input name="attr_willpower_temporary_flag" title="@{willpower_temporary_flag}" type="checkbox" value="on" checked />
+					</label>
+				</div>
+				<div class="grid grid-row">
+					<span data-i18n="logic">logic</span>
+					<label data-i18-title="" title="logic temproary input">
+						<input name="attr_logic_temp" title="@{logic_temp}" type="number" />
+					</label>
+					<label data-i18-title="" title="logic temproary toggle">
+						<input name="attr_logic_temporary_flag" title="@{logic_temporary_flag}" type="checkbox" value="on" checked />
+					</label>
+				</div>
+				<div class="grid grid-row">
+					<span data-i18n="intuition">intuition</span>
+					<label data-i18-title="" title="intuition temproary input">
+						<input name="attr_intuition_temp" title="@{intuition_temp}" type="number" />
+					</label>
+					<label data-i18-title="" title="intuition temproary toggle">
+						<input name="attr_intuition_temporary_flag" title="@{intuition_temporary_flag}" type="checkbox" value="on" checked />
+					</label>
+				</div>
+				<div class="grid grid-row">
+					<span data-i18n="charisma">charisma</span>
+					<label data-i18-title="" title="charisma temproary input">
+						<input name="attr_charisma_temp" title="@{charisma_temp}" type="number" />
+					</label>
+					<label data-i18-title="" title="charisma temproary toggle">
+						<input name="attr_charisma_temporary_flag" title="@{charisma_temporary_flag}" type="checkbox" value="on" checked />
+					</label>
+				</div>
+				<div class="grid grid-row">
+					<span data-i18n="m12e">Magic/Resonance</span>
+					<label data-i18-title="" title="special temproary input">
+						<input name="attr_special_temp" title="@{special_temp}" type="number" />
+					</label>
+					<label data-i18-title="" title="special temproary toggle">
+						<input name="attr_special_temporary_flag" title="@{special_temporary_flag}" type="checkbox" value="on" checked />
+					</label>
+				</div>
+				<hr />
+				<div class="grid grid-row">
+					<span data-i18n="initiative">initiative</span>
+					<label data-i18-title="" title="initiative temproary input">
+						<input name="attr_initiative_temp" title="@{initiative_temp}" type="number" />
+					</label>
+					<label data-i18-title="" title="initiative temproary toggle">
+						<input name="attr_initiative_temporary_flag" title="@{initiative_temporary_flag}" type="checkbox" value="on" checked />
+					</label>
+				</div>
+				<div class="grid grid-row">
+					<span data-i18n="initiative_dice">initiative_dice</span>
+					<label data-i18-title="" title="initiative_dice temproary input">
+						<input name="attr_initiative_dice_temp" title="@{initiative_dice_temp}" type="number" />
+					</label>
+					<label data-i18-title="" title="initiative_dice temproary toggle">
+						<input name="attr_initiative_dice_temporary_flag" title="@{initiative_dice_temporary_flag}" type="checkbox" value="on" checked />
+					</label>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -736,34 +919,119 @@ const setAttributes = (update, silent) => {
 	(silent === true) ? setAttrs(update, {silent:true}) : setAttrs(update); 
 };
 
+/*
+
+Attack Rating (AR)
+Reaction + Strength + attack_rating_modifier at the Close range, with no rating at the other ranges (see Attack Rating/Range, p. 108).
+
+Defense Rating (DR)
+Add your Armor rating + Body + defense_rating_modifier.
+
+Initiative
+Reaction + Intuition for your base.
+Initiative Dice you have, default of 1; this may be increased by augmentations. 
+
+*/
 
 // === ATTRIBUTE ARRAYS
-	const global_attributes = {
-		attributes: ["body", "agility", "reaction", "strength", "willpower", "logic", "intuition", "charisma", "edge"],
-		wounds: ["stun", "physical", "pain_tolerance"],
-		lift: ["body", "strength", "lift_carry_modifier"],
-		defense: ["reaction", "intuition", "defense_modifier", "defense_temporary", `defense_temp_flag`],
-		memory: ["charisma", "willpower", "composure_modifier"],
+	const arrays = {
+		sheets: ["character", "npc", "notes"],
+		attributes: ["agility", "body", "charisma", "edge", "intuition", "logic", "reaction", "special", "strength", "willpower" ],
+		defense: ["reaction", "intuition", "defense_modifier", "defense_temporary", `defense_temporary_flag`],
+		initiative: ["reaction", "intuition", "initiative_modifier", "initiative_temporary", "initiative_temporary_flag"],
+		initDice: ["initiative_dice_modifier", "initiative_dice_temporary", "initiative_dice_temporary_flag"],
 		composure: ["charisma", "willpower", "composure_modifier"],
-		judge: ["charisma", "intuition", "judge_intentions_modifier"],
-		initiative: ["reaction", "intuition", "initiative_modifier", "initiative_temporary", "initiative_temp_flag"]
+		judge: ["willpower", "intuition", "judge_intentions_modifier"],
+		lift: ["body", "willpower", "lift_carry_modifier"],
+		memory: ["logic", "intuition", "memory_modifier"],
+		repeating_settings: [],
+		settings: [],
+		wounds: ["stun", "physical", "pain_tolerance"]
 	};
 
 // === ATTRIBUTE CHANGES
+   arrays["attributes"].forEach(attr => {
+        // Attach listener
+        on(`change:${attr}_base change:${attr}_modifier change:${attr}_temporary change:${attr}_temporary_flag`, () => {
+        	//Get Attributes
+            getAttrs([`${attr}_base`, `${attr}_modifier`, `${attr}_temporary`, `${attr}_temporary_flag`], (v) => {
+            	let total = (v[`${attr}_temporary_flag`] === "on") ? parseInt(v[`${attr}_temporary`]) || 0 : 0;
 
-// === COMMON ROLLS: MEOMORY, JUDGE INTETIONS, COMPOSURE, LIFT & CARRY, OVERFLOW, DEFENSE, & SOAK ROLLS
+            	[`${attr}_base`, `${attr}_modifier`].forEach((num) => {
+            		total += parseInt(v[num]) || 0
+            	});
+
+                // Update the finalized total
+                setAttributes({[attr]: total}, false);
+            });
+        });
+    });
+
+// === COMPOSURE
+    arrays["composure"].forEach(attr => {
+        on(`change:${attr}`, (eventinfo) => {
+        	update_common_rolls(arrays["composure"]);
+        });
+    });
+
+// === MEMORY
+    arrays["memory"].forEach(attr => {
+        on(`change:${attr}`, (eventinfo) => {
+        	update_common_rolls(arrays["memory"]);
+        });
+    });
+
+// === LIFT & CARRY
+    arrays["lift"].forEach(attr => {
+        on(`change:${attr}`, (eventinfo) => {
+        	update_common_rolls(arrays["lift"]);
+        });
+    });
+
+// === JUDGE INTENTIONS
+    arrays["judge"].forEach(attr => {
+        on(`change:${attr}`, (eventinfo) => {
+        	update_common_rolls(arrays["judge"]);
+        });
+    });
+
+// === INITIATIVE
+    arrays["initiative"].forEach(attr => {
+        on(`change:${attr}`, (eventinfo) => {
+        	update_common_rolls(arrays["initiative"]);
+        });
+    });
+
+// === INITIATIVE DICE
+    arrays["initDice"].forEach(attr => {
+        on(`change:${attr}`, (eventinfo) => {
+        	update_common_rolls(arrays["initDice"]);
+        });
+    });
+
+
+// === COMMON ROLLS: MEOMORY, JUDGE INTENTIONS, COMPOSURE, LIFT & CARRY, INITIATIVE, INITIATIVE DICE
 	const update_common_rolls = (attrs) => {
 		getAttrs(attrs, (v) => {
+			console.table(v);
+
+
+			const flag = attrs.find((flag) => { return flag.includes("_flag") });
 			const found = attrs.find((mod) => { return mod.includes("_modifier") });
 			const name  = found.split("_modifier")[0];
 			let numbers = [];
-			let update = {};
+
+			const array = attrs;
+
+			console.log(flag)
+
+			console.log(array);
+
 
 			_.each(array, (attr) => { numbers.push(parseInt(v[`${attr}`]) || 0); });
-        	const add   = (a, b) => a + b, sum = numbers.reduce(add);
-        	update[`${name}`] = sum
+        	const add = (a, b) => a + b, sum = numbers.reduce(add);
 
-        	setAttributes(update, true);
+        	setAttributes({[`${name}`]: sum}, true);
 		});
 	};
 
@@ -778,25 +1046,31 @@ const setAttributes = (update, silent) => {
 	});
 
 // === SETTINGS TOGGLES
-	const sheets = ["character", "npc", "notes"];
-
+ 	const sheets = ["character", "npc", "notes"];
     //Switch between sheet types.
-    sheets.forEach(attr => {
+    arrays["sheets"].forEach(attr => {
         on(`clicked:toggle_${attr}`, (eventinfo) => {
-            const update = {
-				character_settings: eventinfo.triggerName.split("_")[1]
-			};
-			setAttributes(update, true);
+			setAttributes({sheet_type: eventinfo.triggerName.split("_")[1]}, true);
         });
     });
+
+  /*  modPf2.getAttrNames(['setting_toggles', "skills"]).forEach(attr => {
+        on(`clicked:toggle_${attr}`, (eventinfo) => {
+            const trigger = eventinfo.triggerName.split("clicked:toggle_")[1];
+            getAttrs(["toggles"], (v) => {
+                let string = v[`toggles`];
+                (string.includes(`${attr}`)) ? string = string.replace(`${attr},`, "") : string += `${attr},`;
+                setAttrs({
+                	toggles : string
+                });
+            });
+        });
+    });*/
 
 // === GM WHISPER TOGGLES
 	on("clicked:whisper", (eventinfo) => {
 		getAttrs(["gm_toggle"], (v) => {
-			const update = {
-				gm_toggle : (v.gm_toggle.includes("gm")) ?  " " : "/w gm"
-			};
-			setAttributes(update, true);
+			setAttributes({gm_toggle: (v.gm_toggle.includes("gm")) ?  " " : "/w gm"}, true);
 		});
 	});
 
@@ -810,8 +1084,7 @@ const setAttributes = (update, silent) => {
 // === ROLL QUERY TRANSLATIONS
 	const translations = () => {
 		let translations = [];
-		let attributes = ["attribute", "body", "agility", "reaction", "strength", "willpower", "logic", "intuition", "charisma", "edge", "none"];
-		attributes.forEach((attribute) => {
+		arrays["attributes"].forEach((attribute) => {
 			translations.push(getTranslationByKey(attribute));
 		});
 

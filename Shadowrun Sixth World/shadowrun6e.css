@@ -99,6 +99,12 @@ textarea {
 .charsheet {
   min-width: 30em; }
 
+.sheet-d6 {
+  font-family: "dicefontd6"; }
+
+.sheet-pictos {
+  font-family: "pictos"; }
+
 /* FLEXBOX
    ============================= */
 div.sheet-flex {
@@ -125,6 +131,15 @@ div.sheet-grid {
   display: inline-grid;
   grid-column-gap: 0.2em;
   grid-row-gap: 0.2em; }
+
+div.sheet-grid-tab-buttons button {
+  font-size: 1.1em;
+  font-weight: bold;
+  text-transform: capitalize;
+  font-variant: small-caps; }
+  div.sheet-grid-tab-buttons button.sheet-pictos, div.sheet-grid-tab-buttons button.sheet-d6 {
+    font-variant: none;
+    text-transform: none; }
 
 div.sheet-grid-tab-inputs label:nth-of-type(1) {
   grid-area: 1 / 2 / 1 / 2; }
@@ -156,6 +171,10 @@ div.sheet-tabs {
   margin-bottom: 2%; }
   div.sheet-tabs label > input {
     width: 100%; }
+  div.sheet-tabs div.sheet-grid-tab-buttons {
+    grid-template-columns: 2.5em 6em 6em 6em; }
+    div.sheet-tabs div.sheet-grid-tab-buttons button.sheet-pictos, div.sheet-tabs div.sheet-grid-tab-buttons button[type="roll"] {
+      border-radius: 2em; }
 
 /* INPUTS FOR CHARACTER, PLAYER, NOTES..... */
 div.sheet-grid-tab-inputs {
@@ -166,123 +185,110 @@ div.sheet-grid-tab-inputs {
     font-weight: bold;
     text-transform: uppercase; }
 
-div.sheet-grid-tab-buttons {
-  grid-template-columns: 2.5em 5em 5em 5em;
-  margin-top: 2%; }
-  div.sheet-grid-tab-buttons button[name="act_whisper"] {
-    font-family: "pictos";
-    border-radius: 2em; }
-  div.sheet-grid-tab-buttons button:nth-of-type(1n+2) {
-    font-size: 1.1em;
-    font-weight: bold;
-    text-transform: capitalize;
-    font-variant: small-caps; }
-
-.sheet-d6 {
-  font-family: "dicefontd6"; }
-
 /* NPC SHEET
     ============================= */
 /* PC SHEET
    ============================= */
-div.sheet-bot-border {
-  border-bottom: 0.15em solid black; }
-
-div.sheet-grid-header {
-  grid-template-columns: 10em 2.5em 2.5em 10em 2.5em 2.5em; }
-  div.sheet-grid-header button {
-    grid-area: 1 / 1 / 1 / 1;
-    font-family: "pictos";
-    height: 1em;
-    width: 1em; }
-  div.sheet-grid-header h1 {
-    margin-left: 10%;
-    grid-area: 1 / 1 / 1 / 7; }
-  div.sheet-grid-header h2 {
-    text-transform: uppercase; }
-    div.sheet-grid-header h2:nth-of-type(1) {
-      grid-area: 2 / 2 / 2 / 2; }
-    div.sheet-grid-header h2:nth-of-type(2) {
-      grid-area: 2 / 3 / 2 / 3; }
-    div.sheet-grid-header h2:nth-of-type(3) {
-      grid-area: 2 / 5 / 2 / 5; }
-    div.sheet-grid-header h2:nth-of-type(4) {
-      grid-area: 2 / 6 / 2 / 6; }
-  div.sheet-grid-header hr {
-    grid-area: 3 / 1 / 3 / 7; }
-
-div.sheet-border {
-  border: 0.15em solid #79016f;
-  border-radius: 0.8em;
-  margin-bottom: 2%; }
-
-/* ATTRIBUTES
------------------------------ */
-div.sheet-grid-attributes {
-  width: 48%; }
-  div.sheet-grid-attributes button[type="roll"] {
-    border-bottom-left-radius: 0em;
-    border-bottom-right-radius: 0em;
-    border-bottom: 0.15em solid black;
-    font-size: 1.1em;
-    font-weight: bold;
-    text-transform: capitalize; }
-  div.sheet-grid-attributes h2 {
-    text-align: right;
-    padding-right: 2%; }
-  div.sheet-grid-attributes input[type="hidden"][value=""] ~ div.sheet-grid div > span.sheet-total, div.sheet-grid-attributes input[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total, div.sheet-grid-attributes input[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total::after, div.sheet-grid-attributes input[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total::before {
-    display: none; }
-  div.sheet-grid-attributes input[type="text"] {
-    width: 3.5em; }
-  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(1) {
-    grid-area: 1 / 1 / 1 / 3; }
-  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(2) {
-    grid-area: 2 / 1 / 2 / 3; }
-  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(3) {
-    grid-area: 3 / 1 / 3 / 3; }
-  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(4) {
-    grid-area: 4 / 1 / 4 / 3; }
-  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(5) {
-    grid-area: 5 / 1 / 5 / 3; }
-  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(6) {
-    grid-area: 6 / 1 / 6 / 3; }
-  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(7) {
-    grid-area: 7 / 1 / 7 / 3; }
-  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(8) {
-    grid-area: 8 / 1 / 8 / 3; }
-  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(9) {
-    grid-area: 9 / 1 / 9 / 3; }
-  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(10) {
-    grid-area: 10 / 1 / 10 / 3; }
-  div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(11) {
-    grid-area: 11 / 1 / 11 / 3; }
-  div.sheet-grid-attributes div.sheet-grid-row {
-    grid-template-columns: 10em 1fr;
-    margin-bottom: 2%; }
-    div.sheet-grid-attributes div.sheet-grid-row button, div.sheet-grid-attributes div.sheet-grid-row h2.sheet-label {
-      grid-area: 1 / 1 / 1 / 1; }
-    div.sheet-grid-attributes div.sheet-grid-row div.sheet-display {
-      grid-area: 1 / 2 / 1 / 2;
-      text-align: center; }
-      div.sheet-grid-attributes div.sheet-grid-row div.sheet-display span.sheet-total::after {
-        content: ")"; }
-      div.sheet-grid-attributes div.sheet-grid-row div.sheet-display span.sheet-total::before {
-        content: "("; }
-    div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings {
-      grid-area: 2 / 1 / 2 / 4;
-      grid-template-columns: 1fr 1fr 1fr 1fr; }
-      div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings div.sheet-arrow-up {
-        grid-area: 1 / 2 / 1 / 3; }
-      div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings h2:nth-of-type(1) {
-        grid-area: 2 / 1 / 2 / 1; }
-      div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings h2:nth-of-type(2) {
-        grid-area: 2 / 3 / 2 / 3; }
-      div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings label:nth-of-type(1) {
+div.sheet-pc {
+  /* ATTRIBUTES
+    ----------------------------- */ }
+  div.sheet-pc div.sheet-bot-border {
+    border-bottom: 0.15em solid black; }
+  div.sheet-pc div.sheet-info-flex {
+    width: 100%; }
+    div.sheet-pc div.sheet-info-flex div.sheet-grid-tab-buttons {
+      grid-template-columns: 6em 6em 6em 6em 6em 6em 6em 6em 2.5em; }
+  div.sheet-pc div.sheet-grid-header {
+    grid-template-columns: 10em 2.5em 2.5em 10em 2.5em 2.5em; }
+    div.sheet-pc div.sheet-grid-header button {
+      grid-area: 1 / 1 / 1 / 1;
+      font-family: "pictos";
+      height: 1em;
+      width: 1em; }
+    div.sheet-pc div.sheet-grid-header h1 {
+      margin-left: 10%;
+      grid-area: 1 / 1 / 1 / 7; }
+    div.sheet-pc div.sheet-grid-header h2 {
+      text-transform: uppercase; }
+      div.sheet-pc div.sheet-grid-header h2:nth-of-type(1) {
         grid-area: 2 / 2 / 2 / 2; }
-      div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings label:nth-of-type(2) {
-        grid-area: 2 / 4 / 2 / 4; }
-  div.sheet-grid-attributes div.sheet-grid-pc-edge {
-    grid-template-columns: 1fr; }
+      div.sheet-pc div.sheet-grid-header h2:nth-of-type(2) {
+        grid-area: 2 / 3 / 2 / 3; }
+      div.sheet-pc div.sheet-grid-header h2:nth-of-type(3) {
+        grid-area: 2 / 5 / 2 / 5; }
+      div.sheet-pc div.sheet-grid-header h2:nth-of-type(4) {
+        grid-area: 2 / 6 / 2 / 6; }
+    div.sheet-pc div.sheet-grid-header hr {
+      grid-area: 3 / 1 / 3 / 7; }
+  div.sheet-pc div.sheet-border {
+    border: 0.15em solid #79016f;
+    border-radius: 0.8em;
+    margin-bottom: 2%; }
+  div.sheet-pc div.sheet-grid-attributes {
+    width: 48%; }
+    div.sheet-pc div.sheet-grid-attributes button[type="roll"] {
+      border-bottom-left-radius: 0em;
+      border-bottom-right-radius: 0em;
+      border-bottom: 0.15em solid black;
+      font-size: 1.1em;
+      font-weight: bold;
+      text-transform: capitalize; }
+    div.sheet-pc div.sheet-grid-attributes h2 {
+      text-align: right;
+      padding-right: 2%; }
+    div.sheet-pc div.sheet-grid-attributes input[type="hidden"][value=""] ~ div.sheet-grid div > span.sheet-total, div.sheet-pc div.sheet-grid-attributes input[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total, div.sheet-pc div.sheet-grid-attributes input[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total::after, div.sheet-pc div.sheet-grid-attributes input[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total::before {
+      display: none; }
+    div.sheet-pc div.sheet-grid-attributes input[type="text"] {
+      width: 3.5em; }
+    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(1) {
+      grid-area: 1 / 1 / 1 / 3; }
+    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(2) {
+      grid-area: 2 / 1 / 2 / 3; }
+    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(3) {
+      grid-area: 3 / 1 / 3 / 3; }
+    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(4) {
+      grid-area: 4 / 1 / 4 / 3; }
+    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(5) {
+      grid-area: 5 / 1 / 5 / 3; }
+    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(6) {
+      grid-area: 6 / 1 / 6 / 3; }
+    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(7) {
+      grid-area: 7 / 1 / 7 / 3; }
+    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(8) {
+      grid-area: 8 / 1 / 8 / 3; }
+    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(9) {
+      grid-area: 9 / 1 / 9 / 3; }
+    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(10) {
+      grid-area: 10 / 1 / 10 / 3; }
+    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(11) {
+      grid-area: 11 / 1 / 11 / 3; }
+    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row {
+      grid-template-columns: 10em 1fr;
+      margin-bottom: 2%; }
+      div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row button, div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row h2.sheet-label {
+        grid-area: 1 / 1 / 1 / 1; }
+      div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-display {
+        grid-area: 1 / 2 / 1 / 2;
+        text-align: center; }
+        div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-display span.sheet-total::after {
+          content: ")"; }
+        div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-display span.sheet-total::before {
+          content: "("; }
+      div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings {
+        grid-area: 2 / 1 / 2 / 4;
+        grid-template-columns: 1fr 1fr 1fr 1fr; }
+        div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings div.sheet-arrow-up {
+          grid-area: 1 / 2 / 1 / 3; }
+        div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings h2:nth-of-type(1) {
+          grid-area: 2 / 1 / 2 / 1; }
+        div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings h2:nth-of-type(2) {
+          grid-area: 2 / 3 / 2 / 3; }
+        div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings label:nth-of-type(1) {
+          grid-area: 2 / 2 / 2 / 2; }
+        div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings label:nth-of-type(2) {
+          grid-area: 2 / 4 / 2 / 4; }
+    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-pc-edge {
+      grid-template-columns: 1fr; }
 
 /* SHARED SETTINGS
   ============================= */

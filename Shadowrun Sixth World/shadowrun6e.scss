@@ -1,7 +1,9 @@
 
 // VARIABLES
 //  ============================= *
-   $pictos      : "pictos";
+   $pictos: "pictos";
+   $d6: "dicefontd6";
+
 
    // COLORS
 	$accent1  : hsl(305, 98%, 24%);
@@ -192,6 +194,14 @@
 		min-width: 30em;
 	}
 
+	.sheet-d6 {
+		font-family: "dicefontd6";
+	}
+
+	.sheet-pictos {
+		font-family: "pictos";
+	}
+
 /* FLEXBOX
    ============================= */
 	div.sheet-flex {
@@ -210,8 +220,8 @@
 		margin-right: 0.5%;
 	}
 
-	input.sheet-display_string[value="npc"] ~  div.sheet-npc-flex,
-	input.sheet-display_string[value="character"] ~  div.sheet-pc-flex {
+	input.sheet-type[value*="npc"] ~  div.sheet-npc,
+	input.sheet-type[value*="character"] ~  div.sheet-pc {
 	    display: inline-flex;
 	}	
 
@@ -221,6 +231,19 @@
 		display        : inline-grid;
 		grid-column-gap: 0.2em;
 		grid-row-gap   : 0.2em;
+	}
+
+	div.sheet-grid-tab-buttons {
+		button {
+			@include button-like();
+			font-variant: small-caps;
+
+			&.sheet-pictos,
+			&.sheet-d6 {
+		  		font-variant: none;
+		  		text-transform: none;
+			}
+		}
 	}
 
 	div.sheet-grid-tab-inputs {
@@ -254,6 +277,17 @@
 		label > input {
 			width: 100%;
 		}
+
+		div.sheet-grid-tab-buttons {
+			grid-template-columns: 2.5em 6em 6em 6em;
+
+			button {
+				&.sheet-pictos,
+				&[type="roll"] {
+			  		border-radius: 2em;
+				}
+			}
+		}
 	}
 
 	/* INPUTS FOR CHARACTER, PLAYER, NOTES..... */
@@ -270,176 +304,163 @@
 		}
 	}
 
-	div.sheet-grid-tab-buttons {
-		grid-template-columns: 2.5em 5em 5em 5em;
-		margin-top           : 2%;
-
-		button {
-			&[name="act_whisper"] {
-		  		font-family: $pictos;
-		  		border-radius: 2em;
-			}
-		  	&:nth-of-type(1n+2) {
-				@include button-like();
-				font-variant: small-caps;
-			}
-		}
-	}
-
-	.sheet-d6 {
-		font-family: "dicefontd6";
-	}
-
-	.sheet-pictos {
-		font-family: "pictos";
-	}
 
 /* NPC SHEET
     ============================= */
 
 /* PC SHEET
    ============================= */
-   	div.sheet-bot-border {
-		@include border(border-bottom);
-	}
 
-   div.sheet-grid-header {
-   		grid-template-columns: 10em 2.5em 2.5em 10em 2.5em 2.5em;
+	div.sheet-pc {
+		div.sheet-bot-border {
+			@include border(border-bottom);
+		}
 
-	   button {
-	   		@include grid-area(1, 1, 1, 1);
-	   		font-family: "pictos";
-			height: 1em;
-			width : 1em;
-	   }
+		div.sheet-info-flex {
+			width: 100%;
 
-	   h1 {
-	   		margin-left: 10%;
-	   		@include grid-area(1, 7, 1, 1);
-	   }
-
-	   h2 {
-	   		@include text-trans(uppercase);
-		   	@for $i from 1 through 2 {
-		   		&:nth-of-type(#{$i})  { 
-		   			@include grid-area($i+1, $i+1, 2, 2); 
-		   		}
-			}
-
-			@for $i from 3 through 4 {
-		   		&:nth-of-type(#{$i})  { 
-		   			@include grid-area($i+2, $i+2, 2, 2);
-		   		}
-			}
-	   }
-
-	   hr {
-	   		@include grid-area(1, 7, 3, 3);
-	   }
-   }
-
-   	div.sheet-border {
-		border       : 0.15em solid $accent1;
-		border-radius: 0.8em;
-		margin-bottom: 2%;
-	}
-
-
-   /* ATTRIBUTES
-   ----------------------------- */
-   div.sheet-grid-attributes {
-   		width: 48%;
-
-   		button {
-   			&[type="roll"] {
-				border-bottom : {
-					left-radius : 0em;
-					right-radius: 0em;
-				}
-				@include border(border-bottom);
-				@include button-like();
-			}
-   		}
-
-   		h2 {
-   			@include text-align(right);
-   			padding-right: 2%;
-
-   			&.sheet-label {
-
-   			}
-   		}
-
-   		input {
-   			&[type="hidden"][value=""] ~ div.sheet-grid div > span.sheet-total,
-	   		&[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total,
-	   		&[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total::after,
-	   		&[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total::before {
-	   			display: none;
-	   		}
-
-	   		&[type="text"] {
-		   		width: 3.5em;
-		   	}
-   		}
-
-		@for $i from 1 through 11 {
-			div.sheet-grid-row:nth-of-type(#{$i})  { 
-				@include grid-area(1, 3, $i, $i);
+			div.sheet-grid-tab-buttons {
+				grid-template-columns: 6em 6em 6em 6em 6em 6em 6em 6em 2.5em;
 			}
 		}
 
-	   div.sheet-grid-row {
-			grid-template-columns: 10em 1fr;
+		div.sheet-grid-header {
+	   		grid-template-columns: 10em 2.5em 2.5em 10em 2.5em 2.5em;
+
+		   button {
+		   		@include grid-area(1, 1, 1, 1);
+		   		font-family: "pictos";
+				height: 1em;
+				width: 1em;
+		   }
+
+		   h1 {
+		   		margin-left: 10%;
+		   		@include grid-area(1, 7, 1, 1);
+		   }
+
+		   h2 {
+		   		@include text-trans(uppercase);
+			   	@for $i from 1 through 2 {
+			   		&:nth-of-type(#{$i})  { 
+			   			@include grid-area($i+1, $i+1, 2, 2); 
+			   		}
+				}
+
+				@for $i from 3 through 4 {
+			   		&:nth-of-type(#{$i})  { 
+			   			@include grid-area($i+2, $i+2, 2, 2);
+			   		}
+				}
+		   }
+
+		   hr {
+		   		@include grid-area(1, 7, 3, 3);
+		   }
+	   }
+
+	   	div.sheet-border {
+			border       : 0.15em solid $accent1;
+			border-radius: 0.8em;
 			margin-bottom: 2%;
+		}
 
-	   		button, h2.sheet-label { 
-				@include grid-area(1, 1, 1, 1);
-			}
+	 /* ATTRIBUTES
+	   ----------------------------- */
+	   div.sheet-grid-attributes {
+	   		width: 48%;
 
-			div.sheet-display { 
-				@include grid-area(2, 2, 1, 1);
-				text-align: center;
+	   		button {
+	   			&[type="roll"] {
+					border-bottom : {
+						left-radius : 0em;
+						right-radius: 0em;
+					}
+					@include border(border-bottom);
+					@include button-like();
+				}
+	   		}
 
-				span {
-					&.sheet-total::after {
-			   			content: ")";
-			   		}
+	   		h2 {
+	   			@include text-align(right);
+	   			padding-right: 2%;
 
-			   		&.sheet-total::before {
-			   			content: "(";
-			   		}
+	   			&.sheet-label {
+
+	   			}
+	   		}
+
+	   		input {
+	   			&[type="hidden"][value=""] ~ div.sheet-grid div > span.sheet-total,
+		   		&[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total,
+		   		&[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total::after,
+		   		&[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total::before {
+		   			display: none;
+		   		}
+
+		   		&[type="text"] {
+			   		width: 3.5em;
+			   	}
+	   		}
+
+			@for $i from 1 through 11 {
+				div.sheet-grid-row:nth-of-type(#{$i})  { 
+					@include grid-area(1, 3, $i, $i);
 				}
 			}
 
-			div.sheet-settings { 
-				@include grid-area(1, 4, 2, 2);
-				grid-template-columns: 1fr 1fr 1fr 1fr;
+		   div.sheet-grid-row {
+				grid-template-columns: 10em 1fr;
+				margin-bottom: 2%;
 
-				div.sheet-arrow-up {
-					@include grid-area(2, 3, 1, 1);
+		   		button, h2.sheet-label { 
+					@include grid-area(1, 1, 1, 1);
 				}
 
-				h2 {
+				div.sheet-display { 
+					@include grid-area(2, 2, 1, 1);
+					text-align: center;
+
+					span {
+						&.sheet-total::after {
+				   			content: ")";
+				   		}
+
+				   		&.sheet-total::before {
+				   			content: "(";
+				   		}
+					}
+				}
+
+				div.sheet-settings { 
+					@include grid-area(1, 4, 2, 2);
+					grid-template-columns: 1fr 1fr 1fr 1fr;
+
+					div.sheet-arrow-up {
+						@include grid-area(2, 3, 1, 1);
+					}
+
+					h2 {
+						@for $i from 1 through 2 {
+							&:nth-of-type(#{$i})  { 
+								@include grid-area(alternate($i, 1), alternate($i, 1), 2, 2);
+							}
+						}
+					}
+
 					@for $i from 1 through 2 {
-						&:nth-of-type(#{$i})  { 
-							@include grid-area(alternate($i, 1), alternate($i, 1), 2, 2);
+						label:nth-of-type(#{$i})  { 
+							@include grid-area(alternate($i, 1)+1, alternate($i, 1)+1, 2, 2);
 						}
 					}
 				}
+		   }
 
-				@for $i from 1 through 2 {
-					label:nth-of-type(#{$i})  { 
-						@include grid-area(alternate($i, 1)+1, alternate($i, 1)+1, 2, 2);
-					}
-				}
-			}
+	   		div.sheet-grid-pc-edge {
+		   		grid-template-columns: 1fr;
+		   }
 	   }
-
-   		div.sheet-grid-pc-edge {
-	   		grid-template-columns: 1fr;
-	   }
-   }
+	}
 
  /* SHARED SETTINGS
    ============================= */ 
