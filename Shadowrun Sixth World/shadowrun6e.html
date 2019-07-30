@@ -21,11 +21,6 @@
 			<label data-i18n-title="p8e" title="player name">
 				<input data-i18n-placeholder="p8e" name="attr_player_name" placeholder="player name" title="@{player_name}" type="text" value="" />
 			</label>
-			<!-- NOTES -->
-			<span data-i18n="notes">notes</span>
-			<label data-i18n-title="c12s" title="character notes">
-				<input data-i18n-placeholder="c12s" name="attr_character_notes" placeholder="character notes" title="@{character_notes}" type="text" value="" />
-			</label>
 		</div>
 		<div class="grid grid-tab-buttons">
 			<!-- Buttons to toggle on GM whisper -->
@@ -84,7 +79,65 @@
 			<div class="grid grid-header">
 				<h1 data-i18n="personal_data" data-i18-title="personal_data" title="personal data">personal data</h1>
 			</div>
-			<div class="grid">
+			<div class="grid grid-personal-data">
+				<div class="grid grid-row">
+					<h2 data-i18n="name_primary_alias">name/primary alias</h2>
+					<label data-i18-title="name_primary_alias" title="name/primary alias">
+						<input data-i18n-placeholder="c11e" name="attr_name" placeholder="name/primary alias" title="@{name}" type="text" value="" />
+					</label>
+				</div>
+				<div class="grid grid-row">
+					<h2 data-i18n="metatype">metatype</h2>
+					<label data-i18-title="metatype" title="metatype">
+						<input data-i18n-placeholder="metatype" name="attr_metatype" placeholder="metatype" title="@{metatype}" type="text" value="" />
+					</label>
+					<h2 data-i18n="ethnicity">ethnicity</h2>
+					<label data-i18-title="ethnicity" title="ethnicity">
+						<input data-i18n-placeholder="ethnicity" name="attr_ethnicity" placeholder="ethnicity" title="@{ethnicity}" type="text" value="" />
+					</label>
+				</div>
+				<div class="grid grid-row">
+					<h2 data-i18n="age">age</h2>
+					<label data-i18-title="age" title="age">
+						<input data-i18n-placeholder="age" name="attr_age" placeholder="age" title="@{age}" type="text" value="" />
+					</label>
+					<h2 data-i18n="sex">sex</h2>
+					<label data-i18-title="sex" title="sex">
+						<input data-i18n-placeholder="sex" name="attr_sex" placeholder="sex" title="@{sex}" type="text" value="" />
+					</label>
+					<h2 data-i18n="c-height">height</h2>
+					<label data-i18-title="c-height" title="height">
+						<input data-i18n-placeholder="c-height" name="attr_height" placeholder="height" title="@{height}" type="text" value="" />
+					</label>
+					<h2 data-i18n="weight">weight</h2>
+					<label data-i18-title="weight" title="weight">
+						<input data-i18n-placeholder="weight" name="attr_weight" placeholder="weight" title="@{weight}" type="text" value="" />
+					</label>
+				</div>
+				<div class="grid grid-row">
+					<h2 data-i18n="reputation">reputation</h2>
+					<label data-i18-title="reputation" title="reputation">
+						<input data-i18n-placeholder="reputation" name="attr_reputation" placeholder="reputation" title="@{reputation}" type="text" value="" />
+					</label>
+					<h2 data-i18n="heat">heat</h2>
+					<label data-i18-title="heat" title="heat">
+						<input data-i18n-placeholder="heat" name="attr_heat" placeholder="heat" title="@{heat}" type="text" value="" />
+					</label>
+				</div>
+				<div class="grid grid-row">
+					<h2 data-i18n="karma">karma</h2>
+					<label data-i18-title="karma" title="karma">
+						<input data-i18n-placeholder="karma" name="attr_karma" placeholder="karma" title="@{karma}" type="text" value="" />
+					</label>
+					<h2 data-i18n="total_karma">total karma</h2>
+					<label data-i18-title="total_karma" title="total_karma">
+						<input data-i18n-placeholder="total_karma" name="attr_total_karma" placeholder="total karma" title="@{total_karma}" type="text" value="" />
+					</label>
+					<h2 data-i18n="misc">misc</h2>
+					<label data-i18-title="misc" title="misc">
+						<input data-i18n-placeholder="misc" name="attr_misc" placeholder="misc" title="@{misc}" type="text" value="" />
+					</label>
+				</div>
 			</div>
 		</div>
 		<div class="border">
@@ -362,7 +415,7 @@
 				<!-- INITIATIVE -->
 				<!-- Review -->
 				<div class="grid grid-row">
-					<button name="initiative" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{initiative}}}{{base=^{attributes}}}{{dice=[[(@{edge}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+					<button name="initiative" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{initiative}}}{{base=^{base}}}{{dice=[[(@{initiative_modifier}+@{wound_toggle}+@{modifier_toggle})+(@{initiative_dice})d6cf0 &{tracker}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 						<h2 class="alt-color" data-i18n="initiative">initiative</h2>
 					</button>
 					<div class="display bot-border">
@@ -374,7 +427,7 @@
 					</div>
 					<div class="grid settings">
 						<input name="attr_initiative" type="hidden" value="6" />
-						<input name="attr_initiative_dice"  value="1" />
+						<input name="attr_initiative_dice" type="hidden" value="1" />
 						<div class="arrow-up"></div>
 						<h2 data-i18n="base" data-i18-title="base" title="base">base</h2>
 						<label data-i18n-title="i15y" title="initiative display">
@@ -397,30 +450,70 @@
 				<!-- MATRIX INITIATIVE-->
 				<!-- Review -->
 				<div class="grid grid-row">
-					<button name="matrix_initiative" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{matrix_initiative}}}{{base=^{attributes}}}{{dice=[[(@{edge}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+					<button name="matrix_initiative" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{matrixinitiative}}}{{base=^{base}}}{{dice=[[(@{matrix_modifier}+@{wound_toggle}+@{modifier_toggle})+(@{matrix_dice})d6cf0 &{tracker}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 						<h2 class="alt-color" data-i18n="matrix_initiative">matrix initiative</h2>
 					</button>
 					<div class="display bot-border">
+						<span name="attr_matrix_initiative_base"></span>
+						<span class="total" name="attr_matrix_initiative"></span>
+						<span>+</span>
+						<span name="attr_matrix_initiative_dice"></span>
+						<span>d6</span>
 					</div>
 					<div class="grid settings">
+						<input name="attr_matrix_initiative" type="hidden" value="6" />
+						<input name="attr_matrix_initiative_dice" type="hidden" value="1" />
 						<div class="arrow-up"></div>
-						<label data-i18n-title="" title="magic or resonance input">
-							<input data-i18n-placeholder="6" name="attr_special" placeholder="6" title="@{special}" type="text" value="" />
+						<h2 data-i18n="base" data-i18-title="base" title="base">base</h2>
+						<label data-i18n-title="m21y" title="matrix initiative display">
+							<span name="attr_matrix_initiative_base" title="@{initiative_base}"></span>
+						</label>
+						<h2 data-i18n="mod" data-i18-title="mod" title="mod">mod</h2>
+						<label data-i18n-title="m40t" title="matrix initiative permanent modification input">
+							<input data-i18n-placeholder="0" name="attr_matrix_initiative_modifier" placeholder="0" title="@{matrix_initiative_modifier}" type="text" value="" />
+						</label>
+						<h2 data-i18n="dice" data-i18-title="dice" title="dice">dice</h2>
+						<label data-i18n-title="m25y" title="matrix initiative dice display">
+							<span name="attr_matrix_iinitiative_dice" title="@{matrix_initiative_dice}"></span>
+						</label>
+						<h2 data-i18n="mod" data-i18-title="mod" title="mod">mod</h2>
+						<label data-i18n-title="m44t" title="matrix initiative dice permanent modification input">
+							<input data-i18n-placeholder="0" name="attr_matrix_initiative_dice_modifier" placeholder="0" title="@{matrix_initiative_dice_modifier}" type="text" value="" />
 						</label>
 					</div>
 				</div>
 				<!-- ASTRAL INITIATIVE -->
 				<!-- Review -->
 				<div class="grid grid-row">
-					<button name="astral_initiative" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{astral_initiative}}}{{base=^{attributes}}}{{dice=[[(@{edge}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+					<button name="astral_initiative" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{astralinitiative}}}{{base=^{base}}}{{dice=[[(@{astral_modifier}+@{wound_toggle}+@{modifier_toggle})+(@{astral_dice})d6cf0 &{tracker}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
 						<h2 class="alt-color" data-i18n="astral_initiative">astral initiative</h2>
 					</button>
 					<div class="display bot-border">
+						<span name="attr_astral_initiative_base"></span>
+						<span class="total" name="attr_astral_initiative"></span>
+						<span>+</span>
+						<span name="attr_astral_initiative_dice"></span>
+						<span>d6</span>
 					</div>
 					<div class="grid settings">
+							<input name="attr_astral_initiative" type="hidden" value="6" />
+						<input name="attr_astral_initiative_dice" type="hidden" value="1" />
 						<div class="arrow-up"></div>
-						<label data-i18n-title="" title="magic or resonance input">
-							<input data-i18n-placeholder="6" name="attr_special" placeholder="6" title="@{special}" type="text" value="" />
+						<h2 data-i18n="base" data-i18-title="base" title="base">base</h2>
+						<label data-i18n-title="a21y" title="astral initiative display">
+							<span name="attr_astral_initiative_base" title="@{astral_initiative_base}"></span>
+						</label>
+						<h2 data-i18n="mod" data-i18-title="mod" title="mod">mod</h2>
+						<label data-i18n-title="a40t" title="astral initiative permanent modification input">
+							<input data-i18n-placeholder="0" name="attr_astral_initiative_modifier" placeholder="0" title="@{astral_initiative_modifier}" type="text" value="" />
+						</label>
+						<h2 data-i18n="dice" data-i18-title="dice" title="dice">dice</h2>
+						<label data-i18n-title="a25y" title="astral initiative dice display">
+							<span name="attr_astral_iinitiative_dice" title="@{astral_initiative_dice}"></span>
+						</label>
+						<h2 data-i18n="mod" data-i18-title="mod" title="mod">mod</h2>
+						<label data-i18n-title="a44t" title="astral initiative dice permanent modification input">
+							<input data-i18n-placeholder="0" name="attr_astral_initiative_dice_modifier" placeholder="0" title="@{astral_initiative_dice_modifier}" type="text" value="" />
 						</label>
 					</div>
 				</div>
@@ -699,11 +792,11 @@
 			<div class="grid">
 				<label data-i18-title="mundane" title="mundane">
 					<input name="attr_flag_special" title="@{flag_special}" type="checkbox" value="mundane" checked />
-					<span data-i18n="mundane">Mundane</span>
+					<span data-i18n="mundane">mundane</span>
 				</label>
-				<label data-i18-title="awakened" title="mundane">
+				<label data-i18-title="awakened" title="awakened">
 					<input name="attr_flag_special" title="@{flag_special}" type="checkbox" value="awakened" checked />
-					<span data-i18n="awakened">Mundane</span>
+					<span data-i18n="awakened">awakened</span>
 				</label>
 				<label data-i18-title="emerged" title="emerged">
 					<input name="attr_flag_special" title="@{flag_special}" type="checkbox" value="emerged" checked />
@@ -852,16 +945,6 @@
 			</div>
 		</div>
 	</div>
-</div>
-
-<!-- NOTES SHEET
-   ============================= -->
-<div class="notes">
-</div>
-
-<!-- OPTIONS SHEET
-   ============================= -->
-<div class="options">
 </div>
 
 <!-- FOOTER
