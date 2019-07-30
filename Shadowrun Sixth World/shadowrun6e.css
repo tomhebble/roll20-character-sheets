@@ -46,7 +46,7 @@ h2 {
   h2.sheet-alt-color {
     color: #79016f; }
   h2.sheet-label {
-    border-bottom: 0.15em solid black;
+    border-bottom: 0.1em solid black;
     font-size: 1.1em;
     font-weight: bold;
     text-transform: capitalize;
@@ -197,7 +197,7 @@ div.sheet-pc {
   /* ATTRIBUTES
     ----------------------------- */ }
   div.sheet-pc div.sheet-bot-border {
-    border-bottom: 0.15em solid black; }
+    border-bottom: 0.1em solid black; }
   div.sheet-pc div.sheet-info-flex {
     width: 100%; }
     div.sheet-pc div.sheet-info-flex div.sheet-grid-tab-buttons {
@@ -230,7 +230,7 @@ div.sheet-pc {
     margin-bottom: 2%;
     padding: 2% 1%; }
   div.sheet-pc div.sheet-grid-personal-data div.sheet-grid-row {
-    border-bottom: 0.15em solid black;
+    border-bottom: 0.1em solid black;
     /* NAME */
     /* METATYPE / ETHNICITY */
     /* AGE / SEX / HEIGH / WEIGHT */
@@ -268,7 +268,7 @@ div.sheet-pc {
     div.sheet-pc div.sheet-grid-attributes button[type="roll"] {
       border-bottom-left-radius: 0em;
       border-bottom-right-radius: 0em;
-      border-bottom: 0.15em solid black;
+      border-bottom: 0.1em solid black;
       font-size: 1.1em;
       font-weight: bold;
       text-transform: capitalize; }
