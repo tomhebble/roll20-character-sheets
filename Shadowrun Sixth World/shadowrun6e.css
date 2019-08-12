@@ -5,7 +5,7 @@
   font-family: sans-serif; }
 
 button {
-  overflow: hidden; }
+  text-overflow: ellipsis; }
   button:before {
     display: none; }
   button:focus, button:hover, button:active {
@@ -37,12 +37,14 @@ fieldset {
 h1 {
   overflow: hidden;
   color: #79016f;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  text-overflow: ellipsis; }
 
 h2 {
   overflow: hidden;
   font-size: 1em;
-  line-height: 1.4em; }
+  line-height: 1.4em;
+  text-overflow: ellipsis; }
   h2.sheet-alt-color {
     color: #79016f; }
   h2.sheet-label {
@@ -56,7 +58,8 @@ h2 {
 h3 {
   overflow: hidden;
   font-size: 1.25em;
-  line-height: 36px; }
+  line-height: 36px;
+  text-overflow: ellipsis; }
 
 hr {
   border-top: 0.02em solid black; }
@@ -339,6 +342,8 @@ div.sheet-pc {
           grid-area: 3 / 4 / 3 / 4; }
     div.sheet-pc div.sheet-grid-attributes div.sheet-grid-pc-edge {
       grid-template-columns: 1fr; }
+  div.sheet-pc span.sheet-total {
+    display: none; }
 
 /* SHARED SETTINGS
   ============================= */
@@ -357,6 +362,38 @@ div.sheet-settings {
     width: 0; }
   div.sheet-settings h2 {
     text-transform: capitalize; }
+
+/* SHOW & HIDE SETTINGS 
+	============================= */
+div.sheet-settings {
+  -webkit-transition: all .5s;
+  /* Safari */
+  display: none;
+  height: 0;
+  overflow: hidden;
+  position: relative;
+  transition: all .5s;
+  z-index: 1; }
+
+div.sheet-settings::before {
+  border-bottom: 10px solid #79016f;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  content: "";
+  left: 49%;
+  position: absolute;
+  top: -10px;
+  z-index: -1; }
+
+div.sheet-toggle, input[name="attr_toggles"][value*="attributes"] ~ div.sheet-pc div.sheet-grid-attributes div.sheet-settings {
+  display: inline-grid;
+  height: auto;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  padding: 3% 1%; }
+
+span.sheet-inline, input[name="attr_toggles"][value*="agility_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_agility"], input[name="attr_toggles"][value*="body_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_body"], input[name="attr_toggles"][value*="charisma_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_charisma"], input[name="attr_toggles"][value*="intuition_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_intuition"], input[name="attr_toggles"][value*="logic_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_logic"], input[name="attr_toggles"][value*="reaction_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_reaction"], input[name="attr_toggles"][value*="special_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_special"], input[name="attr_toggles"][value*="strength_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_strength"], input[name="attr_toggles"][value*="willpower_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_willpower"], input[name="attr_toggles"][value*="initiative_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_initiative"], input[name="attr_toggles"][value*="matrix_initiative_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_matrix_initiative"], input[name="attr_toggles"][value*="astral_initiative_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_astral_initiative"], input[name="attr_toggles"][value*="composure_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_composure"], input[name="attr_toggles"][value*="judge_intentions_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_judge_intentions"], input[name="attr_toggles"][value*="memory_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_memory"], input[name="attr_toggles"][value*="lift_carry_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_lift_carry"] {
+  display: inline; }
 
 /* FOOTER
    ============================= */

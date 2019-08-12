@@ -169,4 +169,8 @@
 	,"weight"             : "weight"
 	,"willpower"          : "willpower"
 	,"wounds"             : "wounds"
+	,"current": "current"
+	,"e7t": "edge input"
+	,"e10t": "edge max input"
+	,"active_tab": "current active tab"
 }
