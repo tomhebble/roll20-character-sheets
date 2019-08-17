@@ -4,7 +4,10 @@
    $pictos: "pictos";
    $d6: "dicefontd6";
    $padding: 1%;
-
+   $tabs: "core", "arms", "gear", "magic", "matrix", "social", "vehicle", "options";
+   $sheets: "pc", "npc";
+   $toggles: "attributes", "skills";
+   $attributesTotals: "agility", "body", "charisma", "intuition", "logic", "reaction", "special", "strength", "willpower", "initiative", "matrix_initiative", "astral_initiative", "composure", "judge_intentions", "memory", "lift_carry";
 
    // COLORS
 	$accent1  : hsl(305, 98%, 24%);
@@ -191,17 +194,9 @@
 		white-space   : pre-line;
 	}
 
-	.charsheet {
-		min-width: 30em;
-	}
-
-	.sheet-d6 {
-		font-family: "dicefontd6";
-	}
-
-	.sheet-pictos {
-		font-family: $pictos;
-	}
+	.charsheet { min-width: 30em; }
+	.sheet-d6 { font-family: "dicefontd6"; }
+	.sheet-pictos { font-family: $pictos; }
 
 /* FLEXBOX
    ============================= */
@@ -220,11 +215,6 @@
 	div.sheet-flex:first-child {
 		margin-right: 0.5%;
 	}
-
-	input.sheet-type[value*="npc"] ~  div.sheet-npc,
-	input.sheet-type[value*="character"] ~  div.sheet-pc {
-	    display: block;
-	}	
 
 /* GRID
    ============================= */ 
@@ -261,14 +251,22 @@
 
 /* HIGHLIGHT BUTTONS
    ============================= */
-	input.sheet-whisper-toggle[value*="gm"] + button[name*="whisper"],
-	input.sheet-display_string[value="character"] ~ div.sheet-tabs button[name*="character"],
-	input.sheet-display_string[value="npc"] ~ div.sheet-tabs button[name*="npc"],
-	input.sheet-display_string[value="notes"] ~ div.sheet-tabs button[name*="notes"],
-	input.sheet-display_string[value="options"] ~ div.sheet-tabs button[name*="options"] {
-		@include back-col($accent1);
+   button.sheet-highlight {
+   		@include back-col($accent1);
 		box-shadow: inset 0px 0px 3px 1px $accent2;
-		color     : $white;
+		color     : $white
+   }
+
+	@each $sheet in $sheets {
+		input.sheet-type[value="#{$sheet}"] ~ div.sheet-tabs button[name="#{$sheet}"] { 
+			@extend button.sheet-highlight;
+		}
+	}
+
+	@each $tab in $tabs {
+		input.sheet-display_string[value="#{$tab}"] ~ div.sheet-tabs button[name*="#{$tab}"] { 
+			@extend button.sheet-highlight;
+		}
 	}
 
 /* TABS & LOGO SECTION
@@ -389,28 +387,18 @@
 				}
 
 				/* METATYPE / ETHNICITY */
-				&:nth-of-type(2) {
-					grid-template-columns: 15% 28% 14% 43%;
-				}
+				&:nth-of-type(2) { grid-template-columns: 15% 28% 14% 43%; }
 
 				/* AGE / SEX / HEIGH / WEIGHT */
-				&:nth-of-type(3) {
-					grid-template-columns: 7% 13% 7% 15% 12% 15% 12% 15%;
-				}
+				&:nth-of-type(3) { grid-template-columns: 7% 13% 7% 15% 12% 15% 12% 15%; }
 
 				/* REPUTATION / HEAT */
-				&:nth-of-type(4) {
-					grid-template-columns: 18% 26% 8% 47%;
-				}
+				&:nth-of-type(4) { grid-template-columns: 18% 26% 8% 47%; }
 
 				/* KARMA / TOTAL KARMA / MISC */
-				&:nth-of-type(5) {
-					grid-template-columns: 10% 15% 20% 15% 8% 29%;
-				}
+				&:nth-of-type(5) { grid-template-columns: 10% 15% 20% 15% 8% 29%; }
 
-		   		&:nth-of-type(1n+2) h2 {
-		   			text-transform: capitalize;
-		   		}
+		   		&:nth-of-type(1n+2) h2 { text-transform: capitalize; }
 
 		   		input[type="text"],
 		   		input[type="number"] {
@@ -503,13 +491,8 @@
 							}
 						}
 
-						&:nth-of-type(3) {
-							@include grid-area(1, 1, 3, 3);
-						}
-
-						&:nth-of-type(4) {
-							@include grid-area(3, 3, 3, 3);
-						}
+						&:nth-of-type(3) { @include grid-area(1, 1, 3, 3); }
+						&:nth-of-type(4) { @include grid-area(3, 3, 3, 3); }
 					}
 
 					label {
@@ -519,14 +502,8 @@
 							}
 						}
 
-						&:nth-of-type(3) {
-							@include grid-area(2, 2, 3, 3);
-						}
-
-
-						&:nth-of-type(4) {
-							@include grid-area(4, 4, 3, 3);
-						}
+						&:nth-of-type(3) { @include grid-area(2, 2, 3, 3); }
+						&:nth-of-type(4) { @include grid-area(4, 4, 3, 3); }
 					}
 				}
 			}
@@ -587,10 +564,6 @@
 	    z-index: -1;
 	}
 
-	// VARIABLES
-	$toggles: "attributes";
-	$attributesTotals: "agility", "body", "charisma", "intuition", "logic", "reaction", "special", "strength", "willpower", "initiative", "matrix_initiative", "astral_initiative", "composure", "judge_intentions", "memory", "lift_carry";
-
 	//TOGGLES TO SHOW / HIDE SETTINGS
 	div.sheet-toggle {
 		display: inline-grid; //Show value's settings if they are part of the toggles string
@@ -614,6 +587,24 @@
    	@each $attribute in $attributesTotals {
 		input[name="attr_toggles"][value*="#{$attribute}_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_#{$attribute}"] {
 			@extend span.sheet-inline;
+		}
+	}
+
+/* SHOW & HIDE CHARACTER SHEETS & TABs 
+	============================= */
+	div.sheet-display-none {
+		display: none;
+	}
+
+	@each $sheet in $sheets {
+		input.sheet-type:not([value="#{$sheet}"]) ~ div.sheet-#{$sheet} { 
+			@extend div.sheet-display-none;
+		}
+	}
+
+	@each $tab in $tabs {
+		input.sheet-display_string:not([value*="#{$tab}"]) ~ ~ div.sheet-pc div.sheet-#{$tab} {
+			@extend div.sheet-display-none;
 		}
 	}
 

@@ -125,10 +125,6 @@ div.sheet-flex {
 div.sheet-flex:first-child {
   margin-right: 0.5%; }
 
-input.sheet-type[value*="npc"] ~ div.sheet-npc,
-input.sheet-type[value*="character"] ~ div.sheet-pc {
-  display: block; }
-
 /* GRID
    ============================= */
 div.sheet-grid {
@@ -161,11 +157,7 @@ div.sheet-grid-tab-inputs span:nth-of-type(3) {
 
 /* HIGHLIGHT BUTTONS
    ============================= */
-input.sheet-whisper-toggle[value*="gm"] + button[name*="whisper"],
-input.sheet-display_string[value="character"] ~ div.sheet-tabs button[name*="character"],
-input.sheet-display_string[value="npc"] ~ div.sheet-tabs button[name*="npc"],
-input.sheet-display_string[value="notes"] ~ div.sheet-tabs button[name*="notes"],
-input.sheet-display_string[value="options"] ~ div.sheet-tabs button[name*="options"] {
+button.sheet-highlight, input.sheet-type[value="pc"] ~ div.sheet-tabs button[name="pc"], input.sheet-type[value="npc"] ~ div.sheet-tabs button[name="npc"], input.sheet-display_string[value="core"] ~ div.sheet-tabs button[name*="core"], input.sheet-display_string[value="arms"] ~ div.sheet-tabs button[name*="arms"], input.sheet-display_string[value="gear"] ~ div.sheet-tabs button[name*="gear"], input.sheet-display_string[value="magic"] ~ div.sheet-tabs button[name*="magic"], input.sheet-display_string[value="matrix"] ~ div.sheet-tabs button[name*="matrix"], input.sheet-display_string[value="social"] ~ div.sheet-tabs button[name*="social"], input.sheet-display_string[value="vehicle"] ~ div.sheet-tabs button[name*="vehicle"], input.sheet-display_string[value="options"] ~ div.sheet-tabs button[name*="options"] {
   background-color: #79016f;
   box-shadow: inset 0px 0px 3px 1px rgba(136, 121, 190, 0.25);
   color: whitesmoke; }
@@ -385,7 +377,7 @@ div.sheet-settings::before {
   top: -10px;
   z-index: -1; }
 
-div.sheet-toggle, input[name="attr_toggles"][value*="attributes"] ~ div.sheet-pc div.sheet-grid-attributes div.sheet-settings {
+div.sheet-toggle, input[name="attr_toggles"][value*="attributes"] ~ div.sheet-pc div.sheet-grid-attributes div.sheet-settings, input[name="attr_toggles"][value*="skills"] ~ div.sheet-pc div.sheet-grid-skills div.sheet-settings {
   display: inline-grid;
   height: auto;
   margin-top: 3%;
@@ -394,6 +386,11 @@ div.sheet-toggle, input[name="attr_toggles"][value*="attributes"] ~ div.sheet-pc
 
 span.sheet-inline, input[name="attr_toggles"][value*="agility_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_agility"], input[name="attr_toggles"][value*="body_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_body"], input[name="attr_toggles"][value*="charisma_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_charisma"], input[name="attr_toggles"][value*="intuition_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_intuition"], input[name="attr_toggles"][value*="logic_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_logic"], input[name="attr_toggles"][value*="reaction_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_reaction"], input[name="attr_toggles"][value*="special_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_special"], input[name="attr_toggles"][value*="strength_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_strength"], input[name="attr_toggles"][value*="willpower_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_willpower"], input[name="attr_toggles"][value*="initiative_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_initiative"], input[name="attr_toggles"][value*="matrix_initiative_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_matrix_initiative"], input[name="attr_toggles"][value*="astral_initiative_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_astral_initiative"], input[name="attr_toggles"][value*="composure_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_composure"], input[name="attr_toggles"][value*="judge_intentions_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_judge_intentions"], input[name="attr_toggles"][value*="memory_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_memory"], input[name="attr_toggles"][value*="lift_carry_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_lift_carry"] {
   display: inline; }
+
+/* SHOW & HIDE CHARACTER SHEETS & TABs 
+	============================= */
+div.sheet-display-none, input.sheet-type:not([value="pc"]) ~ div.sheet-pc, input.sheet-type:not([value="npc"]) ~ div.sheet-npc, input.sheet-display_string:not([value*="core"]) ~ ~ div.sheet-pc div.sheet-core, input.sheet-display_string:not([value*="arms"]) ~ ~ div.sheet-pc div.sheet-arms, input.sheet-display_string:not([value*="gear"]) ~ ~ div.sheet-pc div.sheet-gear, input.sheet-display_string:not([value*="magic"]) ~ ~ div.sheet-pc div.sheet-magic, input.sheet-display_string:not([value*="matrix"]) ~ ~ div.sheet-pc div.sheet-matrix, input.sheet-display_string:not([value*="social"]) ~ ~ div.sheet-pc div.sheet-social, input.sheet-display_string:not([value*="vehicle"]) ~ ~ div.sheet-pc div.sheet-vehicle, input.sheet-display_string:not([value*="options"]) ~ ~ div.sheet-pc div.sheet-options {
+  display: none; }
 
 /* FOOTER
    ============================= */

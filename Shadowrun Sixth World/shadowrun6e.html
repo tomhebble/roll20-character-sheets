@@ -1,7 +1,7 @@
 <!-- TABS
    ============================= -->
-  <input class="type" name="attr_sheet_type" type="hidden" value="character">
-  <input name="attr_toggles" type="hidden" value="" />
+  <input class="type" name="attr_sheet_type" type="hidden" value="pc">
+  <input class="display_string" name="attr_toggles" type="hidden" value="core," />
 
 <!-- TABS & LOGO
    ============================= -->
@@ -36,7 +36,7 @@
 				q
 			</button>
 			<!-- CHARACTER SHEETS -->
-		    <button data-i18n="pc" data-i18n-title="p19n" name="act_toggle_character" title="player character button" type="action">pc</button>
+		    <button data-i18n="pc" data-i18n-title="p19n" name="act_toggle_pc" title="player character button" type="action">pc</button>
 		    <button data-i18n="notes" data-i18n-title="n9n" name="act_toggle_notes" title="notes button" type="action">notes</button>
 		    <button data-i18n="npc" data-i18n-title="n16r" name="act_toggle_npc" title="non player character" type="action">npc</button>
 		    <button name="roll d6s" title="Roll D6s" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{d6}}}{{base=^{d6}}}{{dice=[[(?{d6s|0}d6>5)]]}}">
@@ -57,6 +57,7 @@
    ============================= -->
 <div class="npc">
 	<div class="box npc-flex">
+		NPC SECTION
 	</div>
 	<div class="box npc-flex">
 	</div>
@@ -634,9 +635,24 @@
 		</div>
 		<div class="border">
 			<div class="grid grid-header">
+				<button class="pictos" data-i18n-title="player_character_skills" name="act_toggle_skills" title="player character skills" type="action">y</button>
 				<h1 data-i18n="skills" data-i18-title="skills" title="skills">skills</h1>
 			</div>
-			<div class="grid">
+			<div class="grid grid-row">
+				<h2 class="label" data-i18n="athletics">athletics</h2>
+				<div class="display bot-border">
+					<span name="attr_athletics"></span>
+				</div>
+				<div class="grid settings">
+					<h2 data-i18n="base" data-i18-title="base" title="base">base</h2>
+					<label data-i18n-title="" title="">
+						<input data-i18n-placeholder="1" name="attr_athletics_base" placeholder="1" title="@{athletics_base}" type="text" value="" />
+					</label>
+					<h2 data-i18n="mod" data-i18-title="modifier" title="modifier">mod</h2>
+					<label data-i18n-title="athletics_modifier" title="athletics modifier">
+						<input data-i18n-placeholder="0" name="attr_athletics_modifier" placeholder="0" title="@{athletics_modifier}" type="text" value="" />
+					</label>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -989,7 +1005,7 @@
 
 // === ATTRIBUTE ARRAYS
 	const arrays = {
-		sheets: ["character", "npc", "notes"],
+		sheets: ["pc", "npc", "notes"],
 		attributes: ["agility", "body", "charisma", "edge", "intuition", "logic", "reaction", "special", "strength", "willpower"],
 		defense: ["reaction", "intuition", "defense_modifier", "defense_temporary", `defense_temporary_flag`],
 		initiative: ["reaction", "intuition", "initiative_modifier"],
@@ -999,7 +1015,7 @@
 		lift_carry: ["body", "willpower", "lift_carry_modifier"],
 		memory: ["logic", "intuition", "memory_modifier"],
 		repeating_settings: [],
-		toggles: ["attributes"],
+		toggles: ["attributes", "skills", "core", "arms", "gear", "magic", "matrix", "social", "vehicle", "options"],
 		wounds: ["stun", "physical", "pain_tolerance"],
 		common_rolls: ["composure", "memory", "lift_carry", "judge_intentions", "initiative"]
 	};
@@ -1016,7 +1032,7 @@
 
 	// === TOGGLE INPUT SETTINGS
 	    arrays["toggles"].forEach(attr => {
-	        on(`clicked:toggle_${attr}`, () => {
+	        on(`clicked:toggle_${attr} clicked:tab_${attr}`, () => {
 	        	getAttrs(["toggles"], (v) => {
 	        		const action = (v["toggles"].includes(`${attr}`)) ? "replace" : "add";
 	 				const string = toggleBuilder(attr, v["toggles"], action);
