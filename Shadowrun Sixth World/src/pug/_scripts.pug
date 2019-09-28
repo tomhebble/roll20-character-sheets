@@ -1,0 +1,195 @@
+<script type="text/worker">
+
+// === ATTRIBUTE ARRAYS
+  const arrays = {
+    sheets: ["pc", "npc", "notes"],
+    attributes: ["agility", "body", "charisma", "edge", "intuition", "logic", "reaction", "special", "strength", "willpower"],
+    defense: ["reaction", "intuition", "defense_modifier", "defense_temporary", `defense_temporary_flag`],
+    initiative: ["reaction", "intuition", "initiative_modifier"],
+    initiative_dice: ["initiative_dice_modifier"],
+    composure: ["charisma", "willpower", "composure_modifier"],
+    judge_intentions: ["willpower", "intuition", "judge_intentions_modifier"],
+    lift_carry: ["body", "willpower", "lift_carry_modifier"],
+    memory: ["logic", "intuition", "memory_modifier"],
+    repeating_settings: [],
+    toggles: ["attributes", "skills", "core", "arms", "gear", "magic", "matrix", "social", "vehicle", "options"],
+    wounds: ["stun", "physical", "pain_tolerance"],
+    common_rolls: ["composure", "memory", "lift_carry", "judge_intentions", "initiative"]
+  };
+
+// === FREQUENTLY USED FUNCTIONS
+
+  // === SETTINGS TOGGLES
+      //Switch between sheet types.
+      arrays["sheets"].forEach(attr => {
+          on(`clicked:toggle_${attr}`, (eventinfo) => {
+            setAttrs({sheet_type: `${attr}`}, true);
+          });
+      });
+
+  // === TOGGLE INPUT SETTINGS
+      arrays["toggles"].forEach(attr => {
+          on(`clicked:toggle_${attr} clicked:tab_${attr}`, () => {
+            getAttrs(["toggles"], (v) => {
+              const action = (v["toggles"].includes(`${attr}`)) ? "replace" : "add";
+          const string = toggleBuilder(attr, v["toggles"], action);
+                  setAttrs({toggles: string}, true);
+            });
+          });
+      });
+
+  // === UPDATE TOGGLE STRING
+    const toggleBuilder = (attr, oldString, action) => {
+          const newString = (action === "replace") ? oldString.replace(`${attr},`, "") : `${oldString}${attr},`;
+          return newString
+    };
+
+  // === TOTAL AN ARRAY NUMBERS
+    const sumNumbers = (values) => {
+      const array = Object.values(values);
+      let integers = [];
+
+      //Turn values into numbers
+      array.forEach((attr) => { integers.push(parseInt(attr) || 0); });
+          const add = (a, b) => a + b, total = integers.reduce(add);
+
+          return total
+    };
+
+
+// === COMMON ROLLS: MEOMORY, JUDGE INTENTIONS, COMPOSURE, LIFT & CARRY, INITIATIVE
+  const update_common_rolls = (attrs, dicePool) => {
+    attrs.push("toggles");
+    getAttrs(attrs, (v) => {
+      const total = sumNumbers(v);
+      let update  = {};
+
+          //Set dicepool updates to total
+      update[`${dicePool}_base`] = v[`${attrs[0]}`] + v[`${attrs[1]}`];
+      update[`${dicePool}`]      = total;
+      update[`${dicePool}_max`]  = total;
+
+          //This will update toggles string
+          //The CSS will show or hide (total) next to dicepool base in the display
+          const includes = v["toggles"].includes(`${dicePool}_total`), base = update[`${dicePool}_base`];
+          if (total != base && includes === false) {
+            update["toggles"] = toggleBuilder(`${dicePool}_total`, v["toggles"], "add");
+          } else if (total === base && includes === true) {
+            update["toggles"] = toggleBuilder(`${dicePool}_total`, v["toggles"], "replace");
+          };
+
+      setAttrs(update, true);
+    });
+  };
+
+//Attack Rating (AR)
+//Reaction + Strength + attack_rating_modifier at the Close range, with no rating at the other ranges (see Attack Rating/Range, p. 108).
+
+//Defense Rating (DR)
+//Add your Armor rating + Body + defense_rating_modifier.
+
+//Initiative
+//Reaction + Intuition for your base.
+//Initiative Dice you have, default of 1; this may be increased by augmentations. 
+
+//console.log("%c UPDATE COMMON ROLLS", "color:green;font-size:15px;");
+
+
+// === ATTRIBUTE CHANGES
+   arrays["attributes"].forEach(attr => {
+        // Attach listener
+        on(`change:${attr}_base change:${attr}_modifier change:${attr}_temporary change:${attr}_temporary_flag`, () => {
+          //Get Attributes
+            getAttrs([`${attr}_base`, `${attr}_modifier`, `${attr}_temporary`, `${attr}_temporary_flag`, "toggles"], (v) => {
+              let total = (v[`${attr}_temporary_flag`] === "on") ? parseInt(v[`${attr}_temporary`]) || 0 : 0;
+              let update = {};
+
+              //Add base and modifier scores to total
+              [`${attr}_base`, `${attr}_modifier`].forEach((num) => {
+                total += parseInt(v[num]) || 0
+              });
+              //Set the new attribute score to total
+              update[attr] = total;
+              update[`${attr}_max`] = total;
+
+              //This will update toggles string
+              //The CSS will show or hide (total) next to attribute base in the display
+              const includes = v["toggles"].includes(`${attr}_total`), base = parseInt(v[`${attr}_base`]);
+              if (total != base && includes === false) {
+                update["toggles"] = toggleBuilder(`${attr}_total`, v["toggles"], "add");
+              } else if (total === base && includes === true) {
+                update["toggles"] = toggleBuilder(`${attr}_total`, v["toggles"], "replace");
+              };
+
+                setAttrs(update);
+            });
+        });
+    });
+
+// === COMMON ROLLS
+  arrays["common_rolls"].forEach(dicePool => {
+      arrays[`${dicePool}`].forEach(attr => {
+          on(`change:${attr}`, () => {
+            update_common_rolls(arrays[`${dicePool}`], dicePool);
+          });
+      });
+  });
+
+// === INITIATIVE DICE
+    arrays["initDice"].forEach(attr => {
+        on(`change:${attr}`, (eventinfo) => {
+          update_common_rolls(arrays["initDice"]);
+        });
+    });
+
+// === EDGE TOGGLES, include ! for exploding dice
+  on("change:edge_toggle", () => {
+    getAttrs(["edge_toggle"], (v) =>{
+      const update = {
+        explode_toggle: (v.edge_toggle != 0) ? "!" : ""
+      };
+      setAttrs(update, true);
+    });
+  });
+
+// === GM WHISPER TOGGLES
+  on("clicked:whisper", (eventinfo) => {
+    getAttrs(["gm_toggle"], (v) => {
+      setAttrs({gm_toggle: (v.gm_toggle.includes("gm")) ?  " " : "/w gm"}, true);
+    });
+  });
+
+// === ON OPEN SCRIPTS
+  on("sheet:opened", () => {
+    getAttrs(["version"], (v) => { versioning(parseFloat(v.version) || 1); });
+
+    //translations(); Commented out until later. It needs the translation files.
+  }); 
+
+// === ROLL QUERY TRANSLATIONS
+  const translations = () => {
+    let translations = [];
+    arrays["attributes"].forEach((attribute) => {
+      translations.push(getTranslationByKey(attribute));
+    });
+
+    let attribute_roll = `?{${translations[0]}`;
+      for (i = 1; i <= (attributes.length - 2); i += 1) {
+        attribute_roll +=  `|${translations[i]},@{${attributes[i]}}`;
+      };
+      attribute_roll += `|${translations[10]},0}`; //For None
+      setAttrs(attribute_roll, true);
+  };    
+
+// === SHEET VERSIONING
+  const versioning = (version) => {
+     console.log(`%c Versioning, ${version}`, "color: blue; font-weight:bold");
+     if (version >= 1) {
+      console.log(`%c Version is update to date`, "color: maroon; font-weight:bold");
+      } else {
+      setAttrs({version: 1}, () => {versioning(1)});
+    };
+  };
+
+
+</script>

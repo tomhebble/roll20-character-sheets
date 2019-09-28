@@ -1,0 +1,58 @@
+//
+  ROLL TEMPLATE
+  =============================
+.rolltemplates
+  // Roll Template for rolling without Focus
+  rolltemplate.sheet-rolltemplate-rolls
+    .sheet-template-body
+      .sheet-template-header
+        | {{#header}}{{header}}{{/header}}{{#spec}}
+        span  ({{spec}})
+        | {{/spec}}
+        br
+        | &#x9;    &#x9;&#x9;{{#arm}}
+        span {{arm}}
+        | {{/arm}}
+        | &#x9;    &#x9;&#x9;{{#base}}
+        span {{base}}
+        | {{/base}}
+        | &#x9;    &#x9;&#x9;{{#rollLess() wound 0}}
+        span  &diams; 
+        span(data-i18n='wounds') Wounds
+        | {{/rollLess() wound 0}}
+        | &#x9;    &#x9;&#x9;{{#rollLess() mod 0}}
+        span  &diams; 
+        span(data-i18n='modifier') Modifier
+        | {{/rollLess() mod 0}}
+        | &#x9;    &#x9;&#x9;{{#rollGreater() mod 0}}
+        span  &diams; 
+        span(data-i18n='modifier') Modifier
+        | {{/rollGreater() mod 0}}
+        | &#x9;    &#x9;&#x9;{{#rollGreater() edge 0}}
+        span  &diams; 
+        span(data-i18n='edge') Edge
+        | {{/rollGreater() edge 0}}
+      | &#x9;    &#x9;&#x9;{{#dice}}
+      .sheet-template-row {{dice}}
+      | {{/dice}}
+      | &#x9;    &#x9;&#x9;{{#desc}}
+      .sheet-template-row
+        span.sheet-template-desc
+          | {{desc}}
+          | {{#rollGreater() rea 0}}, 
+          span(data-i18n='reach')
+            | Reach
+            span
+              | {{rea}}{{/rollGreater() rea 0}}
+              | {{#rollGreater() drain 1}}, 
+              span(data-i18n='drain') Drain
+              |  {{drain}}{{/rollGreater() drain 1}}
+              | &#x9;&#x9;    &#x9;&#x9;&#x9;&#x9;{{#rollLess() drain 2}}, 
+              span(data-i18n='drain-2')
+                | Drain 2
+                span
+                  | {{/rollLess() drain 2}}
+      | &#x9;    &#x9;&#x9;{{/desc}}
+      | &#x9;    &#x9;&#x9;{{#opp}}
+      .sheet-template-row {{opp}}
+      | {{/opp}}
