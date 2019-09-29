@@ -1,5 +1,7 @@
 /* GLOBAL SETTINGS
     =============================  */
+/* GLOBAL SETTINGS
+    =============================  */
 * {
   box-sizing: border-box;
   font-family: sans-serif; }
@@ -17,6 +19,11 @@ button {
     text-shadow: 1px 1px 2px black, 0 0 25px rgba(136, 121, 190, 0.25), 0 0 5px #79016f; }
   button[type="roll"], button[type="action"] {
     background-color: whitesmoke;
+    font-variant: small-caps;
+    font-weight: bold;
+    text-align: center;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
     border-bottom: 0.01em solid #666;
     border-bottom-right-radius: 0.01em;
     border-color: #b3b3b3;
@@ -70,7 +77,8 @@ input[type="text"], input[type="number"] {
   background-color: transparent;
   border: none;
   border-radius: 0em;
-  height: 2.1em; }
+  height: 2.1em;
+  width: 100%; }
 input::placeholder {
   background-color: rgba(136, 121, 190, 0.25);
   border: 0.1em dotted #79016f; }
@@ -100,6 +108,8 @@ textarea {
   vertical-align: top;
   white-space: pre-line; }
 
+/* SHARED STYLES
+    =============================  */
 .charsheet {
   min-width: 30em; }
 
@@ -108,6 +118,63 @@ textarea {
 
 .sheet-pictos {
   font-family: "pictos"; }
+
+.sheet-opacity0 {
+  opacity: 0; }
+
+.sheet-horz-line {
+  border-bottom: 0.1em solid black; }
+
+/* SWITCHES
+============================= */
+/* The switch - the box around the slider */
+.sheet-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px; }
+
+/* Hide default HTML checkbox */
+.sheet-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0; }
+
+/* The slider */
+.sheet-slider {
+  -webkit-transition: .4s;
+  background-color: #ccc;
+  border-radius: 34px;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s; }
+
+.sheet-slider:before {
+  -webkit-transition: .4s;
+  background-color: white;
+  border-radius: 50%;
+  bottom: 4px;
+  content: "";
+  height: 16px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 16px; }
+
+input:checked + .sheet-slider {
+  background-color: rgba(136, 121, 190, 0.25); }
+
+input:focus + .sheet-slider {
+  box-shadow: 0 0 1px rgba(136, 121, 190, 0.25); }
+
+input:checked + .sheet-slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px); }
 
 /* FLEXBOX
    ============================= */
@@ -130,34 +197,12 @@ div.sheet-flex:first-child {
 div.sheet-grid {
   display: inline-grid;
   grid-column-gap: 0.2em;
-  grid-row-gap: 0.2em;
-  width: auto; }
-
-div.sheet-grid-tab-buttons button {
-  font-size: 1.1em;
-  font-weight: bold;
-  text-transform: capitalize;
-  font-variant: small-caps; }
-  div.sheet-grid-tab-buttons button.sheet-pictos, div.sheet-grid-tab-buttons button.sheet-d6 {
-    font-variant: none;
-    text-transform: none; }
-
-div.sheet-grid-tab-inputs label:nth-of-type(1) {
-  grid-area: 1 / 2 / 1 / 2; }
-div.sheet-grid-tab-inputs span:nth-of-type(1) {
-  grid-area: 1 / 1 / 1 / 1; }
-div.sheet-grid-tab-inputs label:nth-of-type(2) {
-  grid-area: 2 / 2 / 2 / 2; }
-div.sheet-grid-tab-inputs span:nth-of-type(2) {
-  grid-area: 2 / 1 / 2 / 1; }
-div.sheet-grid-tab-inputs label:nth-of-type(3) {
-  grid-area: 3 / 2 / 3 / 2; }
-div.sheet-grid-tab-inputs span:nth-of-type(3) {
-  grid-area: 3 / 1 / 3 / 1; }
+  grid-row-gap: 0.2em; }
 
 /* HIGHLIGHT BUTTONS
    ============================= */
-button.sheet-highlight, input.sheet-type[value="pc"] ~ div.sheet-tabs button[name="pc"], input.sheet-type[value="npc"] ~ div.sheet-tabs button[name="npc"], input.sheet-display_string[value="core"] ~ div.sheet-tabs button[name*="core"], input.sheet-display_string[value="arms"] ~ div.sheet-tabs button[name*="arms"], input.sheet-display_string[value="gear"] ~ div.sheet-tabs button[name*="gear"], input.sheet-display_string[value="magic"] ~ div.sheet-tabs button[name*="magic"], input.sheet-display_string[value="matrix"] ~ div.sheet-tabs button[name*="matrix"], input.sheet-display_string[value="social"] ~ div.sheet-tabs button[name*="social"], input.sheet-display_string[value="vehicle"] ~ div.sheet-tabs button[name*="vehicle"], input.sheet-display_string[value="options"] ~ div.sheet-tabs button[name*="options"] {
+button.sheet-highlight, input.sheet-type[value="pc"] ~ div.sheet-tabs button[name="pc"], input.sheet-type[value="npc"] ~ div.sheet-tabs button[name="npc"], input.sheet-display_string[value="core"] ~ div.sheet-tabs button[name*="core"], input.sheet-display_string[value="arms"] ~ div.sheet-tabs button[name*="arms"], input.sheet-display_string[value="gear"] ~ div.sheet-tabs button[name*="gear"], input.sheet-display_string[value="magic"] ~ div.sheet-tabs button[name*="magic"], input.sheet-display_string[value="matrix"] ~ div.sheet-tabs button[name*="matrix"], input.sheet-display_string[value="social"] ~ div.sheet-tabs button[name*="social"], input.sheet-display_string[value="vehicle"] ~ div.sheet-tabs button[name*="vehicle"], input.sheet-display_string[value="options"] ~ div.sheet-tabs button[name*="options"],
+label.sheet-fake-button input[type="checkbox"]:checked + span {
   background-color: #79016f;
   box-shadow: inset 0px 0px 3px 1px rgba(136, 121, 190, 0.25);
   color: whitesmoke; }
@@ -166,21 +211,45 @@ button.sheet-highlight, input.sheet-type[value="pc"] ~ div.sheet-tabs button[nam
    ============================= */
 div.sheet-tabs {
   margin-bottom: 2%; }
-  div.sheet-tabs label > input {
+  div.sheet-tabs label > input[type="text"] {
     width: 100%; }
-  div.sheet-tabs div.sheet-grid-tab-buttons {
-    grid-template-columns: 2.5em 6em 6em 6em; }
-    div.sheet-tabs div.sheet-grid-tab-buttons button.sheet-pictos, div.sheet-tabs div.sheet-grid-tab-buttons button[type="roll"] {
-      border-radius: 2em; }
+  div.sheet-tabs div.sheet-grid-tab-sheets {
+    grid-template-columns: 6em 6em 6em 1fr;
+    width: 100%; }
 
 /* INPUTS FOR CHARACTER, PLAYER, NOTES..... */
 div.sheet-grid-tab-inputs {
-  grid-template-columns: 8em 73%; }
+  grid-template-columns: 8em 73%;
+  width: 100%; }
   div.sheet-grid-tab-inputs label {
     border-bottom: 0.15em solid black; }
   div.sheet-grid-tab-inputs span {
     font-weight: bold;
     text-transform: uppercase; }
+  div.sheet-grid-tab-inputs label:nth-of-type(1) {
+    grid-area: 1 / 2 / 1 / 2; }
+  div.sheet-grid-tab-inputs span:nth-of-type(1) {
+    grid-area: 1 / 1 / 1 / 1; }
+  div.sheet-grid-tab-inputs label:nth-of-type(2) {
+    grid-area: 2 / 2 / 2 / 2; }
+  div.sheet-grid-tab-inputs span:nth-of-type(2) {
+    grid-area: 2 / 1 / 2 / 1; }
+  div.sheet-grid-tab-inputs label:nth-of-type(3) {
+    grid-area: 3 / 2 / 3 / 2; }
+  div.sheet-grid-tab-inputs span:nth-of-type(3) {
+    grid-area: 3 / 1 / 3 / 1; }
+
+div.sheet-grid-tab-options {
+  grid-template-columns: 2.5em 8em 8em 8em;
+  font-size: 1.1em;
+  font-variant: small-caps;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  text-transform: capitalize; }
+  div.sheet-grid-tab-options label {
+    text-align: center; }
+  div.sheet-grid-tab-options input[type="checkbox"] {
+    margin-right: 2%; }
 
 /* NPC SHEET
     ============================= */
@@ -224,40 +293,26 @@ div.sheet-pc {
     border-radius: 0.8em;
     margin-bottom: 2%;
     padding: 2% 1%; }
-  div.sheet-pc div.sheet-grid-personal-data div.sheet-grid-row {
-    border-bottom: 0.1em solid black;
+  div.sheet-pc div.sheet-grid-personal-data {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     /* NAME */
     /* METATYPE / ETHNICITY */
-    /* AGE / SEX / HEIGH / WEIGHT */
-    /* REPUTATION / HEAT */
     /* KARMA / TOTAL KARMA / MISC */ }
-    div.sheet-pc div.sheet-grid-personal-data div.sheet-grid-row:nth-of-type(1) {
-      grid-area: 1 / 1 / 1 / 1; }
-    div.sheet-pc div.sheet-grid-personal-data div.sheet-grid-row:nth-of-type(2) {
-      grid-area: 2 / 1 / 2 / 1; }
-    div.sheet-pc div.sheet-grid-personal-data div.sheet-grid-row:nth-of-type(3) {
-      grid-area: 3 / 1 / 3 / 1; }
-    div.sheet-pc div.sheet-grid-personal-data div.sheet-grid-row:nth-of-type(4) {
-      grid-area: 4 / 1 / 4 / 1; }
-    div.sheet-pc div.sheet-grid-personal-data div.sheet-grid-row:nth-of-type(5) {
-      grid-area: 5 / 1 / 5 / 1; }
-    div.sheet-pc div.sheet-grid-personal-data div.sheet-grid-row:nth-of-type(1) {
-      grid-template-columns: 38% 62%; }
-      div.sheet-pc div.sheet-grid-personal-data div.sheet-grid-row:nth-of-type(1) h2 {
-        text-transform: uppercase; }
-    div.sheet-pc div.sheet-grid-personal-data div.sheet-grid-row:nth-of-type(2) {
-      grid-template-columns: 15% 28% 14% 43%; }
-    div.sheet-pc div.sheet-grid-personal-data div.sheet-grid-row:nth-of-type(3) {
-      grid-template-columns: 7% 13% 7% 15% 12% 15% 12% 15%; }
-    div.sheet-pc div.sheet-grid-personal-data div.sheet-grid-row:nth-of-type(4) {
-      grid-template-columns: 18% 26% 8% 47%; }
-    div.sheet-pc div.sheet-grid-personal-data div.sheet-grid-row:nth-of-type(5) {
-      grid-template-columns: 10% 15% 20% 15% 8% 29%; }
-    div.sheet-pc div.sheet-grid-personal-data div.sheet-grid-row:nth-of-type(1n+2) h2 {
-      text-transform: capitalize; }
-    div.sheet-pc div.sheet-grid-personal-data div.sheet-grid-row input[type="text"],
-    div.sheet-pc div.sheet-grid-personal-data div.sheet-grid-row input[type="number"] {
-      width: 100%; }
+    div.sheet-pc div.sheet-grid-personal-data h2 {
+      display: inline;
+      text-transform: uppercase; }
+    div.sheet-pc div.sheet-grid-personal-data div.sheet-horz-line {
+      grid-column: 1 / 5; }
+    div.sheet-pc div.sheet-grid-personal-data div.sheet-name_primary_alias {
+      grid-column: 1 / 5; }
+    div.sheet-pc div.sheet-grid-personal-data div.sheet-metatype,
+    div.sheet-pc div.sheet-grid-personal-data div.sheet-reputation {
+      grid-column: 1 / 3; }
+    div.sheet-pc div.sheet-grid-personal-data div.sheet-ethnicity,
+    div.sheet-pc div.sheet-grid-personal-data div.sheet-heat {
+      grid-column: 3 / 5; }
+    div.sheet-pc div.sheet-grid-personal-data div.sheet-misc {
+      grid-column: 3/5; }
   div.sheet-pc div.sheet-grid-attributes {
     width: 49.5%; }
     div.sheet-pc div.sheet-grid-attributes button[type="roll"] {
