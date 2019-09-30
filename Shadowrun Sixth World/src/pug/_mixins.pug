@@ -14,3 +14,18 @@ mixin initiativeButton(name, attrName)
 mixin derivedButton(name, attrName)
 	button(name=name type='roll' value='@{gm_toggle} &{template:rolls}{{header=^{'+name+'}}}{{base=^{attributes}}}{{dice=[[(@{'+attrName+'}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}')
 		h2(data-i18n=name) #{name}
+
+//- SKILL SELECT
+mixin skillSelect(selectedDefault)
+	optgroup(label='Skill') Skill
+		each val, key in skills
+			- const attrName = key.replace(' ', '_');
+			- const selectedAcc = key === selectedDefault ? selected : "";
+			option(data-i18n=key value=key selectedAcc)= key
+
+//- ATTRIBUTE SELECT
+mixin attrSelect(selectedDefault)
+	optgroup(label='Attribute') Attribute
+		each val in attributes
+			- const selectedAcc = val === selectedDefault ? selected : "";
+			option(data-i18n=attrName value="[[@{" + attrName + "}]]" selectedAcc)= val

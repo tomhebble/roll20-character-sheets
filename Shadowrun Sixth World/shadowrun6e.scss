@@ -13,6 +13,7 @@
 	$accent1  : hsl(305, 98%, 24%);
 	$accent2  : hsla(253, 35%, 61%, 0.25);
 	$accent3  : #b9dadf;
+	$darkaccent: hsl(305, 97%, 14%);
 	$black    : hsl(0, 6%, 0%);
 	$dark-font: #000;
 	$gray     : #4c4c4c;
@@ -20,28 +21,7 @@
 
 // MIXINS
 //  =============================
-   
-	@mixin back-col($color){
-		background-color: $color;
-	}
-
-	@mixin grid-area($cstart, $cend, $rstart, $rend) {
-		grid-area: #{$rstart} / #{$cstart} / #{$rend} / #{$cend};
-	}
-
-	@mixin text-align($align){
-		text-align: $align;
-	}
-
-	@mixin border($size, $style, $color) {
-		border-bottom: $size $style $color;
-	}
-
-	@mixin button-like() {
-		font-size     : 1.1em;
-		font-weight   : bold;
-		text-transform: capitalize;
-	}
+  @import 'src/scss/_mixins'; 
 
 // FUNCTIONS
 //  =============================
@@ -53,11 +33,6 @@
 
 		@return $value;
 	}
-	//.item {
-	//  	grid-area: <name> | <row-start> / <column-start> / <row-end> / <column-end>;
-	//}
-	//<name> - a name of your choosing
-	//<row-start> / <column-start> / <row-end> / <column-end> - can be numbers or named lines
 
 /* GLOBAL SETTINGS
     =============================  */
@@ -152,27 +127,32 @@
 			font-weight   : bold;
 			text-transform: uppercase;
 		}
-
-		@for $i from 1 through 3 {
-			label:nth-of-type(#{$i})  { 
-				@include grid-area(2, 2, $i, $i);
-			}
-			span:nth-of-type(#{$i})  {
-				@include grid-area(1, 1, $i, $i);
-			}
-		}
 	}
 
 	div.sheet-grid-tab-options {
-		grid-template-columns: 2.5em 8em 8em 8em;
 		font-size: 1.1em;
 		font-variant: small-caps;
 		font-weight: bold;
+		grid-template-columns: 2.5em 1fr 1fr 1fr 1fr;
+		text-align: center;
 		text-overflow: ellipsis;
 		text-transform: capitalize;
 
-		label {
-			text-align: center;
+		button {
+			grid-area: 2 / 1 / 2 / 1;
+		}
+
+		h2 {
+			grid-row: 1;
+		}
+
+		label.sheet-switch {
+			margin-left: 20%;
+			@for $i from 1 through 4 {
+		   		&:nth-of-type(#{$i})  { 
+		   			@include grid-area(2, $i+1, 2, $i+1);
+		   		}
+			}
 		}
 
 		input[type="checkbox"] {
@@ -205,7 +185,7 @@
 	   		grid-template-columns: 10em 2.5em 2.5em 10em 2.5em 2.5em;
 
 		   button {
-		   		@include grid-area(1, 1, 1, 1);
+		   		@include oldgrid-area(1, 1, 1, 1);
 		   		font-family: $pictos;
 				height: 2em;
 				width: 2em;
@@ -213,26 +193,26 @@
 
 		   h1 {
 		   		margin-left: 10%;
-		   		@include grid-area(1, 7, 1, 1);
+		   		@include oldgrid-area(1, 7, 1, 1);
 		   }
 
 		   h2 {
 		   		text-transform: uppercase;
 			   	@for $i from 1 through 2 {
 			   		&:nth-of-type(#{$i})  { 
-			   			@include grid-area($i+1, $i+1, 2, 2); 
+			   			@include oldgrid-area($i+1, $i+1, 2, 2); 
 			   		}
 				}
 
 				@for $i from 3 through 4 {
 			   		&:nth-of-type(#{$i})  { 
-			   			@include grid-area($i+2, $i+2, 2, 2);
+			   			@include oldgrid-area($i+2, $i+2, 2, 2);
 			   		}
 				}
 		   }
 
 		   hr {
-		   		@include grid-area(1, 7, 3, 3);
+		   		@include oldgrid-area(1, 7, 3, 3);
 		   }
 	   }
 
@@ -281,7 +261,7 @@
 	 /* ATTRIBUTES
 	   ----------------------------- */
 	   div.sheet-grid-attributes {
-	   		width: 49.5%;
+	   		div.sheet-grid-body { width: 49.5%; }
 
 	   		button {
 	   			&[type="roll"] {
@@ -316,7 +296,7 @@
 
 			@for $i from 1 through 11 {
 				div.sheet-grid-row:nth-of-type(#{$i})  { 
-					@include grid-area(1, 3, $i, $i);
+					@include oldgrid-area(1, 3, $i, $i);
 				}
 			}
 
@@ -325,11 +305,11 @@
 				margin-bottom: 2%;
 
 		   		button, h2.sheet-label { 
-					@include grid-area(1, 1, 1, 1);
+					@include oldgrid-area(1, 1, 1, 1);
 				}
 
 				div.sheet-display { 
-					@include grid-area(2, 2, 1, 1);
+					@include oldgrid-area(2, 2, 1, 1);
 					text-align: center;
 
 					span {
@@ -344,33 +324,33 @@
 				}
 
 				div.sheet-settings { 
-					@include grid-area(1, 4, 2, 2);
+					@include oldgrid-area(1, 4, 2, 2);
 					grid-template-columns: 1fr 1fr 1fr 1fr;
 
 					div.sheet-arrow-up {
-						@include grid-area(2, 3, 1, 1);
+						@include oldgrid-area(2, 3, 1, 1);
 					}
 
 					h2 {
 						@for $i from 1 through 2 {
 							&:nth-of-type(#{$i})  { 
-								@include grid-area(alternate($i, 1), alternate($i, 1), 2, 2);
+								@include oldgrid-area(alternate($i, 1), alternate($i, 1), 2, 2);
 							}
 						}
 
-						&:nth-of-type(3) { @include grid-area(1, 1, 3, 3); }
-						&:nth-of-type(4) { @include grid-area(3, 3, 3, 3); }
+						&:nth-of-type(3) { @include oldgrid-area(1, 1, 3, 3); }
+						&:nth-of-type(4) { @include oldgrid-area(3, 3, 3, 3); }
 					}
 
 					label {
 						@for $i from 1 through 2 {
 							&:nth-of-type(#{$i})  { 
-								@include grid-area(alternate($i, 1)+1, alternate($i, 1)+1, 2, 2);
+								@include oldgrid-area(alternate($i, 1)+1, alternate($i, 1)+1, 2, 2);
 							}
 						}
 
-						&:nth-of-type(3) { @include grid-area(2, 2, 3, 3); }
-						&:nth-of-type(4) { @include grid-area(4, 4, 3, 3); }
+						&:nth-of-type(3) { @include oldgrid-area(2, 2, 3, 3); }
+						&:nth-of-type(4) { @include oldgrid-area(4, 4, 3, 3); }
 					}
 				}
 			}
@@ -383,6 +363,19 @@
 	   	span.sheet-total {
 	   		display: none;
 	   	}
+
+	   /* SKILLS
+	   ----------------------------- */
+	   div.sheet-grid-skills {
+
+		   	div.sheet-subheader {
+		   		grid-template-columns: 1fr 5em 5em 5em;
+		   	}
+
+		   	select {
+		   		text-transform: uppercase;
+		   	}
+	   }
 	}
 
  /* SHARED SETTINGS

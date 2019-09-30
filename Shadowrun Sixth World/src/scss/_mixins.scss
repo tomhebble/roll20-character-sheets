@@ -1,0 +1,29 @@
+
+// MIXINS
+//  =============================
+   
+	@mixin back-col($color){
+		background-color: $color;
+	}
+
+	@mixin grid-area($rstart, $cstart, $rend, $cend) {
+		grid-area: #{$rstart} / #{$cstart} / #{$rend} / #{$cend};
+	}
+
+	@mixin oldgrid-area($cstart, $cend, $rstart, $rend) {
+		grid-area: #{$rstart} / #{$cstart} / #{$rend} / #{$cend};
+	}
+
+	@mixin text-align($align){
+		text-align: $align;
+	}
+
+	@mixin border($size, $style, $color) {
+		border-bottom: $size $style $color;
+	}
+
+	@mixin button-like() {
+		font-size     : 1.1em;
+		font-weight   : bold;
+		text-transform: capitalize;
+	}

@@ -18,36 +18,31 @@ input.display_string(name='attr_toggles' type='hidden' value='core,')
   .flex.info-flex
     .grid.grid-tab-inputs
       // CHARACTER NAME
-      span(data-i18n='character') character
+      h2(data-i18n='character') character
       label(data-i18n-title='character name' title='character name')
         input(data-i18n-placeholder='character name' name='attr_character_name' placeholder='character name' title='@{character_name}' type='text' value='')
       // PLAYER NAME
-      span(data-i18n='player') player
+      h2(data-i18n='player') player
       label(data-i18n-title='player name' title='player name')
         input(data-i18n-placeholder='player name' name='attr_player_name' placeholder='player name' title='@{player_name}' type='text' value='')
       // NOTES
-      span(data-i18n='notes') notes
+      h2(data-i18n='notes') notes
       label(data-i18n-title='notes' title='notes')
         input(data-i18n-placeholder='notes' name='attr_notes' placeholder='notes' title='@{notes}' type='text' value='')
     .grid.grid-tab-sheets
       // CHARACTER SHEETS
       each val in ['pc', 'npc', 'options']
         button(data-i18n=val data-i18n-title=val name='act_toggle_' + val title=val + 'button' type='action') #{val}
-      // Buttons to toggle on GM whisper
-      .gm-whisper
-        span(data-i18n-title='GM Whisper') GM Whisper
-        label.switch(data-i18-title='whisper rolls to gm' title='whisper rolls to gm')
-          input.whisper-toggle(name='attr_gm_toggle' type='checkbox' value='/w gm')
-          span.slider
     .grid.grid-tab-options
       // ROLL D6s
+      h2(data-i18n-title='roll d6s' title='roll d6s') d6s
       button(name='roll d6s' title='Roll D6s' type='roll' value='@{gm_toggle} &{template:rolls}{{header=^{d6}}}{{base=^{d6}}}{{dice=[[(?{d6s|0}d6>5)]]}}')
-        span.hidden(data-i18n='roll d6s') roll d6s
         span.d6 L
-      each val, key in {'edge': '!', 'modifiers': '?{Modifiers +/-|0}', 'wounds': '@{wounds}'}
-        label(data-i18n-title=key title='key')
-          input(name='attr_'+key+'_toggle' type='checkbox' title='@{'+key+'_toggle}' value=val)
-          span #{key}
+      each val, key in {'GM Whisper':'/w gm', 'edge': '!', 'modifiers': '?{Modifiers +/-|0}', 'wounds': '@{wounds}'}
+        h2(data-i18n-title=key title=key) #{key}
+        label.switch(data-i18-title=key + ' toggle' title=key + ' toggle')
+          input.whisper-toggle(name='attr_'+key+'_toggle' title='@{'+key+'_toggle}' type='checkbox' value=val)
+          span.slider
 //
   NPC SHEET
   =============================
@@ -66,22 +61,22 @@ input.display_string(name='attr_toggles' type='hidden' value='core,')
   .flex.pc-flex.static
     .border
       .grid.grid-header
-        h1(data-i18n='personal_data' data-i18-title='personal_data' title='personal data') personal data
+        h1(data-i18n='personal data' data-i18-title='personal data' title='personal data') personal data
       .grid.grid-personal-data
         each val in personalDetails
           - const attrName = val.replace(' ', '_').replace('/', '_')
-          - const transName = val === "height" ? "height-u" : val;
+          - const transName = val === 'height' ? 'height-u' : val;
             .detail(class=attrName)
               h2(data-i18n=transName) #{val}
               label(data-i18-title=transName title=val)
                 input(data-i18n-placeholder=transName name='attr_' + attrName placeholder=val title='@{' +  attrName + '}' type='text' value='')
-            if val === "name/primary alias" || val === "ethnicity" || val === "weight" || val === "heat" || val === "misc"
+            if val === 'name/primary alias' || val === 'ethnicity' || val === 'weight' || val === 'heat' || val === 'misc'
               .horz-line
-    .border
+    .border.grid-attributes
       .grid.grid-header
-        button.pictos(data-i18n-title='p23s' name='act_toggle_attributes' title='player character attributes' type='action') y
+        button.pictos(data-i18n-title='player character attributes' name='act_toggle_attributes' title='player character attributes' type='action') y
         h1(data-i18n='attributes' data-i18-title='attributes' title='attributes') attributes
-      .grid.grid-attributes
+      .grid.grid-body
         each val in attributes
           .grid.grid-row
             input(name='attr_' + val type='hidden' value='')
@@ -98,7 +93,7 @@ input.display_string(name='attr_toggles' type='hidden' value='core,')
                 input(data-i18n-placeholder='10' name='attr_'+val+'_modifier' placeholder='10' title='@{'+val+'_modifier}' type='number' value='')
         // EDGE
         .grid.grid-row
-          +attributeButton(val)
+          +attributeButton('edge')
           .display.bot-border
             span(name='attr_edge_max')
           .grid.settings
@@ -128,7 +123,7 @@ input.display_string(name='attr_toggles' type='hidden' value='core,')
             h2(data-i18n='mod' data-i18-title='unarmed permanent modification' title='unarmed permanent modification') mod
             label(data-i18n-title='unarmed permanent modification input' title='unarmed permanent modification input')
               input(data-i18n-placeholder='0' name='attr_unarmed_modifier' placeholder='0' title='@{unarmed_modifier}' type='text' value='')
-      .grid.grid-attributes
+      .grid.grid-body
         // ESSENCE
         .grid.grid-row
           h2.label(data-i18n='essence') essence
@@ -182,7 +177,7 @@ input.display_string(name='attr_toggles' type='hidden' value='core,')
               h2(data-i18n='mod' data-i18-title='mod' title='mod') mod
               label(data-i18n-title=val+' dice permanent modification input' title=val+' dice permanent modification input')
                 input(data-i18n-placeholder='0' name='attr_'+attrName+'_dice_modifier' placeholder='0' title='@{'+attrName+'_dice_modifier}' type='number' value='')
-        // COMPOSURE
+        // COMMON ROLLS
         each val in ['composure', 'judge intentions', 'memory', 'lift/carry']
           - const attrName = val.replace(' ', '_').replace('/', '_')
           .grid.grid-row
@@ -213,7 +208,7 @@ input.display_string(name='attr_toggles' type='hidden' value='core,')
               input(data-i18n-placeholder='0' name='attr_movement_modifier' placeholder='0' title='@{movement_modifier}' type='text' value='')
         // DEFENSE RATING
         .grid.grid-row
-          h2.label(data-i18n='defense_rating') defense rating
+          h2.label(data-i18n='defense ratin') defense rating
           .display.bot-border
             span(name='attr_defense_rating')
           .grid.settings
@@ -225,21 +220,31 @@ input.display_string(name='attr_toggles' type='hidden' value='core,')
             h2(data-i18n='mod' data-i18-title='' title='defense rating permanent modification') mod
             label(data-i18n-title='' title='defense rating permanent modification input')
               input(data-i18n-placeholder='0' name='attr_defense_rating_modifier' placeholder='0' title='@{defense_rating_modifier}' type='text' value='')
-    .border
+    .border.grid-skills
       .grid.grid-header
         button.pictos(data-i18n-title='player character skills' name='act_toggle_skills' title='player character skills' type='action') y
         h1(data-i18n='skills' data-i18-title='skills' title='skills') skills
-      .grid.grid-row
-        h2.label(data-i18n='athletics') athletics
-        .display.bot-border
-          span(name='attr_athletics')
-        .grid.settings
-          h2(data-i18n='base' data-i18-title='base' title='base') base
-          label(data-i18n-title='' title='')
-            input(data-i18n-placeholder='1' name='attr_athletics_base' placeholder='1' title='@{athletics_base}' type='text' value='')
-          h2(data-i18n='mod' data-i18-title='modifier' title='modifier') mod
-          label(data-i18n-title='athletics_modifier' title='athletics modifier')
-            input(data-i18n-placeholder='0' name='attr_athletics_modifier' placeholder='0' title='@{athletics_modifier}' type='text' value='')
+      .grid.subheader.bot-border
+        h2(data-i18n='Skill') Skill
+        h2(data-i18n='Rank') Rank
+        h2(data-i18n='ATT') ATT
+        h2(data-i18n='Type') Type
+      .grid.grid-body
+          fieldset.repeating_skills
+            .grid.display
+               +attributeButton('agility')
+            .grid.settings
+              select(name='attr_skill' title='active skill' value='close combat')
+                +skillSelect('close combat')
+              label(data-i18-title='' title='')
+                input(name='attr_rank' type='text' value='')
+              select(name='attr_')
+                 +attrSelect('agility')
+              select(name="attr_type")
+                optgroup(label='Skill Type') Skill Type
+                  option(data-i18n="Active" value="Active" selected) Active
+                  option(data-i18n="Language" value="Language") Language
+                  option(data-i18n="Knowledge" value="Knowledge") Knowledge
   .flex.pc-flex.core
     .border
       .grid.grid-header

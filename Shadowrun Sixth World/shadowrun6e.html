@@ -9,15 +9,18 @@
   <div class="flex"><img alt="Shadowrun Sixth World logo" src="https://s3.amazonaws.com/files.d20.io/images/84479331/VxMyZtZk9HJP7kkHGGhyDA/max.png"/></div>
   <div class="flex info-flex">
     <div class="grid grid-tab-inputs">
-      <!-- CHARACTER NAME--><span data-i18n="character">character</span>
+      <!-- CHARACTER NAME-->
+      <h2 data-i18n="character">character</h2>
       <label data-i18n-title="character name" title="character name">
         <input data-i18n-placeholder="character name" name="attr_character_name" placeholder="character name" title="@{character_name}" type="text" value=""/>
       </label>
-      <!-- PLAYER NAME--><span data-i18n="player">player</span>
+      <!-- PLAYER NAME-->
+      <h2 data-i18n="player">player</h2>
       <label data-i18n-title="player name" title="player name">
         <input data-i18n-placeholder="player name" name="attr_player_name" placeholder="player name" title="@{player_name}" type="text" value=""/>
       </label>
-      <!-- NOTES--><span data-i18n="notes">notes</span>
+      <!-- NOTES-->
+      <h2 data-i18n="notes">notes</h2>
       <label data-i18n-title="notes" title="notes">
         <input data-i18n-placeholder="notes" name="attr_notes" placeholder="notes" title="@{notes}" type="text" value=""/>
       </label>
@@ -27,24 +30,26 @@
       <button data-i18n="pc" data-i18n-title="pc" name="act_toggle_pc" title="pcbutton" type="action">pc</button>
       <button data-i18n="npc" data-i18n-title="npc" name="act_toggle_npc" title="npcbutton" type="action">npc</button>
       <button data-i18n="options" data-i18n-title="options" name="act_toggle_options" title="optionsbutton" type="action">options</button>
-      <!-- Buttons to toggle on GM whisper-->
-      <div class="gm-whisper"><span data-i18n-title="GM Whisper">GM Whisper</span>
-        <label class="switch" data-i18-title="whisper rolls to gm" title="whisper rolls to gm">
-          <input class="whisper-toggle" name="attr_gm_toggle" type="checkbox" value="/w gm"/><span class="slider"></span>
-        </label>
-      </div>
     </div>
     <div class="grid grid-tab-options">
       <!-- ROLL D6s-->
-      <button name="roll d6s" title="Roll D6s" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{d6}}}{{base=^{d6}}}{{dice=[[(?{d6s|0}d6&gt;5)]]}}"><span class="hidden" data-i18n="roll d6s">roll d6s</span><span class="d6">L</span></button>
-      <label data-i18n-title="edge" title="key">
-        <input name="attr_edge_toggle" type="checkbox" title="@{edge_toggle}" value="!"/><span>edge</span>
+      <h2 data-i18n-title="roll d6s" title="roll d6s">d6s</h2>
+      <button name="roll d6s" title="Roll D6s" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{d6}}}{{base=^{d6}}}{{dice=[[(?{d6s|0}d6&gt;5)]]}}"><span class="d6">L</span></button>
+      <h2 data-i18n-title="GM Whisper" title="GM Whisper">GM Whisper</h2>
+      <label class="switch" data-i18-title="GM Whisper toggle" title="GM Whisper toggle">
+        <input class="whisper-toggle" name="attr_GM Whisper_toggle" title="@{GM Whisper_toggle}" type="checkbox" value="/w gm"/><span class="slider"></span>
       </label>
-      <label data-i18n-title="modifiers" title="key">
-        <input name="attr_modifiers_toggle" type="checkbox" title="@{modifiers_toggle}" value="?{Modifiers +/-|0}"/><span>modifiers</span>
+      <h2 data-i18n-title="edge" title="edge">edge</h2>
+      <label class="switch" data-i18-title="edge toggle" title="edge toggle">
+        <input class="whisper-toggle" name="attr_edge_toggle" title="@{edge_toggle}" type="checkbox" value="!"/><span class="slider"></span>
       </label>
-      <label data-i18n-title="wounds" title="key">
-        <input name="attr_wounds_toggle" type="checkbox" title="@{wounds_toggle}" value="@{wounds}"/><span>wounds</span>
+      <h2 data-i18n-title="modifiers" title="modifiers">modifiers</h2>
+      <label class="switch" data-i18-title="modifiers toggle" title="modifiers toggle">
+        <input class="whisper-toggle" name="attr_modifiers_toggle" title="@{modifiers_toggle}" type="checkbox" value="?{Modifiers +/-|0}"/><span class="slider"></span>
+      </label>
+      <h2 data-i18n-title="wounds" title="wounds">wounds</h2>
+      <label class="switch" data-i18-title="wounds toggle" title="wounds toggle">
+        <input class="whisper-toggle" name="attr_wounds_toggle" title="@{wounds_toggle}" type="checkbox" value="@{wounds}"/><span class="slider"></span>
       </label>
     </div>
   </div>
@@ -77,7 +82,7 @@ PC SHEET
   <div class="flex pc-flex static">
     <div class="border">
       <div class="grid grid-header">
-        <h1 data-i18n="personal_data" data-i18-title="personal_data" title="personal data">personal data</h1>
+        <h1 data-i18n="personal data" data-i18-title="personal data" title="personal data">personal data</h1>
       </div>
       <div class="grid grid-personal-data">
         <div class="detail name_primary_alias">
@@ -159,12 +164,12 @@ PC SHEET
         <div class="horz-line"></div>
       </div>
     </div>
-    <div class="border">
+    <div class="border grid-attributes">
       <div class="grid grid-header">
-        <button class="pictos" data-i18n-title="p23s" name="act_toggle_attributes" title="player character attributes" type="action">y</button>
+        <button class="pictos" data-i18n-title="player character attributes" name="act_toggle_attributes" title="player character attributes" type="action">y</button>
         <h1 data-i18n="attributes" data-i18-title="attributes" title="attributes">attributes</h1>
       </div>
-      <div class="grid grid-attributes">
+      <div class="grid grid-body">
         <div class="grid grid-row">
           <input name="attr_body" type="hidden" value=""/>
           <button name="body" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{body}}}{{base=^{body}}}{{dice=[[(@{body}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
@@ -251,6 +256,23 @@ PC SHEET
           </div>
         </div>
         <div class="grid grid-row">
+          <input name="attr_logic" type="hidden" value=""/>
+          <button name="logic" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{logic}}}{{base=^{logic}}}{{dice=[[(@{logic}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+            <h2 data-i18n="logic">logic</h2>
+          </button>
+          <div class="display bot-border"><span name="attr_" val="val" +="+" _base="_base"></span><span class="total" name="attr_logic"></span></div>
+          <div class="grid settings">
+            <h2 data-i18n="base" data-i18-title="base" title="base">base</h2>
+            <label data-i18n-title="logicbase input" title="logicbase input">
+              <input data-i18n-placeholder="10" name="attr_logic_base" placeholder="10" title="@{logic_base}" type="number" value=""/>
+            </label>
+            <h2 data-i18n="mod" data-i18-title="logic permanent modification" title="logic permanent modification">mod</h2>
+            <label data-i18n-title="logic permanent modification input" title="logic permanent modification input">
+              <input data-i18n-placeholder="10" name="attr_logic_modifier" placeholder="10" title="@{logic_modifier}" type="number" value=""/>
+            </label>
+          </div>
+        </div>
+        <div class="grid grid-row">
           <input name="attr_intuition" type="hidden" value=""/>
           <button name="intuition" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{intuition}}}{{base=^{intuition}}}{{dice=[[(@{intuition}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
             <h2 data-i18n="intuition">intuition</h2>
@@ -286,8 +308,8 @@ PC SHEET
         </div>
         <!-- EDGE-->
         <div class="grid grid-row">
-          <button type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{undefined}}}{{base=^{undefined}}}{{dice=[[(@{undefined}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
-            <h2></h2>
+          <button name="edge" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{edge}}}{{base=^{edge}}}{{dice=[[(@{edge}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+            <h2 data-i18n="edge">edge</h2>
           </button>
           <div class="display bot-border"><span name="attr_edge_max"></span></div>
           <div class="grid settings">
@@ -334,7 +356,7 @@ PC SHEET
           </div>
         </div>
       </div>
-      <div class="grid grid-attributes">
+      <div class="grid grid-body">
         <!-- ESSENCE-->
         <div class="grid grid-row">
           <h2 class="label" data-i18n="essence">essence</h2>
@@ -433,7 +455,7 @@ PC SHEET
             </label>
           </div>
         </div>
-        <!-- COMPOSURE-->
+        <!-- COMMON ROLLS-->
         <div class="grid grid-row">
           <button name="composure" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{composure}}}{{base=^{attributes}}}{{dice=[[(@{composure}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
             <h2 data-i18n="composure">composure</h2>
@@ -517,7 +539,7 @@ PC SHEET
         </div>
         <!-- DEFENSE RATING-->
         <div class="grid grid-row">
-          <h2 class="label" data-i18n="defense_rating">defense rating</h2>
+          <h2 class="label" data-i18n="defense ratin">defense rating</h2>
           <div class="display bot-border"><span name="attr_defense_rating"></span></div>
           <div class="grid settings">
             <h2 data-i18n="base" data-i18-title="base" title="base">base</h2>
@@ -534,24 +556,64 @@ PC SHEET
         </div>
       </div>
     </div>
-    <div class="border">
+    <div class="border grid-skills">
       <div class="grid grid-header">
         <button class="pictos" data-i18n-title="player character skills" name="act_toggle_skills" title="player character skills" type="action">y</button>
         <h1 data-i18n="skills" data-i18-title="skills" title="skills">skills</h1>
       </div>
-      <div class="grid grid-row">
-        <h2 class="label" data-i18n="athletics">athletics</h2>
-        <div class="display bot-border"><span name="attr_athletics"></span></div>
-        <div class="grid settings">
-          <h2 data-i18n="base" data-i18-title="base" title="base">base</h2>
-          <label data-i18n-title="" title="">
-            <input data-i18n-placeholder="1" name="attr_athletics_base" placeholder="1" title="@{athletics_base}" type="text" value=""/>
-          </label>
-          <h2 data-i18n="mod" data-i18-title="modifier" title="modifier">mod</h2>
-          <label data-i18n-title="athletics_modifier" title="athletics modifier">
-            <input data-i18n-placeholder="0" name="attr_athletics_modifier" placeholder="0" title="@{athletics_modifier}" type="text" value=""/>
-          </label>
-        </div>
+      <div class="grid subheader bot-border">
+        <h2 data-i18n="Skill">Skill</h2>
+        <h2 data-i18n="Rank">Rank</h2>
+        <h2 data-i18n="ATT">ATT</h2>
+        <h2 data-i18n="Type">Type</h2>
+      </div>
+      <div class="grid grid-body">
+        <fieldset class="repeating_skills">
+          <div class="grid display">
+            <button name="agility" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{agility}}}{{base=^{agility}}}{{dice=[[(@{agility}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+              <h2 class="alt-color" data-i18n="agility">agility</h2>
+            </button>
+          </div>
+          <div class="grid settings">
+            <select name="attr_skill" title="active skill" value="close combat">
+              <optgroup label="Skill">Skill
+                <option data-i18n="astral" value="astral" selectedAcc="selectedAcc">astral</option>
+                <option data-i18n="athletics" value="athletics" selectedAcc="selectedAcc">athletics</option>
+                <option data-i18n="biotech" value="biotech" selectedAcc="selectedAcc">biotech</option>
+                <option data-i18n="close combat" value="close combat" selectedAcc="selectedAcc">close combat</option>
+                <option data-i18n="con" value="con" selectedAcc="selectedAcc">con</option>
+                <option data-i18n="conjuring" value="conjuring" selectedAcc="selectedAcc">conjuring</option>
+                <option data-i18n="cracking" value="cracking" selectedAcc="selectedAcc">cracking</option>
+                <option data-i18n="electronics" value="electronics" selectedAcc="selectedAcc">electronics</option>
+                <option data-i18n="enchanting" value="enchanting" selectedAcc="selectedAcc">enchanting</option>
+                <option data-i18n="engineering" value="engineering" selectedAcc="selectedAcc">engineering</option>
+                <option data-i18n="exotic weapons" value="exotic weapons" selectedAcc="selectedAcc">exotic weapons</option>
+                <option data-i18n="firearms" value="firearms" selectedAcc="selectedAcc">firearms</option>
+                <option data-i18n="influence" value="influence" selectedAcc="selectedAcc">influence</option>
+                <option data-i18n="outdoors" value="outdoors" selectedAcc="selectedAcc">outdoors</option>
+                <option data-i18n="perception" value="perception" selectedAcc="selectedAcc">perception</option>
+                <option data-i18n="piloting" value="piloting" selectedAcc="selectedAcc">piloting</option>
+                <option data-i18n="sorcery" value="sorcery" selectedAcc="selectedAcc">sorcery</option>
+                <option data-i18n="stealth" value="stealth" selectedAcc="selectedAcc">stealth</option>
+                <option data-i18n="tasking" value="tasking" selectedAcc="selectedAcc">tasking</option>
+              </optgroup>
+            </select>
+            <label data-i18-title="" title="">
+              <input name="attr_rank" type="text" value=""/>
+            </label>
+            <select name="attr_">
+              <optgroup label="Attribute">Attribute
+              </optgroup>
+            </select>
+            <select name="attr_type">
+              <optgroup label="Skill Type">Skill Type
+                <option data-i18n="Active" value="Active" selected="selected">Active</option>
+                <option data-i18n="Language" value="Language">Language</option>
+                <option data-i18n="Knowledge" value="Knowledge">Knowledge</option>
+              </optgroup>
+            </select>
+          </div>
+        </fieldset>
       </div>
     </div>
   </div>

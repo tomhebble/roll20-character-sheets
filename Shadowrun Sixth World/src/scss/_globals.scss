@@ -14,7 +14,7 @@
    		&:hover,
    		&:active {
    			color: $white;
-   			background-color: $accent1 !important;
+   			background-color: $darkaccent !important;
    			background-position: 0em;
    		}
 
@@ -67,6 +67,7 @@
 		font-size: 1em;
    		line-height: 1.4em;
    		text-overflow: ellipsis;
+   		font-variant: small-caps;
 		&.sheet-alt-color {
 			color: $accent1;
 	   	}

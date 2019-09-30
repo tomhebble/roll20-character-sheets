@@ -12,7 +12,7 @@ button {
     display: none; }
   button:focus, button:hover, button:active {
     color: whitesmoke;
-    background-color: #79016f !important;
+    background-color: #460141 !important;
     background-position: 0em; }
   button:focus > h2, button:hover > h2, button:active > h2 {
     color: whitesmoke;
@@ -51,7 +51,8 @@ h2 {
   overflow: hidden;
   font-size: 1em;
   line-height: 1.4em;
-  text-overflow: ellipsis; }
+  text-overflow: ellipsis;
+  font-variant: small-caps; }
   h2.sheet-alt-color {
     color: #79016f; }
   h2.sheet-label {
@@ -226,28 +227,29 @@ div.sheet-grid-tab-inputs {
   div.sheet-grid-tab-inputs span {
     font-weight: bold;
     text-transform: uppercase; }
-  div.sheet-grid-tab-inputs label:nth-of-type(1) {
-    grid-area: 1 / 2 / 1 / 2; }
-  div.sheet-grid-tab-inputs span:nth-of-type(1) {
-    grid-area: 1 / 1 / 1 / 1; }
-  div.sheet-grid-tab-inputs label:nth-of-type(2) {
-    grid-area: 2 / 2 / 2 / 2; }
-  div.sheet-grid-tab-inputs span:nth-of-type(2) {
-    grid-area: 2 / 1 / 2 / 1; }
-  div.sheet-grid-tab-inputs label:nth-of-type(3) {
-    grid-area: 3 / 2 / 3 / 2; }
-  div.sheet-grid-tab-inputs span:nth-of-type(3) {
-    grid-area: 3 / 1 / 3 / 1; }
 
 div.sheet-grid-tab-options {
-  grid-template-columns: 2.5em 8em 8em 8em;
   font-size: 1.1em;
   font-variant: small-caps;
   font-weight: bold;
+  grid-template-columns: 2.5em 1fr 1fr 1fr 1fr;
+  text-align: center;
   text-overflow: ellipsis;
   text-transform: capitalize; }
-  div.sheet-grid-tab-options label {
-    text-align: center; }
+  div.sheet-grid-tab-options button {
+    grid-area: 2 / 1 / 2 / 1; }
+  div.sheet-grid-tab-options h2 {
+    grid-row: 1; }
+  div.sheet-grid-tab-options label.sheet-switch {
+    margin-left: 20%; }
+    div.sheet-grid-tab-options label.sheet-switch:nth-of-type(1) {
+      grid-area: 2 / 2 / 2 / 2; }
+    div.sheet-grid-tab-options label.sheet-switch:nth-of-type(2) {
+      grid-area: 2 / 3 / 2 / 3; }
+    div.sheet-grid-tab-options label.sheet-switch:nth-of-type(3) {
+      grid-area: 2 / 4 / 2 / 4; }
+    div.sheet-grid-tab-options label.sheet-switch:nth-of-type(4) {
+      grid-area: 2 / 5 / 2 / 5; }
   div.sheet-grid-tab-options input[type="checkbox"] {
     margin-right: 2%; }
 
@@ -259,7 +261,9 @@ div.sheet-pc {
   /* PERSONAL DATA
      ----------------------------- */
   /* ATTRIBUTES
-    ----------------------------- */ }
+    ----------------------------- */
+  /* SKILLS
+  ----------------------------- */ }
   div.sheet-pc div.sheet-bot-border {
     border-bottom: 0.1em solid black; }
   div.sheet-pc div.sheet-info-flex {
@@ -313,84 +317,88 @@ div.sheet-pc {
       grid-column: 3 / 5; }
     div.sheet-pc div.sheet-grid-personal-data div.sheet-misc {
       grid-column: 3/5; }
-  div.sheet-pc div.sheet-grid-attributes {
+  div.sheet-pc div.sheet-grid-attributes div.sheet-grid-body {
     width: 49.5%; }
-    div.sheet-pc div.sheet-grid-attributes button[type="roll"] {
-      border-bottom-left-radius: 0em;
-      border-bottom-right-radius: 0em;
-      border-bottom: 0.1em solid black;
-      font-size: 1.1em;
-      font-weight: bold;
-      text-transform: capitalize; }
-    div.sheet-pc div.sheet-grid-attributes h2 {
-      text-align: right;
-      padding-right: 2%; }
-    div.sheet-pc div.sheet-grid-attributes input {
+  div.sheet-pc div.sheet-grid-attributes button[type="roll"] {
+    border-bottom-left-radius: 0em;
+    border-bottom-right-radius: 0em;
+    border-bottom: 0.1em solid black;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-transform: capitalize; }
+  div.sheet-pc div.sheet-grid-attributes h2 {
+    text-align: right;
+    padding-right: 2%; }
+  div.sheet-pc div.sheet-grid-attributes input {
+    text-align: center; }
+    div.sheet-pc div.sheet-grid-attributes input[type="hidden"][value=""] ~ div.sheet-grid div > span.sheet-total, div.sheet-pc div.sheet-grid-attributes input[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total, div.sheet-pc div.sheet-grid-attributes input[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total::after, div.sheet-pc div.sheet-grid-attributes input[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total::before {
+      display: none; }
+    div.sheet-pc div.sheet-grid-attributes input[type="text"] {
+      border-bottom: 0.15em solid #79016f;
+      width: 3.5em; }
+  div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(1) {
+    grid-area: 1 / 1 / 1 / 3; }
+  div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(2) {
+    grid-area: 2 / 1 / 2 / 3; }
+  div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(3) {
+    grid-area: 3 / 1 / 3 / 3; }
+  div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(4) {
+    grid-area: 4 / 1 / 4 / 3; }
+  div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(5) {
+    grid-area: 5 / 1 / 5 / 3; }
+  div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(6) {
+    grid-area: 6 / 1 / 6 / 3; }
+  div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(7) {
+    grid-area: 7 / 1 / 7 / 3; }
+  div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(8) {
+    grid-area: 8 / 1 / 8 / 3; }
+  div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(9) {
+    grid-area: 9 / 1 / 9 / 3; }
+  div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(10) {
+    grid-area: 10 / 1 / 10 / 3; }
+  div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(11) {
+    grid-area: 11 / 1 / 11 / 3; }
+  div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row {
+    grid-template-columns: 10em 1fr;
+    margin-bottom: 2%; }
+    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row button, div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row h2.sheet-label {
+      grid-area: 1 / 1 / 1 / 1; }
+    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-display {
+      grid-area: 1 / 2 / 1 / 2;
       text-align: center; }
-      div.sheet-pc div.sheet-grid-attributes input[type="hidden"][value=""] ~ div.sheet-grid div > span.sheet-total, div.sheet-pc div.sheet-grid-attributes input[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total, div.sheet-pc div.sheet-grid-attributes input[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total::after, div.sheet-pc div.sheet-grid-attributes input[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total::before {
-        display: none; }
-      div.sheet-pc div.sheet-grid-attributes input[type="text"] {
-        border-bottom: 0.15em solid #79016f;
-        width: 3.5em; }
-    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(1) {
-      grid-area: 1 / 1 / 1 / 3; }
-    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(2) {
-      grid-area: 2 / 1 / 2 / 3; }
-    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(3) {
-      grid-area: 3 / 1 / 3 / 3; }
-    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(4) {
-      grid-area: 4 / 1 / 4 / 3; }
-    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(5) {
-      grid-area: 5 / 1 / 5 / 3; }
-    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(6) {
-      grid-area: 6 / 1 / 6 / 3; }
-    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(7) {
-      grid-area: 7 / 1 / 7 / 3; }
-    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(8) {
-      grid-area: 8 / 1 / 8 / 3; }
-    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(9) {
-      grid-area: 9 / 1 / 9 / 3; }
-    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(10) {
-      grid-area: 10 / 1 / 10 / 3; }
-    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(11) {
-      grid-area: 11 / 1 / 11 / 3; }
-    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row {
-      grid-template-columns: 10em 1fr;
-      margin-bottom: 2%; }
-      div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row button, div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row h2.sheet-label {
-        grid-area: 1 / 1 / 1 / 1; }
-      div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-display {
-        grid-area: 1 / 2 / 1 / 2;
-        text-align: center; }
-        div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-display span.sheet-total::after {
-          content: ")"; }
-        div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-display span.sheet-total::before {
-          content: "("; }
-      div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings {
-        grid-area: 2 / 1 / 2 / 4;
-        grid-template-columns: 1fr 1fr 1fr 1fr; }
-        div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings div.sheet-arrow-up {
-          grid-area: 1 / 2 / 1 / 3; }
-        div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings h2:nth-of-type(1) {
-          grid-area: 2 / 1 / 2 / 1; }
-        div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings h2:nth-of-type(2) {
-          grid-area: 2 / 3 / 2 / 3; }
-        div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings h2:nth-of-type(3) {
-          grid-area: 3 / 1 / 3 / 1; }
-        div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings h2:nth-of-type(4) {
-          grid-area: 3 / 3 / 3 / 3; }
-        div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings label:nth-of-type(1) {
-          grid-area: 2 / 2 / 2 / 2; }
-        div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings label:nth-of-type(2) {
-          grid-area: 2 / 4 / 2 / 4; }
-        div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings label:nth-of-type(3) {
-          grid-area: 3 / 2 / 3 / 2; }
-        div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings label:nth-of-type(4) {
-          grid-area: 3 / 4 / 3 / 4; }
-    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-pc-edge {
-      grid-template-columns: 1fr; }
+      div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-display span.sheet-total::after {
+        content: ")"; }
+      div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-display span.sheet-total::before {
+        content: "("; }
+    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings {
+      grid-area: 2 / 1 / 2 / 4;
+      grid-template-columns: 1fr 1fr 1fr 1fr; }
+      div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings div.sheet-arrow-up {
+        grid-area: 1 / 2 / 1 / 3; }
+      div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings h2:nth-of-type(1) {
+        grid-area: 2 / 1 / 2 / 1; }
+      div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings h2:nth-of-type(2) {
+        grid-area: 2 / 3 / 2 / 3; }
+      div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings h2:nth-of-type(3) {
+        grid-area: 3 / 1 / 3 / 1; }
+      div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings h2:nth-of-type(4) {
+        grid-area: 3 / 3 / 3 / 3; }
+      div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings label:nth-of-type(1) {
+        grid-area: 2 / 2 / 2 / 2; }
+      div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings label:nth-of-type(2) {
+        grid-area: 2 / 4 / 2 / 4; }
+      div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings label:nth-of-type(3) {
+        grid-area: 3 / 2 / 3 / 2; }
+      div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings label:nth-of-type(4) {
+        grid-area: 3 / 4 / 3 / 4; }
+  div.sheet-pc div.sheet-grid-attributes div.sheet-grid-pc-edge {
+    grid-template-columns: 1fr; }
   div.sheet-pc span.sheet-total {
     display: none; }
+  div.sheet-pc div.sheet-grid-skills div.sheet-subheader {
+    grid-template-columns: 1fr 5em 5em 5em; }
+  div.sheet-pc div.sheet-grid-skills select {
+    text-transform: uppercase; }
 
 /* SHARED SETTINGS
   ============================= */
