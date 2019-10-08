@@ -208,7 +208,7 @@ input.display_string(name='attr_toggles' type='hidden' value='core,')
               input(data-i18n-placeholder='0' name='attr_movement_modifier' placeholder='0' title='@{movement_modifier}' type='text' value='')
         // DEFENSE RATING
         .grid.grid-row
-          h2.label(data-i18n='defense ratin') defense rating
+          h2.label(data-i18n='defense rating') defense rating
           .display.bot-border
             span(name='attr_defense_rating')
           .grid.settings
@@ -222,29 +222,37 @@ input.display_string(name='attr_toggles' type='hidden' value='core,')
               input(data-i18n-placeholder='0' name='attr_defense_rating_modifier' placeholder='0' title='@{defense_rating_modifier}' type='text' value='')
     .border.grid-skills
       .grid.grid-header
-        button.pictos(data-i18n-title='player character skills' name='act_toggle_skills' title='player character skills' type='action') y
         h1(data-i18n='skills' data-i18-title='skills' title='skills') skills
       .grid.subheader.bot-border
         h2(data-i18n='Skill') Skill
         h2(data-i18n='Rank') Rank
         h2(data-i18n='ATT') ATT
         h2(data-i18n='Type') Type
-      .grid.grid-body
-          fieldset.repeating_skills
-            .grid.display
-               +attributeButton('agility')
+      .repeating-container
+        fieldset.repeating_skills
+          .grid.body.bot-border
+            input.pictos(data-i18n-title='player character skills settings' name='attr_toggle' title='player character skills settings' type='checkbox' checked)
+            //span.pictos x
+            button(name='skill' type='roll' value='@{gm_toggle} &{template:rolls}{{header=@{skill}}}{{base=@{display_attribute}}}{{desc=@{display_limit}}}{{dice=[[((@{dicepool}+@{attribute})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}')
+              span(name='attr_skill')
+            span(name='attr_rank')
+            select(data-i18-title='' name='attr_attribute' title='')
+               +attrSelect('agility')
+            select(name='attr_type')
+              optgroup(label='Skill Type') Skill Type
+                option(data-i18n='Active' value='Active') Active
+                option(data-i18n='Language' value='Language') Language
+                option(data-i18n='Knowledge' value='Knowledge') Knowledge
             .grid.settings
-              select(name='attr_skill' title='active skill' value='close combat')
-                +skillSelect('close combat')
-              label(data-i18-title='' title='')
-                input(name='attr_rank' type='text' value='')
-              select(name='attr_')
-                 +attrSelect('agility')
-              select(name="attr_type")
-                optgroup(label='Skill Type') Skill Type
-                  option(data-i18n="Active" value="Active" selected) Active
-                  option(data-i18n="Language" value="Language") Language
-                  option(data-i18n="Knowledge" value="Knowledge") Knowledge
+              select(data-i18-title='' name='attr_skill' title='active skill' value='close combat')
+                +skillSelect()
+              each val, key in {'rank': '3', 'modification': '0', 'focus': 'focus', 'specialization': 'specialization'}
+                h3(data-i18n=key) #{key}
+                label(data-i18n-title='skill '+key title=key)
+                  input(data-i18n-placeholder=val name='attr_'+key placeholder=val type='text' value='')
+              h3(data-i18n='notes') notes
+              label(data-i18n-title='skill notes' title='skill notes')
+                textarea(data-i18n-placeholder='notes' name='attr_notes' placeholder='notes')
   .flex.pc-flex.core
     .border
       .grid.grid-header

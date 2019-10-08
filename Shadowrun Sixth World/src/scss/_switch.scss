@@ -17,6 +17,7 @@
 .sheet-slider {
   -webkit-transition: .4s;
   background-color: #ccc;
+  border: 2px solid $accent2;
   border-radius: 34px;
   bottom: 0;
   cursor: pointer;
@@ -31,7 +32,7 @@
   -webkit-transition: .4s;
   background-color: white;
   border-radius: 50%;
-  bottom: 4px;
+  bottom: 2px;
   content: "";
   height: 16px;
   left: 4px;
@@ -41,7 +42,7 @@
 }
 
 input:checked + .sheet-slider {
-  background-color: $accent2;
+  background-color: $darkaccent;
 }
 
 input:focus + .sheet-slider {

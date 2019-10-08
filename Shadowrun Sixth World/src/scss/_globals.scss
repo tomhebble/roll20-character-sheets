@@ -33,11 +33,11 @@
 			text-overflow: ellipsis;
 			text-transform: capitalize;
 			border: {
-				bottom             : 0.01em solid #666;
-				bottom-right-radius: 0.01em;
+				bottom             : 2px solid #666;
+				bottom-right-radius: 2px;
 				color              : hsl(0, 0%, 70%);
-				radius             : 0.25em;
-				right              : 0.02em solid hsl(0, 0%, 20%);
+				radius             : 5px;
+				right              : 3px solid hsl(0, 0%, 20%);
 				style              : outset;
 			}
 			margin: 0.2em !important;
@@ -80,10 +80,12 @@
 	}
 
 	h3 {
-		overflow: hidden;
 		font-size: 1.25em;
 		line-height: 36px;
+		overflow: hidden;
 		text-overflow: ellipsis;
+		text-transform: capitalize;
+   		font-variant: small-caps;
 	}
 
 	hr {
@@ -101,7 +103,7 @@
 			border: {
 				radius: 0em;
 			};
-			height       : 2.1em;
+			height: 2.1em;
 			width: 100%;
 		}
 		&::placeholder {
@@ -119,6 +121,12 @@
 		overflow: hidden;
 		margin-bottom: 0px;
 		padding-right: 0px;
+	}
+
+	select {
+		text-transform: capitalize;
+   		font-variant: small-caps;
+		width: 100%;
 	}
 
 	span {

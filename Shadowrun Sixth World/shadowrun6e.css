@@ -24,11 +24,11 @@ button {
     text-align: center;
     text-overflow: ellipsis;
     text-transform: capitalize;
-    border-bottom: 0.01em solid #666;
-    border-bottom-right-radius: 0.01em;
+    border-bottom: 2px solid #666;
+    border-bottom-right-radius: 2px;
     border-color: #b3b3b3;
-    border-radius: 0.25em;
-    border-right: 0.02em solid #333333;
+    border-radius: 5px;
+    border-right: 3px solid #333333;
     border-style: outset;
     margin: 0.2em !important;
     padding: 0.1em !important; }
@@ -64,10 +64,12 @@ h2 {
     margin-left: 3%; }
 
 h3 {
-  overflow: hidden;
   font-size: 1.25em;
   line-height: 36px;
-  text-overflow: ellipsis; }
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: capitalize;
+  font-variant: small-caps; }
 
 hr {
   border-top: 0.02em solid black; }
@@ -91,6 +93,11 @@ label {
   overflow: hidden;
   margin-bottom: 0px;
   padding-right: 0px; }
+
+select {
+  text-transform: capitalize;
+  font-variant: small-caps;
+  width: 100%; }
 
 span {
   word-break: break-word; }
@@ -145,6 +152,7 @@ textarea {
 .sheet-slider {
   -webkit-transition: .4s;
   background-color: #ccc;
+  border: 2px solid rgba(136, 121, 190, 0.25);
   border-radius: 34px;
   bottom: 0;
   cursor: pointer;
@@ -158,7 +166,7 @@ textarea {
   -webkit-transition: .4s;
   background-color: white;
   border-radius: 50%;
-  bottom: 4px;
+  bottom: 2px;
   content: "";
   height: 16px;
   left: 4px;
@@ -167,7 +175,7 @@ textarea {
   width: 16px; }
 
 input:checked + .sheet-slider {
-  background-color: rgba(136, 121, 190, 0.25); }
+  background-color: #460141; }
 
 input:focus + .sheet-slider {
   box-shadow: 0 0 1px rgba(136, 121, 190, 0.25); }
@@ -395,10 +403,36 @@ div.sheet-pc {
     grid-template-columns: 1fr; }
   div.sheet-pc span.sheet-total {
     display: none; }
-  div.sheet-pc div.sheet-grid-skills div.sheet-subheader {
-    grid-template-columns: 1fr 5em 5em 5em; }
-  div.sheet-pc div.sheet-grid-skills select {
-    text-transform: uppercase; }
+  div.sheet-pc div.sheet-grid-skills div.sheet-subheader,
+  div.sheet-pc div.sheet-grid-skills div.sheet-body {
+    grid-template-columns: 0.25em 1fr 5em 5em 5em; }
+  div.sheet-pc div.sheet-grid-skills h2:nth-of-type(1) {
+    grid-column: 2 / 2; }
+  div.sheet-pc div.sheet-grid-skills h2:nth-of-type(2) {
+    grid-column: 3 / 3; }
+  div.sheet-pc div.sheet-grid-skills h2:nth-of-type(3) {
+    grid-column: 4 / 4; }
+  div.sheet-pc div.sheet-grid-skills h2:nth-of-type(4) {
+    grid-column: 5 / 5; }
+  div.sheet-pc div.sheet-grid-skills div.sheet-settings {
+    grid-column: 1 / 6;
+    grid-template-columns: 5em 1fr 10em 1fr;
+    height: auto;
+    padding: 2%; }
+    div.sheet-pc div.sheet-grid-skills div.sheet-settings input[name*='rank'], div.sheet-pc div.sheet-grid-skills div.sheet-settings input[name*='modification'] {
+      text-align: center; }
+    div.sheet-pc div.sheet-grid-skills div.sheet-settings select {
+      grid-column: 1 / 5; }
+    div.sheet-pc div.sheet-grid-skills div.sheet-settings h3:nth-of-type(2) {
+      margin-left: 15%; }
+    div.sheet-pc div.sheet-grid-skills div.sheet-settings h3:nth-of-type(1n+3) {
+      grid-column: 1 / 5; }
+    div.sheet-pc div.sheet-grid-skills div.sheet-settings label:nth-of-type(1n+3) {
+      grid-column: 1 / 5; }
+  div.sheet-pc div.sheet-grid-skills .sheet-settings {
+    display: none; }
+  div.sheet-pc div.sheet-grid-skills input[name='attr_toggle']:checked ~ .sheet-settings {
+    display: grid; }
 
 /* SHARED SETTINGS
   ============================= */

@@ -539,7 +539,7 @@ PC SHEET
         </div>
         <!-- DEFENSE RATING-->
         <div class="grid grid-row">
-          <h2 class="label" data-i18n="defense ratin">defense rating</h2>
+          <h2 class="label" data-i18n="defense rating">defense rating</h2>
           <div class="display bot-border"><span name="attr_defense_rating"></span></div>
           <div class="grid settings">
             <h2 data-i18n="base" data-i18-title="base" title="base">base</h2>
@@ -558,7 +558,6 @@ PC SHEET
     </div>
     <div class="border grid-skills">
       <div class="grid grid-header">
-        <button class="pictos" data-i18n-title="player character skills" name="act_toggle_skills" title="player character skills" type="action">y</button>
         <h1 data-i18n="skills" data-i18-title="skills" title="skills">skills</h1>
       </div>
       <div class="grid subheader bot-border">
@@ -567,51 +566,68 @@ PC SHEET
         <h2 data-i18n="ATT">ATT</h2>
         <h2 data-i18n="Type">Type</h2>
       </div>
-      <div class="grid grid-body">
+      <div class="repeating-container">
         <fieldset class="repeating_skills">
-          <div class="grid display">
-            <button name="agility" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{agility}}}{{base=^{agility}}}{{dice=[[(@{agility}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
-              <h2 class="alt-color" data-i18n="agility">agility</h2>
-            </button>
-          </div>
-          <div class="grid settings">
-            <select name="attr_skill" title="active skill" value="close combat">
-              <optgroup label="Skill">Skill
-                <option data-i18n="astral" value="astral" selectedAcc="selectedAcc">astral</option>
-                <option data-i18n="athletics" value="athletics" selectedAcc="selectedAcc">athletics</option>
-                <option data-i18n="biotech" value="biotech" selectedAcc="selectedAcc">biotech</option>
-                <option data-i18n="close combat" value="close combat" selectedAcc="selectedAcc">close combat</option>
-                <option data-i18n="con" value="con" selectedAcc="selectedAcc">con</option>
-                <option data-i18n="conjuring" value="conjuring" selectedAcc="selectedAcc">conjuring</option>
-                <option data-i18n="cracking" value="cracking" selectedAcc="selectedAcc">cracking</option>
-                <option data-i18n="electronics" value="electronics" selectedAcc="selectedAcc">electronics</option>
-                <option data-i18n="enchanting" value="enchanting" selectedAcc="selectedAcc">enchanting</option>
-                <option data-i18n="engineering" value="engineering" selectedAcc="selectedAcc">engineering</option>
-                <option data-i18n="exotic weapons" value="exotic weapons" selectedAcc="selectedAcc">exotic weapons</option>
-                <option data-i18n="firearms" value="firearms" selectedAcc="selectedAcc">firearms</option>
-                <option data-i18n="influence" value="influence" selectedAcc="selectedAcc">influence</option>
-                <option data-i18n="outdoors" value="outdoors" selectedAcc="selectedAcc">outdoors</option>
-                <option data-i18n="perception" value="perception" selectedAcc="selectedAcc">perception</option>
-                <option data-i18n="piloting" value="piloting" selectedAcc="selectedAcc">piloting</option>
-                <option data-i18n="sorcery" value="sorcery" selectedAcc="selectedAcc">sorcery</option>
-                <option data-i18n="stealth" value="stealth" selectedAcc="selectedAcc">stealth</option>
-                <option data-i18n="tasking" value="tasking" selectedAcc="selectedAcc">tasking</option>
-              </optgroup>
-            </select>
-            <label data-i18-title="" title="">
-              <input name="attr_rank" type="text" value=""/>
-            </label>
-            <select name="attr_">
+          <div class="grid body bot-border">
+            <input class="pictos" data-i18n-title="player character skills settings" name="attr_toggle" title="player character skills settings" type="checkbox" checked="checked"/>
+            <!--span.pictos x-->
+            <button name="skill" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=@{skill}}}{{base=@{display_attribute}}}{{desc=@{display_limit}}}{{dice=[[((@{dicepool}+@{attribute})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}"><span name="attr_skill"></span></button><span name="attr_rank"></span>
+            <select data-i18-title="" name="attr_attribute" title="">
               <optgroup label="Attribute">Attribute
               </optgroup>
             </select>
             <select name="attr_type">
               <optgroup label="Skill Type">Skill Type
-                <option data-i18n="Active" value="Active" selected="selected">Active</option>
+                <option data-i18n="Active" value="Active">Active</option>
                 <option data-i18n="Language" value="Language">Language</option>
                 <option data-i18n="Knowledge" value="Knowledge">Knowledge</option>
               </optgroup>
             </select>
+            <div class="grid settings">
+              <select data-i18-title="" name="attr_skill" title="active skill" value="close combat">
+                <optgroup label="Skill">Skill
+                  <option data-i18n="astral" value="astral">key</option>
+                  <option data-i18n="athletics" value="athletics">key</option>
+                  <option data-i18n="biotech" value="biotech">key</option>
+                  <option data-i18n="close combat" value="close combat">key</option>
+                  <option data-i18n="con" value="con">key</option>
+                  <option data-i18n="conjuring" value="conjuring">key</option>
+                  <option data-i18n="cracking" value="cracking">key</option>
+                  <option data-i18n="electronics" value="electronics">key</option>
+                  <option data-i18n="enchanting" value="enchanting">key</option>
+                  <option data-i18n="engineering" value="engineering">key</option>
+                  <option data-i18n="exotic weapons" value="exotic weapons">key</option>
+                  <option data-i18n="firearms" value="firearms">key</option>
+                  <option data-i18n="influence" value="influence">key</option>
+                  <option data-i18n="outdoors" value="outdoors">key</option>
+                  <option data-i18n="perception" value="perception">key</option>
+                  <option data-i18n="piloting" value="piloting">key</option>
+                  <option data-i18n="sorcery" value="sorcery">key</option>
+                  <option data-i18n="stealth" value="stealth">key</option>
+                  <option data-i18n="tasking" value="tasking">key</option>
+                </optgroup>
+              </select>
+              <h3 data-i18n="rank">rank</h3>
+              <label data-i18n-title="skill rank" title="rank">
+                <input data-i18n-placeholder="3" name="attr_rank" placeholder="3" type="text" value=""/>
+              </label>
+              <h3 data-i18n="modification">modification</h3>
+              <label data-i18n-title="skill modification" title="modification">
+                <input data-i18n-placeholder="0" name="attr_modification" placeholder="0" type="text" value=""/>
+              </label>
+              <h3 data-i18n="focus">focus</h3>
+              <label data-i18n-title="skill focus" title="focus">
+                <input data-i18n-placeholder="focus" name="attr_focus" placeholder="focus" type="text" value=""/>
+              </label>
+              <h3 data-i18n="specialization">specialization</h3>
+              <label data-i18n-title="skill specialization" title="specialization">
+                <input data-i18n-placeholder="specialization" name="attr_specialization" placeholder="specialization" type="text" value=""/>
+              </label>
+              <h3 data-i18n="notes">notes</h3>
+              <label data-i18n-title="skill notes" title="skill notes">
+                <textarea data-i18n-placeholder="notes" name="attr_notes" placeholder="notes"></textarea>
+              </label>
+            </div>
           </div>
         </fieldset>
       </div>

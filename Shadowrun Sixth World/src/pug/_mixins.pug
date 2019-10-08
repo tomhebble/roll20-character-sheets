@@ -1,31 +1,35 @@
 //-	ROLL BUTTONS
 mixin attributeButton(attribute)
-	button(name=attribute type='roll' value='@{gm_toggle} &{template:rolls}{{header=^{'+attribute+'}}}{{base=^{'+attribute+'}}}{{dice=[[(@{'+attribute+'}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}')
+	button(name=attribute type='roll' value=buttonPrefix+'{{header=^{'+attribute+'}}}{{base=^{'+attribute+'}}}{{dice=[[(@{'+attribute+'}+@{attribute_roll}'+buttonSuffix)
 		if attribute === "body" || attribute === "agility" || attribute === "reaction" || attribute === "strength"
 			h2.alt-color(data-i18n=attribute) #{attribute}
 		else
 			h2(data-i18n=attribute) #{attribute}
 
 mixin initiativeButton(name, attrName)
-	button(name=name type='roll' value='@{gm_toggle} &{template:rolls}{{header=^{'+name+'}}}{{base=^{base}}}{{dice=[[(@{'+attrName+'_modifier}+@{wound_toggle}+@{modifier_toggle})+(@{'+attrName+'_dice})d6cf0 &{tracker}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}')
+	button(name=name type='roll' value=buttonPrefix+'{{header=^{'+name+'}}}{{base=^{base}}}{{dice=[[(@{'+attrName+'_modifier}+@{wound_toggle}+@{modifier_toggle})+(@{'+attrName+'_dice})d6cf0 &{tracker}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}')
 		h2.alt-color(data-i18n=name) #{name}
 
-
+//- COMPOSURE, JUDGE INTENTIONS...
 mixin derivedButton(name, attrName)
-	button(name=name type='roll' value='@{gm_toggle} &{template:rolls}{{header=^{'+name+'}}}{{base=^{attributes}}}{{dice=[[(@{'+attrName+'}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}')
+	button(name=name type='roll' value=buttonPrefix+'{{header=^{'+name+'}}}{{base=^{attributes}}}{{dice=[[(@{'+attrName+'}'+buttonSuffix)
 		h2(data-i18n=name) #{name}
 
+//- All Skills
+mixin skillButton(skill, attribute)
+	- const attrName = key.replace(' ', '_');
+	button(name=skill type='roll' value=buttonPrefix+'{{header=^{skill}}}{{base=^{'+attribute+'}}}{{dice=[[((@{'+attrName+'}+@{attribute})'+buttonSuffix)
+
 //- SKILL SELECT
-mixin skillSelect(selectedDefault)
+mixin skillSelect()
 	optgroup(label='Skill') Skill
 		each val, key in skills
 			- const attrName = key.replace(' ', '_');
-			- const selectedAcc = key === selectedDefault ? selected : "";
-			option(data-i18n=key value=key selectedAcc)= key
+			option(data-i18n=key value=key)= key
 
 //- ATTRIBUTE SELECT
 mixin attrSelect(selectedDefault)
 	optgroup(label='Attribute') Attribute
 		each val in attributes
 			- const selectedAcc = val === selectedDefault ? selected : "";
-			option(data-i18n=attrName value="[[@{" + attrName + "}]]" selectedAcc)= val
+			option(data-i18n=val value="@{" + val + "}" selectedAcc)= val
