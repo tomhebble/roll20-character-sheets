@@ -561,24 +561,33 @@ PC SHEET
         <h1 data-i18n="skills" data-i18-title="skills" title="skills">skills</h1>
       </div>
       <div class="grid subheader bot-border">
-        <h2 data-i18n="Skill">Skill</h2>
-        <h2 data-i18n="Rank">Rank</h2>
+        <h2 data-i18n="skill">skill</h2>
+        <h2 data-i18n="rank">rank</h2>
         <h2 data-i18n="ATT">ATT</h2>
-        <h2 data-i18n="Type">Type</h2>
+        <h2 data-i18n="type">type</h2>
       </div>
       <div class="repeating-container">
         <fieldset class="repeating_skills">
           <div class="grid body bot-border">
             <input class="pictos" data-i18n-title="player character skills settings" name="attr_toggle" title="player character skills settings" type="checkbox" checked="checked"/>
             <!--span.pictos x-->
-            <button name="skill" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=@{skill}}}{{base=@{display_attribute}}}{{desc=@{display_limit}}}{{dice=[[((@{dicepool}+@{attribute})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}"><span name="attr_skill"></span></button><span name="attr_rank"></span>
+            <button name="skill" type="roll" value="@{gm_toggle} &{template:rolls}{{header=@{skill}}}{{base=^{attribute}}}{{dice=[[((@{dicepool}+@{attribute})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}"><span name="attr_skill"></span></button>
+            <div class="skill-ranks"><span name="attr_rank"></span><span name="attr_modification"></span></div>
             <select data-i18-title="" name="attr_attribute" title="">
               <optgroup label="Attribute">Attribute
+                <option data-i18n="body" value="body">body</option>
+                <option data-i18n="agility" value="agility">agility</option>
+                <option data-i18n="reaction" value="reaction">reaction</option>
+                <option data-i18n="strength" value="strength">strength</option>
+                <option data-i18n="willpower" value="willpower">willpower</option>
+                <option data-i18n="logic" value="logic">logic</option>
+                <option data-i18n="intuition" value="intuition">intuition</option>
+                <option data-i18n="charisma" value="charisma">charisma</option>
               </optgroup>
             </select>
             <select name="attr_type">
               <optgroup label="Skill Type">Skill Type
-                <option data-i18n="Active" value="Active">Active</option>
+                <option data-i18n="Active" value="Active" selected="selected">Active</option>
                 <option data-i18n="Language" value="Language">Language</option>
                 <option data-i18n="Knowledge" value="Knowledge">Knowledge</option>
               </optgroup>
@@ -586,25 +595,25 @@ PC SHEET
             <div class="grid settings">
               <select data-i18-title="" name="attr_skill" title="active skill" value="close combat">
                 <optgroup label="Skill">Skill
-                  <option data-i18n="astral" value="astral">key</option>
-                  <option data-i18n="athletics" value="athletics">key</option>
-                  <option data-i18n="biotech" value="biotech">key</option>
-                  <option data-i18n="close combat" value="close combat">key</option>
-                  <option data-i18n="con" value="con">key</option>
-                  <option data-i18n="conjuring" value="conjuring">key</option>
-                  <option data-i18n="cracking" value="cracking">key</option>
-                  <option data-i18n="electronics" value="electronics">key</option>
-                  <option data-i18n="enchanting" value="enchanting">key</option>
-                  <option data-i18n="engineering" value="engineering">key</option>
-                  <option data-i18n="exotic weapons" value="exotic weapons">key</option>
-                  <option data-i18n="firearms" value="firearms">key</option>
-                  <option data-i18n="influence" value="influence">key</option>
-                  <option data-i18n="outdoors" value="outdoors">key</option>
-                  <option data-i18n="perception" value="perception">key</option>
-                  <option data-i18n="piloting" value="piloting">key</option>
-                  <option data-i18n="sorcery" value="sorcery">key</option>
-                  <option data-i18n="stealth" value="stealth">key</option>
-                  <option data-i18n="tasking" value="tasking">key</option>
+                  <option data-i18n="astral" value="astral">astral</option>
+                  <option data-i18n="athletics" value="athletics">athletics</option>
+                  <option data-i18n="biotech" value="biotech">biotech</option>
+                  <option data-i18n="close combat" value="close combat">close combat</option>
+                  <option data-i18n="con" value="con">con</option>
+                  <option data-i18n="conjuring" value="conjuring">conjuring</option>
+                  <option data-i18n="cracking" value="cracking">cracking</option>
+                  <option data-i18n="electronics" value="electronics">electronics</option>
+                  <option data-i18n="enchanting" value="enchanting">enchanting</option>
+                  <option data-i18n="engineering" value="engineering">engineering</option>
+                  <option data-i18n="exotic weapons" value="exotic weapons">exotic weapons</option>
+                  <option data-i18n="firearms" value="firearms">firearms</option>
+                  <option data-i18n="influence" value="influence">influence</option>
+                  <option data-i18n="outdoors" value="outdoors">outdoors</option>
+                  <option data-i18n="perception" value="perception">perception</option>
+                  <option data-i18n="piloting" value="piloting">piloting</option>
+                  <option data-i18n="sorcery" value="sorcery">sorcery</option>
+                  <option data-i18n="stealth" value="stealth">stealth</option>
+                  <option data-i18n="tasking" value="tasking">tasking</option>
                 </optgroup>
               </select>
               <h3 data-i18n="rank">rank</h3>
@@ -636,13 +645,13 @@ PC SHEET
   <div class="flex pc-flex core">
     <div class="border">
       <div class="grid grid-header">
-        <h1 data-i18n="combat_info" data-i18-title="combat_info" title="core combat info">core combat info</h1>
+        <h1 data-i18n="core combat info" data-i18-title="core combat info" title="core combat info">core combat info</h1>
       </div>
       <div class="grid"></div>
     </div>
     <div class="border">
       <div class="grid grid-header">
-        <h1 data-i18n="condition_monitor" data-i18-title="condition_monitor" title="condition monitor">condition monitor</h1>
+        <h1 data-i18n="condition monitor" data-i18-title="condition monitor" title="condition monitor">condition monitor</h1>
       </div>
       <div class="grid"></div>
     </div>
@@ -656,13 +665,13 @@ PC SHEET
   <div class="flex pc-flex arms">
     <div class="border">
       <div class="grid grid-header">
-        <h1 data-i18n="ranged_weapons" data-i18-title="ranged_weapons" title="ranged weapons">ranged weapons</h1>
+        <h1 data-i18n="ranged weapons" data-i18-title="ranged weapons" title="ranged weapons">ranged weapons</h1>
       </div>
       <div class="grid"></div>
     </div>
     <div class="border">
       <div class="grid grid-header">
-        <h1 data-i18n="melee_weapons" data-i18-title="melee_weapons" title="melee weapons">melee weapons</h1>
+        <h1 data-i18n="melee weapons" data-i18-title="melee weapons" title="melee weapons">melee weapons</h1>
       </div>
       <div class="grid"></div>
     </div>
@@ -708,7 +717,7 @@ PC SHEET
     </div>
     <div class="border">
       <div class="grid grid-header">
-        <h1 data-i18n="a25s" data-i18-title="a25s" title="adept powers or other abilities">adept powers or other abilities</h1>
+        <h1 data-i18n="adept powers or other abilities" data-i18-title="adept powers or other abilities" title="adept powers or other abilities">adept powers or other abilities</h1>
       </div>
       <div class="grid"></div>
     </div>
@@ -716,13 +725,13 @@ PC SHEET
   <div class="flex pc-flex matrix">
     <div class="border">
       <div class="grid grid-header">
-        <h1 data-i18n="matrix_stats" data-i18-title="matrix_stats" title="matrix stats">matrix stats</h1>
+        <h1 data-i18n="matrix stats" data-i18-title="matrix stats" title="matrix stats">matrix stats</h1>
       </div>
       <div class="grid"></div>
     </div>
     <div class="border">
       <div class="grid grid-header">
-        <h1 data-i18n="complex_forms" data-i18-title="complex_forms" title="complex forms">complex forms</h1>
+        <h1 data-i18n="complex forms" data-i18-title="complex forms" title="complex forms">complex forms</h1>
       </div>
       <div class="grid"></div>
     </div>
@@ -730,7 +739,7 @@ PC SHEET
   <div class="flex pc-flex social">
     <div class="border">
       <div class="grid grid-header">
-        <h1 data-i18n="i19y" data-i18-title="i19y" title="ids / lifestyles / currency">ids / lifestyles / currency</h1>
+        <h1 data-i18n="ids / lifestyles / currency" data-i18-title="ids / lifestyles / currency" title="ids / lifestyles / currency">ids / lifestyles / currency</h1>
       </div>
       <div class="grid"></div>
     </div>

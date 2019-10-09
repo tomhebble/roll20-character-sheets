@@ -10,20 +10,6 @@
 		&:before {
 			display: none;
 		}
-		&:focus,
-   		&:hover,
-   		&:active {
-   			color: $white;
-   			background-color: $darkaccent !important;
-   			background-position: 0em;
-   		}
-
-   		&:focus > h2,
-   		&:hover > h2,
-   		&:active > h2 {
-			color: $white;
-			text-shadow: 1px 1px 2px $black, 0 0 25px $accent2, 0 0 5px $accent1
-	   	}
 		&[type="roll"],
 		&[type="action"] {
 			@include back-col(hsl(0, 0%, 96%));
@@ -43,6 +29,17 @@
 			margin: 0.2em !important;
 			padding: 0.1em !important;
 		}
+		&:focus, &:hover, &:active {
+   			color: $white;
+   			background-color: $darkaccent !important;
+   			background-position: 0em;
+   		}
+
+   		&:focus > h2, &:hover > h2, &:active > h2,
+   		&:focus > span, &:hover > span, &:active > span {
+			color: $white;
+			text-shadow: 1px 1px 2px $black, 0 0 25px $accent2, 0 0 5px $accent1
+	   	}
 	}
 
 	div {
@@ -58,6 +55,7 @@
 	h1 {
 		overflow: hidden;
 		color: $accent1;
+		font-size: 1.8em;
 		text-transform: uppercase;
 		text-overflow: ellipsis;
 	}

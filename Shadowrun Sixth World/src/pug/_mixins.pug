@@ -20,16 +20,15 @@ mixin skillButton(skill, attribute)
 	- const attrName = key.replace(' ', '_');
 	button(name=skill type='roll' value=buttonPrefix+'{{header=^{skill}}}{{base=^{'+attribute+'}}}{{dice=[[((@{'+attrName+'}+@{attribute})'+buttonSuffix)
 
+//- ATTRIBUTE SELECT
+mixin attrSelect()
+	optgroup(label='Attribute') Attribute
+		each val in ['body', 'agility', 'reaction', 'strength', 'willpower', 'logic', 'intuition', 'charisma']
+			option(data-i18n=val value=val) #{val}
+
 //- SKILL SELECT
 mixin skillSelect()
 	optgroup(label='Skill') Skill
 		each val, key in skills
 			- const attrName = key.replace(' ', '_');
-			option(data-i18n=key value=key)= key
-
-//- ATTRIBUTE SELECT
-mixin attrSelect(selectedDefault)
-	optgroup(label='Attribute') Attribute
-		each val in attributes
-			- const selectedAcc = val === selectedDefault ? selected : "";
-			option(data-i18n=val value="@{" + val + "}" selectedAcc)= val
+			option(data-i18n=key value=key) #{key}

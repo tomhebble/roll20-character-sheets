@@ -6,446 +6,449 @@ include src/pug/_variables.pug
 include src/pug/_mixins.pug
 
 // TABS
-  =============================
+	=============================
 input.type(name='attr_sheet_type' type='hidden' value='pc')
 input.display_string(name='attr_toggles' type='hidden' value='core,')
 
 // TABS & LOGO
-  =============================
+	=============================
 .tabs
-  .flex
-    img(alt='Shadowrun Sixth World logo' src='https://s3.amazonaws.com/files.d20.io/images/84479331/VxMyZtZk9HJP7kkHGGhyDA/max.png')
-  .flex.info-flex
-    .grid.grid-tab-inputs
-      // CHARACTER NAME
-      h2(data-i18n='character') character
-      label(data-i18n-title='character name' title='character name')
-        input(data-i18n-placeholder='character name' name='attr_character_name' placeholder='character name' title='@{character_name}' type='text' value='')
-      // PLAYER NAME
-      h2(data-i18n='player') player
-      label(data-i18n-title='player name' title='player name')
-        input(data-i18n-placeholder='player name' name='attr_player_name' placeholder='player name' title='@{player_name}' type='text' value='')
-      // NOTES
-      h2(data-i18n='notes') notes
-      label(data-i18n-title='notes' title='notes')
-        input(data-i18n-placeholder='notes' name='attr_notes' placeholder='notes' title='@{notes}' type='text' value='')
-    .grid.grid-tab-sheets
-      // CHARACTER SHEETS
-      each val in ['pc', 'npc', 'options']
-        button(data-i18n=val data-i18n-title=val name='act_toggle_' + val title=val + 'button' type='action') #{val}
-    .grid.grid-tab-options
-      // ROLL D6s
-      h2(data-i18n-title='roll d6s' title='roll d6s') d6s
-      button(name='roll d6s' title='Roll D6s' type='roll' value='@{gm_toggle} &{template:rolls}{{header=^{d6}}}{{base=^{d6}}}{{dice=[[(?{d6s|0}d6>5)]]}}')
-        span.d6 L
-      each val, key in {'GM Whisper':'/w gm', 'edge': '!', 'modifiers': '?{Modifiers +/-|0}', 'wounds': '@{wounds}'}
-        h2(data-i18n-title=key title=key) #{key}
-        label.switch(data-i18-title=key + ' toggle' title=key + ' toggle')
-          input.whisper-toggle(name='attr_'+key+'_toggle' title='@{'+key+'_toggle}' type='checkbox' value=val)
-          span.slider
+	.flex
+		img(alt='Shadowrun Sixth World logo' src='https://s3.amazonaws.com/files.d20.io/images/84479331/VxMyZtZk9HJP7kkHGGhyDA/max.png')
+	.flex.info-flex
+		.grid.grid-tab-inputs
+			// CHARACTER NAME
+			h2(data-i18n='character') character
+			label(data-i18n-title='character name' title='character name')
+				input(data-i18n-placeholder='character name' name='attr_character_name' placeholder='character name' title='@{character_name}' type='text' value='')
+			// PLAYER NAME
+			h2(data-i18n='player') player
+			label(data-i18n-title='player name' title='player name')
+				input(data-i18n-placeholder='player name' name='attr_player_name' placeholder='player name' title='@{player_name}' type='text' value='')
+			// NOTES
+			h2(data-i18n='notes') notes
+			label(data-i18n-title='notes' title='notes')
+				input(data-i18n-placeholder='notes' name='attr_notes' placeholder='notes' title='@{notes}' type='text' value='')
+		.grid.grid-tab-sheets
+			// CHARACTER SHEETS
+			each val in ['pc', 'npc', 'options']
+				button(data-i18n=val data-i18n-title=val name='act_toggle_' + val title=val + 'button' type='action') #{val}
+		.grid.grid-tab-options
+			// ROLL D6s
+			h2(data-i18n-title='roll d6s' title='roll d6s') d6s
+			button(name='roll d6s' title='Roll D6s' type='roll' value='@{gm_toggle} &{template:rolls}{{header=^{d6}}}{{base=^{d6}}}{{dice=[[(?{d6s|0}d6>5)]]}}')
+				span.d6 L
+			each val, key in {'GM Whisper':'/w gm', 'edge': '!', 'modifiers': '?{Modifiers +/-|0}', 'wounds': '@{wounds}'}
+				h2(data-i18n-title=key title=key) #{key}
+				label.switch(data-i18-title=key + ' toggle' title=key + ' toggle')
+					input.whisper-toggle(name='attr_'+key+'_toggle' title='@{'+key+'_toggle}' type='checkbox' value=val)
+					span.slider
 //
-  NPC SHEET
-  =============================
+	NPC SHEET
+	=============================
 .npc
-  .box.npc-flex
-  .box.npc-flex
+	.box.npc-flex
+	.box.npc-flex
 //
-  PC SHEET
-  =============================
+	PC SHEET
+	=============================
 .pc
-  .flex.info-flex
-    // TAB BUTTONS
-    .grid.grid-tab-buttons
-      each val in tabs
-        button(data-i18n=val data-i18n-title='tab_' + val name='act_tab_' + val title=val + ' tab' type='action') #{val}
-  .flex.pc-flex.static
-    .border
-      .grid.grid-header
-        h1(data-i18n='personal data' data-i18-title='personal data' title='personal data') personal data
-      .grid.grid-personal-data
-        each val in personalDetails
-          - const attrName = val.replace(' ', '_').replace('/', '_')
-          - const transName = val === 'height' ? 'height-u' : val;
-            .detail(class=attrName)
-              h2(data-i18n=transName) #{val}
-              label(data-i18-title=transName title=val)
-                input(data-i18n-placeholder=transName name='attr_' + attrName placeholder=val title='@{' +  attrName + '}' type='text' value='')
-            if val === 'name/primary alias' || val === 'ethnicity' || val === 'weight' || val === 'heat' || val === 'misc'
-              .horz-line
-    .border.grid-attributes
-      .grid.grid-header
-        button.pictos(data-i18n-title='player character attributes' name='act_toggle_attributes' title='player character attributes' type='action') y
-        h1(data-i18n='attributes' data-i18-title='attributes' title='attributes') attributes
-      .grid.grid-body
-        each val in attributes
-          .grid.grid-row
-            input(name='attr_' + val type='hidden' value='')
-            +attributeButton(val)
-            .display.bot-border
-              span(name='attr_' val + '_base')
-              span.total(name='attr_' + val)
-            .grid.settings
-              h2(data-i18n='base' data-i18-title='base' title='base') base
-              label(data-i18n-title=val + 'base input' title=val + 'base input')
-                input(data-i18n-placeholder='10' name='attr_'+val+'_base' placeholder='10' title='@{'+val+'_base}' type='number' value='')
-              h2(data-i18n='mod' data-i18-title=val+' permanent modification' title=val+' permanent modification') mod
-              label(data-i18n-title=val+' permanent modification input' title=val+' permanent modification input')
-                input(data-i18n-placeholder='10' name='attr_'+val+'_modifier' placeholder='10' title='@{'+val+'_modifier}' type='number' value='')
-        // EDGE
-        .grid.grid-row
-          +attributeButton('edge')
-          .display.bot-border
-            span(name='attr_edge_max')
-          .grid.settings
-            h2(data-i18n='current' data-i18-title='current' title='current') current
-            label(data-i18n-title='edge input' title='edge input')
-              input(data-i18n-placeholder='0' name='attr_edge' placeholder='0' title='@{edge}' type='number' value='')
-            h2(data-i18n='max' data-i18-title='max' title='max') max
-            label(data-i18n-title='edge max input' title='edge max input')
-              input(data-i18n-placeholder='5' name='attr_edge_max' placeholder='5' title='@{edge_max}' type='number' value='')
-        // EDGE POINTS
-        .grid.grid-row.grid-pc-edge
-          label(data-i18n-title='edge points checkboxes' title='edge points checkboxes')
-            - let edgeLoop = 0;
-              while edgeLoop < 9
-                input(name='attr_edge' title='@{edge}' type='radio' value=edgeLoop++)
-                span #{edgeLoop}
-        // UNARMED
-        .grid.grid-row
-          input(name='attr_unarmed' type='hidden' value='')
-          +attributeButton('unarmed')
-          .display.bot-border
-            span(name='attr_unarmed')
-          .grid.settings
-            h2(data-i18n='base' data-i18-title='base' title='base') base
-            label(data-i18n-title='unarmed base input' title='unarmed base input')
-              input(data-i18n-placeholder='1' name='attr_unarmed_base' placeholder='1' title='@{unarmed_base}' type='text' value='')
-            h2(data-i18n='mod' data-i18-title='unarmed permanent modification' title='unarmed permanent modification') mod
-            label(data-i18n-title='unarmed permanent modification input' title='unarmed permanent modification input')
-              input(data-i18n-placeholder='0' name='attr_unarmed_modifier' placeholder='0' title='@{unarmed_modifier}' type='text' value='')
-      .grid.grid-body
-        // ESSENCE
-        .grid.grid-row
-          h2.label(data-i18n='essence') essence
-          .display.bot-border
-            span(name='attr_essence_max')
-            span.total(name='attr_essence')
-          .grid.settings
-            h2(data-i18n='current' data-i18-title='current essence' title='current essence') current
-            label(data-i18n-title='essence input' title='essence input')
-              input(data-i18n-placeholder='6' name='attr_essence' placeholder='6' title='@{essence}' type='text' value='6')
-            h2(data-i18n='max' data-i18-title='essence max' title='essence max') max
-            label(data-i18n-title='essence max input' title='essence max input')
-              input(data-i18n-placeholder='6' name='attr_essence_max' placeholder='6' title='@{essence_max}' type='text' value='6')
-        // MAGIC/RESONANCE
-        .grid.grid-row
-          input(name='attr_special' type='hidden' value='3')
-          h2.label(data-i18n='magic/resonance') magic/resonance
-          .display.bot-border
-            span(name='attr_special_base')
-            span.total(name='attr_special')
-          .grid.settings
-            h2(data-i18n='base' data-i18-title='base' title='base') base
-            label(data-i18n-title='magic or resonance base input' title='magic or resonance base input')
-              input(data-i18n-placeholder='6' name='attr_special_base' placeholder='6' title='@{special_base}' type='text' value='')
-            h2(data-i18n='mod' data-i18-title='magic or resonance permanent modification' title='magic or resonance permanent modification') mod
-            label(data-i18n-title='magic or resonance permanent modification input' title='magic or resonance permanent modification input')
-              input(data-i18n-placeholder='10' name='attr_special_modifier' placeholder='10' title='@{special_modifier}' type='text' value='')
-        // INITIATIVE
-        each val in ['initiative', 'matrix initiative', 'astral initiative']
-          - const attrName = val.replace(' ', '_')
-          .grid.grid-row
-            +initiativeButton(val, attrName)
-            .display.bot-border
-              span(name='attr_'+attrName+'_base')
-              span.total(name='attr_'+attrName)
-              span +
-              span(name='attr_'+attrName+'_dice')
-              span d6
-            .grid.settings
-              input(name='attr_'+attrName type='hidden' value='6')
-              input(name='attr_'+attrName+'_dice' type='hidden' value='1')
-              h2(data-i18n='base' data-i18-title='base' title='base') base
-              label(data-i18n-title=val+' display' title=val+' display')
-                span(name='attr_'+attrName+'_base' title='@{'+attrName+'_base}')
-              h2(data-i18n='mod' data-i18-title='mod' title='mod') mod
-              label(data-i18n-title=val+' permanent modification input' title=val+' permanent modification input')
-                input(data-i18n-placeholder='0' name='attr_'+attrName+'_modifier' placeholder='0' title='@{'+attrName+'_modifier}' type='number' value='')
-              h2(data-i18n='dice' data-i18-title='dice' title='dice') dice
-              label(data-i18n-title=val+' dice display' title=val+' dice display')
-                span(name='attr_'+attrName+'_dice' title='@{'+attrName+'_dice}')
-              h2(data-i18n='mod' data-i18-title='mod' title='mod') mod
-              label(data-i18n-title=val+' dice permanent modification input' title=val+' dice permanent modification input')
-                input(data-i18n-placeholder='0' name='attr_'+attrName+'_dice_modifier' placeholder='0' title='@{'+attrName+'_dice_modifier}' type='number' value='')
-        // COMMON ROLLS
-        each val in ['composure', 'judge intentions', 'memory', 'lift/carry']
-          - const attrName = val.replace(' ', '_').replace('/', '_')
-          .grid.grid-row
-            +derivedButton(val, attrName)
-            .display.bot-border
-              span(name='attr_'+attrName+'_base')
-              span.total(name='attr_'+attrName)
-            .grid.settings
-              h2(data-i18n='base' data-i18-title='base' title='base') base
-              label(data-i18n-title=val+' base input' title=val+' base input')
-                input(data-i18n-placeholder='1' name='attr_'+attrName+'_base' placeholder='1' title='@{'+attrName+'_base}' type='number' value='')
-              h2(data-i18n='mod' data-i18-title=val+' permanent modification' title=val+' permanent modification') mod
-              label(data-i18n-title=val+' permanent modification input' title=val+' permanent modification input')
-                input(data-i18n-placeholder='0' name='attr_'+attrName+'_modifier' placeholder='0' title='@{'+attrName+'_modifier}' type='number' value='')
-        // MOVEMENT
-        .grid.grid-row
-          h2.label(data-i18n='movement') movement
-          .display.bot-border
-            span(name='attr_movement')
-          .grid.settings
-            h2(data-i18n='base' data-i18-title='base' title='base') base
-            // Review
-            label(data-i18n-title='' title='movement base input')
-              input(data-i18n-placeholder='1' name='attr_movement_base' placeholder='1' title='@{movement_base}' type='text' value='')
-            // Review
-            h2(data-i18n='mod' data-i18-title='' title='movement permanent modification') mod
-            label(data-i18n-title='' title='movement permanent modification input')
-              input(data-i18n-placeholder='0' name='attr_movement_modifier' placeholder='0' title='@{movement_modifier}' type='text' value='')
-        // DEFENSE RATING
-        .grid.grid-row
-          h2.label(data-i18n='defense rating') defense rating
-          .display.bot-border
-            span(name='attr_defense_rating')
-          .grid.settings
-            h2(data-i18n='base' data-i18-title='base' title='base') base
-            // Review
-            label(data-i18n-title='' title='defense rating base input')
-              input(data-i18n-placeholder='1' name='attr_defense_rating_base' placeholder='1' title='@{defense_rating_base}' type='text' value='')
-            // Review
-            h2(data-i18n='mod' data-i18-title='' title='defense rating permanent modification') mod
-            label(data-i18n-title='' title='defense rating permanent modification input')
-              input(data-i18n-placeholder='0' name='attr_defense_rating_modifier' placeholder='0' title='@{defense_rating_modifier}' type='text' value='')
-    .border.grid-skills
-      .grid.grid-header
-        h1(data-i18n='skills' data-i18-title='skills' title='skills') skills
-      .grid.subheader.bot-border
-        h2(data-i18n='Skill') Skill
-        h2(data-i18n='Rank') Rank
-        h2(data-i18n='ATT') ATT
-        h2(data-i18n='Type') Type
-      .repeating-container
-        fieldset.repeating_skills
-          .grid.body.bot-border
-            input.pictos(data-i18n-title='player character skills settings' name='attr_toggle' title='player character skills settings' type='checkbox' checked)
-            //span.pictos x
-            button(name='skill' type='roll' value='@{gm_toggle} &{template:rolls}{{header=@{skill}}}{{base=@{display_attribute}}}{{desc=@{display_limit}}}{{dice=[[((@{dicepool}+@{attribute})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}')
-              span(name='attr_skill')
-            span(name='attr_rank')
-            select(data-i18-title='' name='attr_attribute' title='')
-               +attrSelect('agility')
-            select(name='attr_type')
-              optgroup(label='Skill Type') Skill Type
-                option(data-i18n='Active' value='Active') Active
-                option(data-i18n='Language' value='Language') Language
-                option(data-i18n='Knowledge' value='Knowledge') Knowledge
-            .grid.settings
-              select(data-i18-title='' name='attr_skill' title='active skill' value='close combat')
-                +skillSelect()
-              each val, key in {'rank': '3', 'modification': '0', 'focus': 'focus', 'specialization': 'specialization'}
-                h3(data-i18n=key) #{key}
-                label(data-i18n-title='skill '+key title=key)
-                  input(data-i18n-placeholder=val name='attr_'+key placeholder=val type='text' value='')
-              h3(data-i18n='notes') notes
-              label(data-i18n-title='skill notes' title='skill notes')
-                textarea(data-i18n-placeholder='notes' name='attr_notes' placeholder='notes')
-  .flex.pc-flex.core
-    .border
-      .grid.grid-header
-        h1(data-i18n='combat_info' data-i18-title='combat_info' title='core combat info') core combat info
-      .grid
-    .border
-      .grid.grid-header
-        h1(data-i18n='condition_monitor' data-i18-title='condition_monitor' title='condition monitor') condition monitor
-      .grid
-    .border
-      .grid.grid-header
-        h1(data-i18n='qualities' data-i18-title='qualities' title='qualities') qualities
-      .grid
-  .flex.pc-flex.arms
-    .border
-      .grid.grid-header
-        h1(data-i18n='ranged_weapons' data-i18-title='ranged_weapons' title='ranged weapons') ranged weapons
-      .grid
-    .border
-      .grid.grid-header
-        h1(data-i18n='melee_weapons' data-i18-title='melee_weapons' title='melee weapons') melee weapons
-      .grid
-    .border
-      .grid.grid-header
-        h1(data-i18n='armor' data-i18-title='armor' title='armor') armor
-      .grid
-  .flex.pc-flex.gear
-    .border
-      .grid.grid-header
-        h1(data-i18n='augmentations' data-i18-title='augmentations' title='augmentations') augmentations
-      .grid
-    .border
-      .grid.grid-header
-        h1(data-i18n='gear' data-i18-title='gear' title='gear') gear
-      .grid
-  .flex.pc-flex.magic
-    .border
-      .grid.grid-header
-        h1(data-i18n='spells' data-i18-title='spells' title='spells') spells
-      .grid
-    .border
-      .grid.grid-header
-        h1(data-i18n='preperations' data-i18-title='preperations' title='preperations') preperations
-      .grid
-    .border
-      .grid.grid-header
-        h1(data-i18n='rituals' data-i18-title='rituals' title='rituals') rituals
-      .grid
-    .border
-      .grid.grid-header
-        h1(data-i18n='a25s' data-i18-title='a25s' title='adept powers or other abilities') adept powers or other abilities
-      .grid
-  .flex.pc-flex.matrix
-    .border
-      .grid.grid-header
-        h1(data-i18n='matrix_stats' data-i18-title='matrix_stats' title='matrix stats') matrix stats
-      .grid
-    .border
-      .grid.grid-header
-        h1(data-i18n='complex_forms' data-i18-title='complex_forms' title='complex forms') complex forms
-      .grid
-  .flex.pc-flex.social
-    .border
-      .grid.grid-header
-        h1(data-i18n='i19y' data-i18-title='i19y' title='ids / lifestyles / currency') ids / lifestyles / currency
-      .grid
-    .border
-      .grid.grid-header
-        h1(data-i18n='contacts' data-i18-title='contacts' title='contacts') contacts
-      .grid
-  .flex.pc-flex.vehicle
-    .border
-      .grid.grid-header
-        h1(data-i18n='vehicle' data-i18-title='vehicle' title='vehicle') vehicle
-      .grid
-  .flex.pc-flex.options
-    .border
-      .grid.grid-header
-        h1(data-i18n='character' data-i18-title='character' title='character') character
-      .grid
-        label(data-i18-title='mundane' title='mundane')
-          input(name='attr_flag_special' title='@{flag_special}' type='checkbox' value='mundane' checked='')
-          span(data-i18n='mundane') mundane
-        label(data-i18-title='awakened' title='awakened')
-          input(name='attr_flag_special' title='@{flag_special}' type='checkbox' value='awakened' checked='')
-          span(data-i18n='awakened') awakened
-        label(data-i18-title='emerged' title='emerged')
-          input(name='attr_flag_special' title='@{flag_special}' type='checkbox' value='emerged' checked='')
-          span(data-i18n='emerged') emerged
-    .border
-      .grid.grid-header
-        h1(data-i18n='sheet_select' data-i18-title='sheet_select' title='sheet select') sheet select
-      .grid
-        select(name='attr_sheet_type' title='@{sheet_type}')
-          option(value='pc' data-i18n='pc') PC
-          option(value='grunt' data-i18n='grunt') grunt
-          option(value='host' data-i18n='host') Host
-          option(value='sprite' data-i18n='sprite') Sprite
-          option(value='vehicle' data-i18n='vehicle') Vehicle
-    .border
-      .grid.grid-header
-        h1(data-i18n='temporary_modifiers' data-i18-title='temporary_modifiers' title='temporary modifiers') temporary modifiers
-      .grid
-        .grid.grid-row
-          span(data-i18n='defense') defense
-          label(data-i18-title='' title='defense temproary input')
-            input(name='attr_defense_temp' title='@{defense_temp}' type='number')
-          label(data-i18-title='' title='defense temproary toggle')
-            input(name='attr_defense_temporary_flag' title='@{defense_temporary_flag}' type='checkbox' value='on' checked='')
-        .grid.grid-row
-          span(data-i18n='defense_rating') defense rating
-          label(data-i18-title='' title='defense temproary input')
-            input(name='attr_defense_rating_temp' title='@{defense_rating_temp}' type='number')
-          label(data-i18-title='' title='defense temproary toggle')
-            input(name='attr_defense_rating_temporary_flag' title='@{defense_rating_temporary_flag}' type='checkbox' value='on' checked='')
-        hr
-        .grid.grid-row
-          span(data-i18n='agility') agility
-          label(data-i18-title='' title='agility temproary input')
-            input(name='attr_agility_temp' title='@{agility_temp}' type='number')
-          label(data-i18-title='' title='agility temproary toggle')
-            input(name='attr_agility_temporary_flag' title='@{agility_temporary_flag}' type='checkbox' value='on' checked='')
-        .grid.grid-row
-          span(data-i18n='body') body
-          label(data-i18-title='' title='body temproary input')
-            input(name='attr_body_temp' title='@{body_temp}' type='number')
-          label(data-i18-title='' title='body temproary toggle')
-            input(name='attr_body_temporary_flag' title='@{body_temporary_flag}' type='checkbox' value='on' checked='')
-        .grid.grid-row
-          span(data-i18n='reaction') reaction
-          label(data-i18-title='' title='reaction temproary input')
-            input(name='attr_reaction_temp' title='@{reaction_temp}' type='number')
-          label(data-i18-title='' title='reaction temproary toggle')
-            input(name='attr_reaction_temporary_flag' title='@{reaction_temporary_flag}' type='checkbox' value='on' checked='')
-        .grid.grid-row
-          span(data-i18n='strength') strength
-          label(data-i18-title='' title='strength temproary input')
-            input(name='attr_strength_temp' title='@{strength_temp}' type='number')
-          label(data-i18-title='' title='strength temproary toggle')
-            input(name='attr_strength_temporary_flag' title='@{strength_temporary_flag}' type='checkbox' value='on' checked='')
-        .grid.grid-row
-          span(data-i18n='willpower') willpower
-          label(data-i18-title='' title='willpower temproary input')
-            input(name='attr_willpower_temp' title='@{willpower_temp}' type='number')
-          label(data-i18-title='' title='willpower temproary toggle')
-            input(name='attr_willpower_temporary_flag' title='@{willpower_temporary_flag}' type='checkbox' value='on' checked='')
-        .grid.grid-row
-          span(data-i18n='logic') logic
-          label(data-i18-title='' title='logic temproary input')
-            input(name='attr_logic_temp' title='@{logic_temp}' type='number')
-          label(data-i18-title='' title='logic temproary toggle')
-            input(name='attr_logic_temporary_flag' title='@{logic_temporary_flag}' type='checkbox' value='on' checked='')
-        .grid.grid-row
-          span(data-i18n='intuition') intuition
-          label(data-i18-title='' title='intuition temproary input')
-            input(name='attr_intuition_temp' title='@{intuition_temp}' type='number')
-          label(data-i18-title='' title='intuition temproary toggle')
-            input(name='attr_intuition_temporary_flag' title='@{intuition_temporary_flag}' type='checkbox' value='on' checked='')
-        .grid.grid-row
-          span(data-i18n='charisma') charisma
-          label(data-i18-title='' title='charisma temproary input')
-            input(name='attr_charisma_temp' title='@{charisma_temp}' type='number')
-          label(data-i18-title='' title='charisma temproary toggle')
-            input(name='attr_charisma_temporary_flag' title='@{charisma_temporary_flag}' type='checkbox' value='on' checked='')
-        .grid.grid-row
-          span(data-i18n='m12e') Magic/Resonance
-          label(data-i18-title='' title='special temproary input')
-            input(name='attr_special_temp' title='@{special_temp}' type='number')
-          label(data-i18-title='' title='special temproary toggle')
-            input(name='attr_special_temporary_flag' title='@{special_temporary_flag}' type='checkbox' value='on' checked='')
-        hr
-        .grid.grid-row
-          span(data-i18n='initiative') initiative
-          label(data-i18-title='' title='initiative temproary input')
-            input(name='attr_initiative_temp' title='@{initiative_temp}' type='number')
-          label(data-i18-title='' title='initiative temproary toggle')
-            input(name='attr_initiative_temporary_flag' title='@{initiative_temporary_flag}' type='checkbox' value='on' checked='')
-        .grid.grid-row
-          span(data-i18n='initiative_dice') initiative_dice
-          label(data-i18-title='' title='initiative_dice temproary input')
-            input(name='attr_initiative_dice_temp' title='@{initiative_dice_temp}' type='number')
-          label(data-i18-title='' title='initiative_dice temproary toggle')
-            input(name='attr_initiative_dice_temporary_flag' title='@{initiative_dice_temporary_flag}' type='checkbox' value='on' checked='')
+	.flex.info-flex
+		// TAB BUTTONS
+		.grid.grid-tab-buttons
+			each val in tabs
+				button(data-i18n=val data-i18n-title='tab_' + val name='act_tab_' + val title=val + ' tab' type='action') #{val}
+	.flex.pc-flex.static
+		.border
+			.grid.grid-header
+				h1(data-i18n='personal data' data-i18-title='personal data' title='personal data') personal data
+			.grid.grid-personal-data
+				each val in personalDetails
+					- const attrName = val.replace(' ', '_').replace('/', '_')
+					- const transName = val === 'height' ? 'height-u' : val;
+						.detail(class=attrName)
+							h2(data-i18n=transName) #{val}
+							label(data-i18-title=transName title=val)
+								input(data-i18n-placeholder=transName name='attr_' + attrName placeholder=val title='@{' +  attrName + '}' type='text' value='')
+						if val === 'name/primary alias' || val === 'ethnicity' || val === 'weight' || val === 'heat' || val === 'misc'
+							.horz-line
+		.border.grid-attributes
+			.grid.grid-header
+				button.pictos(data-i18n-title='player character attributes' name='act_toggle_attributes' title='player character attributes' type='action') y
+				h1(data-i18n='attributes' data-i18-title='attributes' title='attributes') attributes
+			.grid.grid-body
+				each val in attributes
+					.grid.grid-row
+						input(name='attr_' + val type='hidden' value='')
+						+attributeButton(val)
+						.display.bot-border
+							span(name='attr_' val + '_base')
+							span.total(name='attr_' + val)
+						.grid.settings
+							h2(data-i18n='base' data-i18-title='base' title='base') base
+							label(data-i18n-title=val + 'base input' title=val + 'base input')
+								input(data-i18n-placeholder='10' name='attr_'+val+'_base' placeholder='10' title='@{'+val+'_base}' type='number' value='')
+							h2(data-i18n='mod' data-i18-title=val+' permanent modification' title=val+' permanent modification') mod
+							label(data-i18n-title=val+' permanent modification input' title=val+' permanent modification input')
+								input(data-i18n-placeholder='10' name='attr_'+val+'_modifier' placeholder='10' title='@{'+val+'_modifier}' type='number' value='')
+				// EDGE
+				.grid.grid-row
+					+attributeButton('edge')
+					.display.bot-border
+						span(name='attr_edge_max')
+					.grid.settings
+						h2(data-i18n='current' data-i18-title='current' title='current') current
+						label(data-i18n-title='edge input' title='edge input')
+							input(data-i18n-placeholder='0' name='attr_edge' placeholder='0' title='@{edge}' type='number' value='')
+						h2(data-i18n='max' data-i18-title='max' title='max') max
+						label(data-i18n-title='edge max input' title='edge max input')
+							input(data-i18n-placeholder='5' name='attr_edge_max' placeholder='5' title='@{edge_max}' type='number' value='')
+				// EDGE POINTS
+				.grid.grid-row.grid-pc-edge
+					label(data-i18n-title='edge points checkboxes' title='edge points checkboxes')
+						- let edgeLoop = 0;
+							while edgeLoop < 9
+								input(name='attr_edge' title='@{edge}' type='radio' value=edgeLoop++)
+								span #{edgeLoop}
+				// UNARMED
+				.grid.grid-row
+					input(name='attr_unarmed' type='hidden' value='')
+					+attributeButton('unarmed')
+					.display.bot-border
+						span(name='attr_unarmed')
+					.grid.settings
+						h2(data-i18n='base' data-i18-title='base' title='base') base
+						label(data-i18n-title='unarmed base input' title='unarmed base input')
+							input(data-i18n-placeholder='1' name='attr_unarmed_base' placeholder='1' title='@{unarmed_base}' type='text' value='')
+						h2(data-i18n='mod' data-i18-title='unarmed permanent modification' title='unarmed permanent modification') mod
+						label(data-i18n-title='unarmed permanent modification input' title='unarmed permanent modification input')
+							input(data-i18n-placeholder='0' name='attr_unarmed_modifier' placeholder='0' title='@{unarmed_modifier}' type='text' value='')
+			.grid.grid-body
+				// ESSENCE
+				.grid.grid-row
+					h2.label(data-i18n='essence') essence
+					.display.bot-border
+						span(name='attr_essence_max')
+						span.total(name='attr_essence')
+					.grid.settings
+						h2(data-i18n='current' data-i18-title='current essence' title='current essence') current
+						label(data-i18n-title='essence input' title='essence input')
+							input(data-i18n-placeholder='6' name='attr_essence' placeholder='6' title='@{essence}' type='text' value='6')
+						h2(data-i18n='max' data-i18-title='essence max' title='essence max') max
+						label(data-i18n-title='essence max input' title='essence max input')
+							input(data-i18n-placeholder='6' name='attr_essence_max' placeholder='6' title='@{essence_max}' type='text' value='6')
+				// MAGIC/RESONANCE
+				.grid.grid-row
+					input(name='attr_special' type='hidden' value='3')
+					h2.label(data-i18n='magic/resonance') magic/resonance
+					.display.bot-border
+						span(name='attr_special_base')
+						span.total(name='attr_special')
+					.grid.settings
+						h2(data-i18n='base' data-i18-title='base' title='base') base
+						label(data-i18n-title='magic or resonance base input' title='magic or resonance base input')
+							input(data-i18n-placeholder='6' name='attr_special_base' placeholder='6' title='@{special_base}' type='text' value='')
+						h2(data-i18n='mod' data-i18-title='magic or resonance permanent modification' title='magic or resonance permanent modification') mod
+						label(data-i18n-title='magic or resonance permanent modification input' title='magic or resonance permanent modification input')
+							input(data-i18n-placeholder='10' name='attr_special_modifier' placeholder='10' title='@{special_modifier}' type='text' value='')
+				// INITIATIVE
+				each val in ['initiative', 'matrix initiative', 'astral initiative']
+					- const attrName = val.replace(' ', '_')
+					.grid.grid-row
+						+initiativeButton(val, attrName)
+						.display.bot-border
+							span(name='attr_'+attrName+'_base')
+							span.total(name='attr_'+attrName)
+							span +
+							span(name='attr_'+attrName+'_dice')
+							span d6
+						.grid.settings
+							input(name='attr_'+attrName type='hidden' value='6')
+							input(name='attr_'+attrName+'_dice' type='hidden' value='1')
+							h2(data-i18n='base' data-i18-title='base' title='base') base
+							label(data-i18n-title=val+' display' title=val+' display')
+								span(name='attr_'+attrName+'_base' title='@{'+attrName+'_base}')
+							h2(data-i18n='mod' data-i18-title='mod' title='mod') mod
+							label(data-i18n-title=val+' permanent modification input' title=val+' permanent modification input')
+								input(data-i18n-placeholder='0' name='attr_'+attrName+'_modifier' placeholder='0' title='@{'+attrName+'_modifier}' type='number' value='')
+							h2(data-i18n='dice' data-i18-title='dice' title='dice') dice
+							label(data-i18n-title=val+' dice display' title=val+' dice display')
+								span(name='attr_'+attrName+'_dice' title='@{'+attrName+'_dice}')
+							h2(data-i18n='mod' data-i18-title='mod' title='mod') mod
+							label(data-i18n-title=val+' dice permanent modification input' title=val+' dice permanent modification input')
+								input(data-i18n-placeholder='0' name='attr_'+attrName+'_dice_modifier' placeholder='0' title='@{'+attrName+'_dice_modifier}' type='number' value='')
+				// COMMON ROLLS
+				each val in ['composure', 'judge intentions', 'memory', 'lift/carry']
+					- const attrName = val.replace(' ', '_').replace('/', '_')
+					.grid.grid-row
+						+derivedButton(val, attrName)
+						.display.bot-border
+							span(name='attr_'+attrName+'_base')
+							span.total(name='attr_'+attrName)
+						.grid.settings
+							h2(data-i18n='base' data-i18-title='base' title='base') base
+							label(data-i18n-title=val+' base input' title=val+' base input')
+								input(data-i18n-placeholder='1' name='attr_'+attrName+'_base' placeholder='1' title='@{'+attrName+'_base}' type='number' value='')
+							h2(data-i18n='mod' data-i18-title=val+' permanent modification' title=val+' permanent modification') mod
+							label(data-i18n-title=val+' permanent modification input' title=val+' permanent modification input')
+								input(data-i18n-placeholder='0' name='attr_'+attrName+'_modifier' placeholder='0' title='@{'+attrName+'_modifier}' type='number' value='')
+				// MOVEMENT
+				.grid.grid-row
+					h2.label(data-i18n='movement') movement
+					.display.bot-border
+						span(name='attr_movement')
+					.grid.settings
+						h2(data-i18n='base' data-i18-title='base' title='base') base
+						// Review
+						label(data-i18n-title='' title='movement base input')
+							input(data-i18n-placeholder='1' name='attr_movement_base' placeholder='1' title='@{movement_base}' type='text' value='')
+						// Review
+						h2(data-i18n='mod' data-i18-title='' title='movement permanent modification') mod
+						label(data-i18n-title='' title='movement permanent modification input')
+							input(data-i18n-placeholder='0' name='attr_movement_modifier' placeholder='0' title='@{movement_modifier}' type='text' value='')
+				// DEFENSE RATING
+				.grid.grid-row
+					h2.label(data-i18n='defense rating') defense rating
+					.display.bot-border
+						span(name='attr_defense_rating')
+					.grid.settings
+						h2(data-i18n='base' data-i18-title='base' title='base') base
+						// Review
+						label(data-i18n-title='' title='defense rating base input')
+							input(data-i18n-placeholder='1' name='attr_defense_rating_base' placeholder='1' title='@{defense_rating_base}' type='text' value='')
+						// Review
+						h2(data-i18n='mod' data-i18-title='' title='defense rating permanent modification') mod
+						label(data-i18n-title='' title='defense rating permanent modification input')
+							input(data-i18n-placeholder='0' name='attr_defense_rating_modifier' placeholder='0' title='@{defense_rating_modifier}' type='text' value='')
+		.border.grid-skills
+			.grid.grid-header
+				h1(data-i18n='skills' data-i18-title='skills' title='skills') skills
+			.grid.subheader.bot-border
+				h2(data-i18n='skill') skill
+				h2(data-i18n='rank') rank
+				h2(data-i18n='ATT') ATT
+				h2(data-i18n='type') type
+			.repeating-container
+				fieldset.repeating_skills
+					.grid.body.bot-border
+						input.pictos(data-i18n-title='player character skills settings' name='attr_toggle' title='player character skills settings' type='checkbox' checked)
+						//span.pictos x
+						button(name='skill' type='roll' value!='@{gm_toggle} &{template:rolls}{{header=@{skill}}}{{base=^{attribute}}}{{dice=[[((@{dicepool}+@{attribute})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}')
+							span(name='attr_skill')
+						.skill-ranks
+							span(name='attr_rank')
+							span(name='attr_modification')
+						select(data-i18-title='' name='attr_attribute' title='')
+							+attrSelect()
+						select(name='attr_type')
+							optgroup(label='Skill Type') Skill Type
+								option(data-i18n='Active' value='Active' selected) Active
+								option(data-i18n='Language' value='Language') Language
+								option(data-i18n='Knowledge' value='Knowledge') Knowledge
+						.grid.settings
+							select(data-i18-title='' name='attr_skill' title='active skill' value='close combat')
+								+skillSelect()
+							each val, key in {'rank': '3', 'modification': '0', 'focus': 'focus', 'specialization': 'specialization'}
+								h3(data-i18n=key) #{key}
+								label(data-i18n-title='skill '+key title=key)
+									input(data-i18n-placeholder=val name='attr_'+key placeholder=val type='text' value='')
+							h3(data-i18n='notes') notes
+							label(data-i18n-title='skill notes' title='skill notes')
+								textarea(data-i18n-placeholder='notes' name='attr_notes' placeholder='notes')
+	.flex.pc-flex.core
+		.border
+			.grid.grid-header
+				h1(data-i18n='core combat info' data-i18-title='core combat info' title='core combat info') core combat info
+			.grid.grid-body
+				h2(data-i18n='' data-i18-title='' title='')
+		.border
+			.grid.grid-header
+				h1(data-i18n='condition monitor' data-i18-title='condition monitor' title='condition monitor') condition monitor
+			.grid
+		.border
+			.grid.grid-header
+				h1(data-i18n='qualities' data-i18-title='qualities' title='qualities') qualities
+			.grid
+	.flex.pc-flex.arms
+		.border
+			.grid.grid-header
+				h1(data-i18n='ranged weapons' data-i18-title='ranged weapons' title='ranged weapons') ranged weapons
+			.grid
+		.border
+			.grid.grid-header
+				h1(data-i18n='melee weapons' data-i18-title='melee weapons' title='melee weapons') melee weapons
+			.grid
+		.border
+			.grid.grid-header
+				h1(data-i18n='armor' data-i18-title='armor' title='armor') armor
+			.grid
+	.flex.pc-flex.gear
+		.border
+			.grid.grid-header
+				h1(data-i18n='augmentations' data-i18-title='augmentations' title='augmentations') augmentations
+			.grid
+		.border
+			.grid.grid-header
+				h1(data-i18n='gear' data-i18-title='gear' title='gear') gear
+			.grid
+	.flex.pc-flex.magic
+		.border
+			.grid.grid-header
+				h1(data-i18n='spells' data-i18-title='spells' title='spells') spells
+			.grid
+		.border
+			.grid.grid-header
+				h1(data-i18n='preperations' data-i18-title='preperations' title='preperations') preperations
+			.grid
+		.border
+			.grid.grid-header
+				h1(data-i18n='rituals' data-i18-title='rituals' title='rituals') rituals
+			.grid
+		.border
+			.grid.grid-header
+				h1(data-i18n='adept powers or other abilities' data-i18-title='adept powers or other abilities' title='adept powers or other abilities') adept powers or other abilities
+			.grid
+	.flex.pc-flex.matrix
+		.border
+			.grid.grid-header
+				h1(data-i18n='matrix stats' data-i18-title='matrix stats' title='matrix stats') matrix stats
+			.grid
+		.border
+			.grid.grid-header
+				h1(data-i18n='complex forms' data-i18-title='complex forms' title='complex forms') complex forms
+			.grid
+	.flex.pc-flex.social
+		.border
+			.grid.grid-header
+				h1(data-i18n='ids / lifestyles / currency' data-i18-title='ids / lifestyles / currency' title='ids / lifestyles / currency') ids / lifestyles / currency
+			.grid
+		.border
+			.grid.grid-header
+				h1(data-i18n='contacts' data-i18-title='contacts' title='contacts') contacts
+			.grid
+	.flex.pc-flex.vehicle
+		.border
+			.grid.grid-header
+				h1(data-i18n='vehicle' data-i18-title='vehicle' title='vehicle') vehicle
+			.grid
+	.flex.pc-flex.options
+		.border
+			.grid.grid-header
+				h1(data-i18n='character' data-i18-title='character' title='character') character
+			.grid
+				label(data-i18-title='mundane' title='mundane')
+					input(name='attr_flag_special' title='@{flag_special}' type='checkbox' value='mundane' checked='')
+					span(data-i18n='mundane') mundane
+				label(data-i18-title='awakened' title='awakened')
+					input(name='attr_flag_special' title='@{flag_special}' type='checkbox' value='awakened' checked='')
+					span(data-i18n='awakened') awakened
+				label(data-i18-title='emerged' title='emerged')
+					input(name='attr_flag_special' title='@{flag_special}' type='checkbox' value='emerged' checked='')
+					span(data-i18n='emerged') emerged
+		.border
+			.grid.grid-header
+				h1(data-i18n='sheet_select' data-i18-title='sheet_select' title='sheet select') sheet select
+			.grid
+				select(name='attr_sheet_type' title='@{sheet_type}')
+					option(value='pc' data-i18n='pc') PC
+					option(value='grunt' data-i18n='grunt') grunt
+					option(value='host' data-i18n='host') Host
+					option(value='sprite' data-i18n='sprite') Sprite
+					option(value='vehicle' data-i18n='vehicle') Vehicle
+		.border
+			.grid.grid-header
+				h1(data-i18n='temporary_modifiers' data-i18-title='temporary_modifiers' title='temporary modifiers') temporary modifiers
+			.grid
+				.grid.grid-row
+					span(data-i18n='defense') defense
+					label(data-i18-title='' title='defense temproary input')
+						input(name='attr_defense_temp' title='@{defense_temp}' type='number')
+					label(data-i18-title='' title='defense temproary toggle')
+						input(name='attr_defense_temporary_flag' title='@{defense_temporary_flag}' type='checkbox' value='on' checked='')
+				.grid.grid-row
+					span(data-i18n='defense_rating') defense rating
+					label(data-i18-title='' title='defense temproary input')
+						input(name='attr_defense_rating_temp' title='@{defense_rating_temp}' type='number')
+					label(data-i18-title='' title='defense temproary toggle')
+						input(name='attr_defense_rating_temporary_flag' title='@{defense_rating_temporary_flag}' type='checkbox' value='on' checked='')
+				hr
+				.grid.grid-row
+					span(data-i18n='agility') agility
+					label(data-i18-title='' title='agility temproary input')
+						input(name='attr_agility_temp' title='@{agility_temp}' type='number')
+					label(data-i18-title='' title='agility temproary toggle')
+						input(name='attr_agility_temporary_flag' title='@{agility_temporary_flag}' type='checkbox' value='on' checked='')
+				.grid.grid-row
+					span(data-i18n='body') body
+					label(data-i18-title='' title='body temproary input')
+						input(name='attr_body_temp' title='@{body_temp}' type='number')
+					label(data-i18-title='' title='body temproary toggle')
+						input(name='attr_body_temporary_flag' title='@{body_temporary_flag}' type='checkbox' value='on' checked='')
+				.grid.grid-row
+					span(data-i18n='reaction') reaction
+					label(data-i18-title='' title='reaction temproary input')
+						input(name='attr_reaction_temp' title='@{reaction_temp}' type='number')
+					label(data-i18-title='' title='reaction temproary toggle')
+						input(name='attr_reaction_temporary_flag' title='@{reaction_temporary_flag}' type='checkbox' value='on' checked='')
+				.grid.grid-row
+					span(data-i18n='strength') strength
+					label(data-i18-title='' title='strength temproary input')
+						input(name='attr_strength_temp' title='@{strength_temp}' type='number')
+					label(data-i18-title='' title='strength temproary toggle')
+						input(name='attr_strength_temporary_flag' title='@{strength_temporary_flag}' type='checkbox' value='on' checked='')
+				.grid.grid-row
+					span(data-i18n='willpower') willpower
+					label(data-i18-title='' title='willpower temproary input')
+						input(name='attr_willpower_temp' title='@{willpower_temp}' type='number')
+					label(data-i18-title='' title='willpower temproary toggle')
+						input(name='attr_willpower_temporary_flag' title='@{willpower_temporary_flag}' type='checkbox' value='on' checked='')
+				.grid.grid-row
+					span(data-i18n='logic') logic
+					label(data-i18-title='' title='logic temproary input')
+						input(name='attr_logic_temp' title='@{logic_temp}' type='number')
+					label(data-i18-title='' title='logic temproary toggle')
+						input(name='attr_logic_temporary_flag' title='@{logic_temporary_flag}' type='checkbox' value='on' checked='')
+				.grid.grid-row
+					span(data-i18n='intuition') intuition
+					label(data-i18-title='' title='intuition temproary input')
+						input(name='attr_intuition_temp' title='@{intuition_temp}' type='number')
+					label(data-i18-title='' title='intuition temproary toggle')
+						input(name='attr_intuition_temporary_flag' title='@{intuition_temporary_flag}' type='checkbox' value='on' checked='')
+				.grid.grid-row
+					span(data-i18n='charisma') charisma
+					label(data-i18-title='' title='charisma temproary input')
+						input(name='attr_charisma_temp' title='@{charisma_temp}' type='number')
+					label(data-i18-title='' title='charisma temproary toggle')
+						input(name='attr_charisma_temporary_flag' title='@{charisma_temporary_flag}' type='checkbox' value='on' checked='')
+				.grid.grid-row
+					span(data-i18n='m12e') Magic/Resonance
+					label(data-i18-title='' title='special temproary input')
+						input(name='attr_special_temp' title='@{special_temp}' type='number')
+					label(data-i18-title='' title='special temproary toggle')
+						input(name='attr_special_temporary_flag' title='@{special_temporary_flag}' type='checkbox' value='on' checked='')
+				hr
+				.grid.grid-row
+					span(data-i18n='initiative') initiative
+					label(data-i18-title='' title='initiative temproary input')
+						input(name='attr_initiative_temp' title='@{initiative_temp}' type='number')
+					label(data-i18-title='' title='initiative temproary toggle')
+						input(name='attr_initiative_temporary_flag' title='@{initiative_temporary_flag}' type='checkbox' value='on' checked='')
+				.grid.grid-row
+					span(data-i18n='initiative_dice') initiative_dice
+					label(data-i18-title='' title='initiative_dice temproary input')
+						input(name='attr_initiative_dice_temp' title='@{initiative_dice_temp}' type='number')
+					label(data-i18-title='' title='initiative_dice temproary toggle')
+						input(name='attr_initiative_dice_temporary_flag' title='@{initiative_dice_temporary_flag}' type='checkbox' value='on' checked='')
 //
-  FOOTER
-  =============================
+	FOOTER
+	=============================
 .footer
-  span Disclaimer
-  span Version 
-  span(name='attr_version')
+	span Disclaimer
+	span Version 
+	span(name='attr_version')
 //
-  HIDDEN ATTRIBUTES
-  =============================
+	HIDDEN ATTRIBUTES
+	=============================
 input(name='attr_version' type='hidden' value='1')
 input(type='hidden' name='attr_wounds' value='0')
 input(type='hidden' name='attr_explode_toggle' value='')

@@ -10,13 +10,6 @@ button {
   text-overflow: ellipsis; }
   button:before {
     display: none; }
-  button:focus, button:hover, button:active {
-    color: whitesmoke;
-    background-color: #460141 !important;
-    background-position: 0em; }
-  button:focus > h2, button:hover > h2, button:active > h2 {
-    color: whitesmoke;
-    text-shadow: 1px 1px 2px black, 0 0 25px rgba(136, 121, 190, 0.25), 0 0 5px #79016f; }
   button[type="roll"], button[type="action"] {
     background-color: whitesmoke;
     font-variant: small-caps;
@@ -32,6 +25,13 @@ button {
     border-style: outset;
     margin: 0.2em !important;
     padding: 0.1em !important; }
+  button:focus, button:hover, button:active {
+    color: whitesmoke;
+    background-color: #460141 !important;
+    background-position: 0em; }
+  button:focus > h2, button:hover > h2, button:active > h2, button:focus > span, button:hover > span, button:active > span {
+    color: whitesmoke;
+    text-shadow: 1px 1px 2px black, 0 0 25px rgba(136, 121, 190, 0.25), 0 0 5px #79016f; }
 
 div {
   overflow: hidden;
@@ -44,6 +44,7 @@ fieldset {
 h1 {
   overflow: hidden;
   color: #79016f;
+  font-size: 1.8em;
   text-transform: uppercase;
   text-overflow: ellipsis; }
 
@@ -230,6 +231,8 @@ div.sheet-tabs {
 div.sheet-grid-tab-inputs {
   grid-template-columns: 8em 73%;
   width: 100%; }
+  div.sheet-grid-tab-inputs h2 {
+    font-size: 1.5em; }
   div.sheet-grid-tab-inputs label {
     border-bottom: 0.15em solid black; }
   div.sheet-grid-tab-inputs span {
@@ -271,6 +274,8 @@ div.sheet-pc {
   /* ATTRIBUTES
     ----------------------------- */
   /* SKILLS
+  ----------------------------- */
+  /* CORE COMBAT INFO
   ----------------------------- */ }
   div.sheet-pc div.sheet-bot-border {
     border-bottom: 0.1em solid black; }
@@ -312,7 +317,8 @@ div.sheet-pc {
     /* KARMA / TOTAL KARMA / MISC */ }
     div.sheet-pc div.sheet-grid-personal-data h2 {
       display: inline;
-      text-transform: uppercase; }
+      text-transform: uppercase;
+      width: fit-content; }
     div.sheet-pc div.sheet-grid-personal-data div.sheet-horz-line {
       grid-column: 1 / 5; }
     div.sheet-pc div.sheet-grid-personal-data div.sheet-name_primary_alias {
@@ -330,7 +336,6 @@ div.sheet-pc {
   div.sheet-pc div.sheet-grid-attributes button[type="roll"] {
     border-bottom-left-radius: 0em;
     border-bottom-right-radius: 0em;
-    border-bottom: 0.1em solid black;
     font-size: 1.1em;
     font-weight: bold;
     text-transform: capitalize; }

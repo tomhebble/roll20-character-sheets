@@ -119,6 +119,10 @@
 		grid-template-columns: 8em 73%;
 		width: 100%;
 
+		h2 {
+			font-size: 1.5em;
+		}
+
 		label {
 			@include border(0.15em, solid, $black);
 		}
@@ -230,7 +234,8 @@
 
 	   		h2 { 
 	   			display: inline;
-	   			text-transform: uppercase; 
+	   			text-transform: uppercase;
+	   			width: fit-content;
 	   		}
 
 			div.sheet-horz-line { grid-column: 1 / 5; }
@@ -269,7 +274,6 @@
 						left-radius : 0em;
 						right-radius: 0em;
 					}
-					@include border(0.1em, solid, $black);
 					@include button-like();
 				}
 	   		}
@@ -313,13 +317,8 @@
 					text-align: center;
 
 					span {
-						&.sheet-total::after {
-				   			content: ")";
-				   		}
-
-				   		&.sheet-total::before {
-				   			content: "(";
-				   		}
+						&.sheet-total::after { content: ")"; }
+				   		&.sheet-total::before { content: "("; }
 					}
 				}
 
@@ -413,6 +412,9 @@
 		   		display: grid;
 		   	}
 	   }
+
+	   /* CORE COMBAT INFO
+	   ----------------------------- */
 	}
 
  /* SHARED SETTINGS
