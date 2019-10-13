@@ -47,6 +47,9 @@
 .sheet-opacity0 { opacity: 0; }
 .sheet-horz-line { @include border(0.1em, solid, $black); }
 
+%input-border-bottom {
+	border-bottom: 0.15em solid $accent1;
+}
 
 /* SWITCHES
 ============================= */
@@ -64,10 +67,8 @@
 		min-width      : 410px;
 		vertical-align : top;
 		width          : 45%;
-	}
 
-	div.sheet-flex:first-child {
-		margin-right: 0.5%;
+		&:first-child { margin-right: 0.5%; }
 	}
 
 /* GRID
@@ -142,13 +143,9 @@
 		text-overflow: ellipsis;
 		text-transform: capitalize;
 
-		button {
-			grid-area: 2 / 1 / 2 / 1;
-		}
+		button { grid-area: 2 / 1 / 2 / 1; }
 
-		h2 {
-			grid-row: 1;
-		}
+		h2 { grid-row: 1; }
 
 		label.sheet-switch {
 			margin-left: 20%;
@@ -159,10 +156,7 @@
 			}
 		}
 
-		input[type="checkbox"] {
-			margin-right: 2%;
-		}
-
+		input[type="checkbox"] { margin-right: 2%; }
 	}
 
 
@@ -173,9 +167,7 @@
    ============================= */
 
 	div.sheet-pc {
-		div.sheet-bot-border {
-			@include border(0.1em, solid, $black);
-		}
+		div.sheet-bot-border { @include border(0.1em, solid, $black); }
 
 		div.sheet-info-flex {
 			width: 100%;
@@ -292,10 +284,11 @@
 		   			display: none;
 		   		}
 
-		   		&[type="text"] {
-		   			border-bottom: 0.15em solid $accent1;
-			   		width: 3.5em;
-			   	}
+				&[type="text"],
+				&[type="number"] { 
+					@extend %input-border-bottom;
+					width: 3.5em;
+				}
 	   		}
 
 			@for $i from 1 through 11 {
@@ -355,7 +348,15 @@
 			}
 
 	   		div.sheet-grid-pc-edge {
-		   		grid-template-columns: 1fr;
+				grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+				grid-column-gap: 0px;
+				input[type='checkbox'] {
+					opacity: 0;
+				}
+				span {
+					position: relative;
+					left: -1%;
+				}
 		   	}
 	   	}
 
@@ -366,20 +367,26 @@
 	   /* SKILLS
 	   ----------------------------- */
 	   div.sheet-grid-skills {
-
 		   	div.sheet-subheader,
 		   	div.sheet-body {
-		   		grid-template-columns:0.25em 1fr 5em 5em 5em;
+		   		grid-template-columns:0.25em 1fr 3em 5em 5em;
 		   	}
 
-		   	h2:nth-of-type(1) { grid-column: 2 / 2;	}
-		   	h2:nth-of-type(2) { grid-column: 3 / 3;	}
-		   	h2:nth-of-type(3) { grid-column: 4 / 4;	}
-		   	h2:nth-of-type(4) { grid-column: 5 / 5;	}
+			button[type='roll'] {
+				font-size: 1em;
+				min-height: 30px;
+				width: 55%;
+			}
+
+			h2 {
+				@for $i from 1 through 4 {
+					&:nth-of-type(#{$i}) { grid-column: #{$i+1} / #{$i+1}; }
+				}
+			}
 
 		   	div.sheet-settings {
 		   		grid-column: 1 / 6;
-		   		grid-template-columns:5em 1fr 10em 1fr;
+		   		grid-template-columns: 5em 1fr 10em 1fr;
 		   		height: auto;
 		   		padding: 2%;
 
@@ -387,25 +394,29 @@
 			   		&[name*='rank'],
 			   		&[name*='modification'] {
 			   			text-align: center;
-		   			}
+					}
+
+					&[type="text"],
+					&[type="number"] { @extend %input-border-bottom; }
 		   		}
 
-		   		select {
-		   			grid-column: 1 / 5;
-		   		}
+				label {
+					&[data-i18n-title*='focus'] { grid-column: 2 / 5; }
+					&[data-i18n-title*='specialization'] { grid-column: 3 / 5; }
+					&[data-i18n-title*='notes'] { grid-column: 1 / 5; }
+				}
+
+				select { grid-column: 1 / 5;  }
 
 		   		h3 {
-		   			&:nth-of-type(2) { margin-left: 15%; }
-			   		&:nth-of-type(1n+3) { grid-column: 1 / 5; }
-			   	}
-
-		   		label {
-		   			&:nth-of-type(1n+3) { grid-column: 1 / 5; }
-		   		}
+					&:nth-of-type(2) { margin-left: 15%; }
+					&[data-i18n=focus] { grid-column: 1; }
+					&[data-i18n=specialization] { grid-column: 1 / 3; }
+				}   
 		   	}
 
 		   	.sheet-settings {
-		   		display: none;
+		   		@extend %display-none;
 		   	}
 
 		   	input[name='attr_toggle']:checked ~ .sheet-settings {
@@ -489,23 +500,33 @@
 		}
 	}
 
+// HEXES
+@import 'src/scss/_hexs.scss'; 
+
+
 /* SHOW & HIDE CHARACTER SHEETS & TABs 
 	============================= */
-	div.sheet-display-none {
-		display: none;
-	}
+	%display-none { display: none; }
+	%display-inline-block { display: inline; }
 
 	@each $sheet in $sheets {
 		input.sheet-type:not([value="#{$sheet}"]) ~ div.sheet-#{$sheet} { 
-			@extend div.sheet-display-none;
+			@extend %display-none;
 		}
 	}
 
 	@each $tab in $tabs {
 		input.sheet-display_string:not([value*="#{$tab}"]) ~ ~ div.sheet-pc div.sheet-#{$tab} {
-			@extend div.sheet-display-none;
+			@extend %display-none;
 		}
 	}
+
+	$tabs:'arms', 'augs', 'core', 'gear', 'options', 'social', 'magic', 'matrix', 'vehicle';
+	@each $tab in $tabs {
+		.sheet-#{$tab} { @extend %display-none; }
+		.sheet-options_toggle[value="#{$tab}"] ~ .sheet-#{$tab} { @extend %display-inline-block; }
+	}
+
 
 /* FOOTER
    ============================= */

@@ -29,7 +29,8 @@ button {
     color: whitesmoke;
     background-color: #460141 !important;
     background-position: 0em; }
-  button:focus > h2, button:hover > h2, button:active > h2, button:focus > span, button:hover > span, button:active > span {
+  button:focus > h2, button:hover > h2, button:active > h2,
+  button:focus > span, button:hover > span, button:active > span {
     color: whitesmoke;
     text-shadow: 1px 1px 2px black, 0 0 25px rgba(136, 121, 190, 0.25), 0 0 5px #79016f; }
 
@@ -77,15 +78,18 @@ hr {
 
 input[type="number"] {
   text-align: center; }
+
 input[type="text"], input[type="number"] {
   background-color: transparent;
   border: none;
   border-radius: 0em;
   height: 2.1em;
   width: 100%; }
+
 input::placeholder {
   background-color: rgba(136, 121, 190, 0.25);
   border: 0.1em dotted #79016f; }
+
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0; }
@@ -133,6 +137,9 @@ textarea {
 
 .sheet-horz-line {
   border-bottom: 0.1em solid black; }
+
+div.sheet-pc div.sheet-grid-attributes input[type="text"], div.sheet-pc div.sheet-grid-attributes input[type="number"], div.sheet-pc div.sheet-grid-skills div.sheet-settings input[type="text"], div.sheet-pc div.sheet-grid-skills div.sheet-settings input[type="number"] {
+  border-bottom: 0.15em solid #79016f; }
 
 /* SWITCHES
 ============================= */
@@ -198,9 +205,8 @@ div.sheet-flex {
   min-width: 410px;
   vertical-align: top;
   width: 45%; }
-
-div.sheet-flex:first-child {
-  margin-right: 0.5%; }
+  div.sheet-flex:first-child {
+    margin-right: 0.5%; }
 
 /* GRID
    ============================= */
@@ -270,13 +276,13 @@ div.sheet-grid-tab-options {
    ============================= */
 div.sheet-pc {
   /* PERSONAL DATA
-     ----------------------------- */
+	   ----------------------------- */
   /* ATTRIBUTES
-    ----------------------------- */
+	   ----------------------------- */
   /* SKILLS
-  ----------------------------- */
+	   ----------------------------- */
   /* CORE COMBAT INFO
-  ----------------------------- */ }
+	   ----------------------------- */ }
   div.sheet-pc div.sheet-bot-border {
     border-bottom: 0.1em solid black; }
   div.sheet-pc div.sheet-info-flex {
@@ -330,7 +336,7 @@ div.sheet-pc {
     div.sheet-pc div.sheet-grid-personal-data div.sheet-heat {
       grid-column: 3 / 5; }
     div.sheet-pc div.sheet-grid-personal-data div.sheet-misc {
-      grid-column: 3/5; }
+      grid-column: 3 / 5; }
   div.sheet-pc div.sheet-grid-attributes div.sheet-grid-body {
     width: 49.5%; }
   div.sheet-pc div.sheet-grid-attributes button[type="roll"] {
@@ -344,10 +350,12 @@ div.sheet-pc {
     padding-right: 2%; }
   div.sheet-pc div.sheet-grid-attributes input {
     text-align: center; }
-    div.sheet-pc div.sheet-grid-attributes input[type="hidden"][value=""] ~ div.sheet-grid div > span.sheet-total, div.sheet-pc div.sheet-grid-attributes input[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total, div.sheet-pc div.sheet-grid-attributes input[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total::after, div.sheet-pc div.sheet-grid-attributes input[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total::before {
+    div.sheet-pc div.sheet-grid-attributes input[type="hidden"][value=""] ~ div.sheet-grid div > span.sheet-total,
+    div.sheet-pc div.sheet-grid-attributes input[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total,
+    div.sheet-pc div.sheet-grid-attributes input[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total::after,
+    div.sheet-pc div.sheet-grid-attributes input[type="hidden"][value="0"] ~ div.sheet-grid div > span.sheet-total::before {
       display: none; }
-    div.sheet-pc div.sheet-grid-attributes input[type="text"] {
-      border-bottom: 0.15em solid #79016f;
+    div.sheet-pc div.sheet-grid-attributes input[type="text"], div.sheet-pc div.sheet-grid-attributes input[type="number"] {
       width: 3.5em; }
   div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row:nth-of-type(1) {
     grid-area: 1 / 1 / 1 / 3; }
@@ -405,12 +413,22 @@ div.sheet-pc {
       div.sheet-pc div.sheet-grid-attributes div.sheet-grid-row div.sheet-settings label:nth-of-type(4) {
         grid-area: 3 / 4 / 3 / 4; }
   div.sheet-pc div.sheet-grid-attributes div.sheet-grid-pc-edge {
-    grid-template-columns: 1fr; }
+    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    grid-column-gap: 0px; }
+    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-pc-edge input[type='checkbox'] {
+      opacity: 0; }
+    div.sheet-pc div.sheet-grid-attributes div.sheet-grid-pc-edge span {
+      position: relative;
+      left: -1%; }
   div.sheet-pc span.sheet-total {
     display: none; }
   div.sheet-pc div.sheet-grid-skills div.sheet-subheader,
   div.sheet-pc div.sheet-grid-skills div.sheet-body {
-    grid-template-columns: 0.25em 1fr 5em 5em 5em; }
+    grid-template-columns: 0.25em 1fr 3em 5em 5em; }
+  div.sheet-pc div.sheet-grid-skills button[type='roll'] {
+    font-size: 1em;
+    min-height: 30px;
+    width: 55%; }
   div.sheet-pc div.sheet-grid-skills h2:nth-of-type(1) {
     grid-column: 2 / 2; }
   div.sheet-pc div.sheet-grid-skills h2:nth-of-type(2) {
@@ -426,21 +444,25 @@ div.sheet-pc {
     padding: 2%; }
     div.sheet-pc div.sheet-grid-skills div.sheet-settings input[name*='rank'], div.sheet-pc div.sheet-grid-skills div.sheet-settings input[name*='modification'] {
       text-align: center; }
+    div.sheet-pc div.sheet-grid-skills div.sheet-settings label[data-i18n-title*='focus'] {
+      grid-column: 2 / 5; }
+    div.sheet-pc div.sheet-grid-skills div.sheet-settings label[data-i18n-title*='specialization'] {
+      grid-column: 3 / 5; }
+    div.sheet-pc div.sheet-grid-skills div.sheet-settings label[data-i18n-title*='notes'] {
+      grid-column: 1 / 5; }
     div.sheet-pc div.sheet-grid-skills div.sheet-settings select {
       grid-column: 1 / 5; }
     div.sheet-pc div.sheet-grid-skills div.sheet-settings h3:nth-of-type(2) {
       margin-left: 15%; }
-    div.sheet-pc div.sheet-grid-skills div.sheet-settings h3:nth-of-type(1n+3) {
-      grid-column: 1 / 5; }
-    div.sheet-pc div.sheet-grid-skills div.sheet-settings label:nth-of-type(1n+3) {
-      grid-column: 1 / 5; }
-  div.sheet-pc div.sheet-grid-skills .sheet-settings {
-    display: none; }
+    div.sheet-pc div.sheet-grid-skills div.sheet-settings h3[data-i18n=focus] {
+      grid-column: 1; }
+    div.sheet-pc div.sheet-grid-skills div.sheet-settings h3[data-i18n=specialization] {
+      grid-column: 1 / 3; }
   div.sheet-pc div.sheet-grid-skills input[name='attr_toggle']:checked ~ .sheet-settings {
     display: grid; }
 
 /* SHARED SETTINGS
-  ============================= */
+   ============================= */
 div.sheet-settings {
   border-left: 0.2em solid #79016f;
   margin-left: 1%;
@@ -489,10 +511,91 @@ div.sheet-toggle, input[name="attr_toggles"][value*="attributes"] ~ div.sheet-pc
 span.sheet-inline, input[name="attr_toggles"][value*="agility_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_agility"], input[name="attr_toggles"][value*="body_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_body"], input[name="attr_toggles"][value*="charisma_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_charisma"], input[name="attr_toggles"][value*="intuition_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_intuition"], input[name="attr_toggles"][value*="logic_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_logic"], input[name="attr_toggles"][value*="reaction_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_reaction"], input[name="attr_toggles"][value*="special_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_special"], input[name="attr_toggles"][value*="strength_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_strength"], input[name="attr_toggles"][value*="willpower_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_willpower"], input[name="attr_toggles"][value*="initiative_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_initiative"], input[name="attr_toggles"][value*="matrix_initiative_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_matrix_initiative"], input[name="attr_toggles"][value*="astral_initiative_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_astral_initiative"], input[name="attr_toggles"][value*="composure_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_composure"], input[name="attr_toggles"][value*="judge_intentions_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_judge_intentions"], input[name="attr_toggles"][value*="memory_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_memory"], input[name="attr_toggles"][value*="lift_carry_total"] ~ div.sheet-pc div.sheet-grid-attributes span[name="attr_lift_carry"] {
   display: inline; }
 
+/***** EDGE & MATRIX CONDITION HEXAGONS *****/
+.sheet-edg-hex input[type="checkbox"],
+.sheet-con-hex input[type="radio"] {
+  height: 20px;
+  margin-right: -21px;
+  top: -9px;
+  width: 20px; }
+
+.sheet-hexagon {
+  display: inline-block;
+  margin: 5.77px 0;
+  position: relative;
+  background-color: #222;
+  height: 11.55px;
+  width: 20px; }
+
+.sheet-hexagon:before,
+.sheet-hexagon:after {
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  content: "";
+  position: absolute;
+  width: 0; }
+
+.sheet-hexagon:before {
+  bottom: 100%;
+  border-bottom: 5.77px solid #222; }
+
+.sheet-hexagon:after {
+  top: 100%;
+  width: 0;
+  border-top: 5.77px solid #222; }
+
+.sheet-edg-hex input[type="checkbox"]:checked ~ .sheet-hexagon,
+.sheet-con-hex input[type="radio"]:checked ~ .sheet-hexagon,
+.sheet-edge-zero[value="0"] ~ .sheet-hexagon {
+  background-color: #79016f; }
+
+.sheet-edg-hex input[type="checkbox"]:checked ~ .sheet-hexagon:before,
+.sheet-con-hex input[type="radio"]:checked ~ .sheet-hexagon:before,
+.sheet-edge-zero[value="0"] ~ .sheet-hexagon:before {
+  border-bottom-color: #79016f; }
+
+.sheet-edg-hex input[type="checkbox"]:checked ~ .sheet-hexagon:after,
+.sheet-con-hex input[type="radio"]:checked ~ .sheet-hexagon:after,
+.sheet-edge-zero[value="0"] ~ .sheet-hexagon:after {
+  border-top-color: #79016f; }
+
+.sheet-edg-hex input[type="checkbox"]:checked + .sheet-hexagon,
+.sheet-con-hex input[type="radio"] + .sheet-hexagon,
+.sheet-con-hex input[type="radio"]:checked + .sheet-hexagon {
+  background-color: #222; }
+
+.sheet-edg-hex input[type="checkbox"]:checked + .sheet-hexagon:before,
+.sheet-con-hex input[type="radio"]:checked + .sheet-hexagon:before {
+  border-bottom-color: #222; }
+
+.sheet-edg-hex input[type="checkbox"]:checked + .sheet-hexagon:after,
+.sheet-con-hex input[type="radio"]:checked + .sheet-hexagon:after {
+  border-top-color: #222; }
+
+/***** MAKE HEXES APPEAR & DISAPPEAR *****/
+.sheet-hex-hider[value="1"] ~ input[type="checkbox"]:nth-child(1n+5),
+.sheet-hex-hider[value="1"] ~ input[type="checkbox"]:nth-child(1n+5) + span,
+.sheet-hex-hider[value="2"] ~ input[type="checkbox"]:nth-child(1n+7),
+.sheet-hex-hider[value="2"] ~ input[type="checkbox"]:nth-child(1n+7) + span,
+.sheet-hex-hider[value="3"] ~ input[type="checkbox"]:nth-child(1n+9),
+.sheet-hex-hider[value="3"] ~ input[type="checkbox"]:nth-child(1n+9) + span,
+.sheet-hex-hider[value="4"] ~ input[type="checkbox"]:nth-child(1n+11),
+.sheet-hex-hider[value="4"] ~ input[type="checkbox"]:nth-child(1n+11) + span,
+.sheet-hex-hider[value="5"] ~ input[type="checkbox"]:nth-child(1n+13),
+.sheet-hex-hider[value="5"] ~ input[type="checkbox"]:nth-child(1n+13) + span,
+.sheet-hex-hider[value="6"] ~ input[type="checkbox"]:nth-child(1n+15),
+.sheet-hex-hider[value="6"] ~ input[type="checkbox"]:nth-child(1n+15) + span,
+.sheet-hex-hider[value="7"] ~ input[type="checkbox"]:nth-child(1n+17),
+.sheet-hex-hider[value="7"] ~ input[type="checkbox"]:nth-child(1n+17) + span {
+  display: none; }
+
 /* SHOW & HIDE CHARACTER SHEETS & TABs 
 	============================= */
-div.sheet-display-none, input.sheet-type:not([value="pc"]) ~ div.sheet-pc, input.sheet-type:not([value="npc"]) ~ div.sheet-npc, input.sheet-display_string:not([value*="core"]) ~ ~ div.sheet-pc div.sheet-core, input.sheet-display_string:not([value*="arms"]) ~ ~ div.sheet-pc div.sheet-arms, input.sheet-display_string:not([value*="gear"]) ~ ~ div.sheet-pc div.sheet-gear, input.sheet-display_string:not([value*="magic"]) ~ ~ div.sheet-pc div.sheet-magic, input.sheet-display_string:not([value*="matrix"]) ~ ~ div.sheet-pc div.sheet-matrix, input.sheet-display_string:not([value*="social"]) ~ ~ div.sheet-pc div.sheet-social, input.sheet-display_string:not([value*="vehicle"]) ~ ~ div.sheet-pc div.sheet-vehicle, input.sheet-display_string:not([value*="options"]) ~ ~ div.sheet-pc div.sheet-options {
+div.sheet-pc div.sheet-grid-skills .sheet-settings, input.sheet-type:not([value="pc"]) ~ div.sheet-pc, input.sheet-type:not([value="npc"]) ~ div.sheet-npc, input.sheet-display_string:not([value*="core"]) ~ ~ div.sheet-pc div.sheet-core, input.sheet-display_string:not([value*="arms"]) ~ ~ div.sheet-pc div.sheet-arms, input.sheet-display_string:not([value*="gear"]) ~ ~ div.sheet-pc div.sheet-gear, input.sheet-display_string:not([value*="magic"]) ~ ~ div.sheet-pc div.sheet-magic, input.sheet-display_string:not([value*="matrix"]) ~ ~ div.sheet-pc div.sheet-matrix, input.sheet-display_string:not([value*="social"]) ~ ~ div.sheet-pc div.sheet-social, input.sheet-display_string:not([value*="vehicle"]) ~ ~ div.sheet-pc div.sheet-vehicle, input.sheet-display_string:not([value*="options"]) ~ ~ div.sheet-pc div.sheet-options, .sheet-arms, .sheet-augs, .sheet-core, .sheet-gear, .sheet-options, .sheet-social, .sheet-magic, .sheet-matrix, .sheet-vehicle {
   display: none; }
+
+.sheet-options_toggle[value="arms"] ~ .sheet-arms, .sheet-options_toggle[value="augs"] ~ .sheet-augs, .sheet-options_toggle[value="core"] ~ .sheet-core, .sheet-options_toggle[value="gear"] ~ .sheet-gear, .sheet-options_toggle[value="options"] ~ .sheet-options, .sheet-options_toggle[value="social"] ~ .sheet-social, .sheet-options_toggle[value="magic"] ~ .sheet-magic, .sheet-options_toggle[value="matrix"] ~ .sheet-matrix, .sheet-options_toggle[value="vehicle"] ~ .sheet-vehicle {
+  display: inline; }
 
 /* FOOTER
    ============================= */

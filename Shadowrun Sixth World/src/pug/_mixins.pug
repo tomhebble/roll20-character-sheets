@@ -22,6 +22,7 @@ mixin skillButton(skill, attribute)
 
 //- ATTRIBUTE SELECT
 mixin attrSelect()
+	option(value='' selected) -
 	optgroup(label='Attribute') Attribute
 		each val in ['body', 'agility', 'reaction', 'strength', 'willpower', 'logic', 'intuition', 'charisma']
 			option(data-i18n=val value=val) #{val}
