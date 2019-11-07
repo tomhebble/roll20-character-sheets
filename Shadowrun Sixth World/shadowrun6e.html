@@ -324,17 +324,35 @@ PC SHEET
           </div>
         </div>
         <!-- EDGE POINTS-->
-        <div class="grid grid-row grid-pc-edge">
+        <div class="grid grid-row grid-pc-edge edg-hex">
+          <input class="edge-zero" type="hidden" name="attr_edge_hex" value="0"/>
+          <input class="hex-hider" type="hidden" name="attr_edge" value="1"/>
           <label data-i18n-title="edge points checkboxes" title="edge points checkboxes">
-            <input name="attr_edge" title="@{edge}" type="radio" value="0"/><span>1</span>
-            <input name="attr_edge" title="@{edge}" type="radio" value="1"/><span>2</span>
-            <input name="attr_edge" title="@{edge}" type="radio" value="2"/><span>3</span>
-            <input name="attr_edge" title="@{edge}" type="radio" value="3"/><span>4</span>
-            <input name="attr_edge" title="@{edge}" type="radio" value="4"/><span>5</span>
-            <input name="attr_edge" title="@{edge}" type="radio" value="5"/><span>6</span>
-            <input name="attr_edge" title="@{edge}" type="radio" value="6"/><span>7</span>
-            <input name="attr_edge" title="@{edge}" type="radio" value="7"/><span>8</span>
-            <input name="attr_edge" title="@{edge}" type="radio" value="8"/><span>9</span>
+            <input type="checkbox" name="attr_edge_hex" value="0"/><span class="hexagon"></span>
+          </label>
+          <label data-i18n-title="edge points checkboxes" title="edge points checkboxes">
+            <input type="checkbox" name="attr_edge_hex" value="1"/><span class="hexagon"></span>
+          </label>
+          <label data-i18n-title="edge points checkboxes" title="edge points checkboxes">
+            <input type="checkbox" name="attr_edge_hex" value="2"/><span class="hexagon"></span>
+          </label>
+          <label data-i18n-title="edge points checkboxes" title="edge points checkboxes">
+            <input type="checkbox" name="attr_edge_hex" value="3"/><span class="hexagon"></span>
+          </label>
+          <label data-i18n-title="edge points checkboxes" title="edge points checkboxes">
+            <input type="checkbox" name="attr_edge_hex" value="4"/><span class="hexagon"></span>
+          </label>
+          <label data-i18n-title="edge points checkboxes" title="edge points checkboxes">
+            <input type="checkbox" name="attr_edge_hex" value="5"/><span class="hexagon"></span>
+          </label>
+          <label data-i18n-title="edge points checkboxes" title="edge points checkboxes">
+            <input type="checkbox" name="attr_edge_hex" value="6"/><span class="hexagon"></span>
+          </label>
+          <label data-i18n-title="edge points checkboxes" title="edge points checkboxes">
+            <input type="checkbox" name="attr_edge_hex" value="7"/><span class="hexagon"></span>
+          </label>
+          <label data-i18n-title="edge points checkboxes" title="edge points checkboxes">
+            <input type="checkbox" name="attr_edge_hex" value="8"/><span class="hexagon"></span>
           </label>
         </div>
         <!-- UNARMED-->
@@ -574,6 +592,7 @@ PC SHEET
             <button name="skill" type="roll" value="@{gm_toggle} &{template:rolls}{{header=@{skill}}}{{base=^{attribute}}}{{dice=[[((@{dicepool}+@{attribute})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}"><span name="attr_skill"></span></button>
             <div class="skill-ranks"><span name="attr_rank"></span><span name="attr_modification"></span></div>
             <select data-i18-title="" name="attr_attribute" title="">
+              <option value="" selected="selected">-</option>
               <optgroup label="Attribute">Attribute
                 <option data-i18n="body" value="body">body</option>
                 <option data-i18n="agility" value="agility">agility</option>
@@ -624,13 +643,13 @@ PC SHEET
               <label data-i18n-title="skill modification" title="modification">
                 <input data-i18n-placeholder="0" name="attr_modification" placeholder="0" type="text" value=""/>
               </label>
-              <h3 data-i18n="focus">focus</h3>
-              <label data-i18n-title="skill focus" title="focus">
-                <input data-i18n-placeholder="focus" name="attr_focus" placeholder="focus" type="text" value=""/>
-              </label>
               <h3 data-i18n="specialization">specialization</h3>
               <label data-i18n-title="skill specialization" title="specialization">
                 <input data-i18n-placeholder="specialization" name="attr_specialization" placeholder="specialization" type="text" value=""/>
+              </label>
+              <h3 data-i18n="focus">focus</h3>
+              <label data-i18n-title="skill focus" title="focus">
+                <input data-i18n-placeholder="focus" name="attr_focus" placeholder="focus" type="text" value=""/>
               </label>
               <h3 data-i18n="notes">notes</h3>
               <label data-i18n-title="skill notes" title="skill notes">
@@ -647,7 +666,9 @@ PC SHEET
       <div class="grid grid-header">
         <h1 data-i18n="core combat info" data-i18-title="core combat info" title="core combat info">core combat info</h1>
       </div>
-      <div class="grid"></div>
+      <div class="grid grid-body">
+        <h2 data-i18n="" data-i18-title="" title=""></h2>
+      </div>
     </div>
     <div class="border">
       <div class="grid grid-header">

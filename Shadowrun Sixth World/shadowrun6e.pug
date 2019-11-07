@@ -104,12 +104,14 @@ input.display_string(name='attr_toggles' type='hidden' value='core,')
 						label(data-i18n-title='edge max input' title='edge max input')
 							input(data-i18n-placeholder='5' name='attr_edge_max' placeholder='5' title='@{edge_max}' type='number' value='')
 				// EDGE POINTS
-				.grid.grid-row.grid-pc-edge
-					label(data-i18n-title='edge points checkboxes' title='edge points checkboxes')
-						- let edgeLoop = 0;
-							while edgeLoop < 9
-								input(name='attr_edge' title='@{edge}' type='radio' value=edgeLoop++)
-								span #{edgeLoop}
+				.grid.grid-row.grid-pc-edge.edg-hex
+					input.edge-zero(type='hidden' name='attr_edge_hex' value='0')
+					input.hex-hider(type='hidden' name='attr_edge' value='1')
+					- let edgeLoop = 0;
+					while edgeLoop < 9
+						label(data-i18n-title='edge points checkboxes' title='edge points checkboxes')
+							input(type='checkbox' name='attr_edge_hex' value=edgeLoop++)
+							span.hexagon
 				// UNARMED
 				.grid.grid-row
 					input(name='attr_unarmed' type='hidden' value='')
@@ -248,7 +250,7 @@ input.display_string(name='attr_toggles' type='hidden' value='core,')
 						.grid.settings
 							select(data-i18-title='' name='attr_skill' title='active skill' value='close combat')
 								+skillSelect()
-							each val, key in {'rank': '3', 'modification': '0', 'focus': 'focus', 'specialization': 'specialization'}
+							each val, key in {'rank': '3', 'modification': '0', 'specialization': 'specialization', 'focus': 'focus'}
 								h3(data-i18n=key) #{key}
 								label(data-i18n-title='skill '+key title=key)
 									input(data-i18n-placeholder=val name='attr_'+key placeholder=val type='text' value='')
