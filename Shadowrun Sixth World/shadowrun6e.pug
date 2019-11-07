@@ -62,16 +62,34 @@ input.display_string(name='attr_toggles' type='hidden' value='core,')
 		.border
 			.grid.grid-header
 				h1(data-i18n='personal data' data-i18-title='personal data' title='personal data') personal data
-			.grid.grid-personal-data
-				each val in personalDetails
-					- const attrName = val.replace(' ', '_').replace('/', '_')
-					- const transName = val === 'height' ? 'height-u' : val;
-						.detail(class=attrName)
-							h2(data-i18n=transName) #{val}
-							label(data-i18-title=transName title=val)
-								input(data-i18n-placeholder=transName name='attr_' + attrName placeholder=val title='@{' +  attrName + '}' type='text' value='')
-						if val === 'name/primary alias' || val === 'ethnicity' || val === 'weight' || val === 'heat' || val === 'misc'
-							.horz-line
+			.personal-data
+				.grid-row.name-alias
+					h2(data-i18n="name/primary alias") name/primary alias
+					label(data-i18-title="name/primary alias" title="name/primary alias")
+						input(data-i18n-placeholder="name/primary alias" name=`attr_name_primary_alias` placeholder="name/primary alias" title='@{name_primary_alias}' type='text' value='')
+				.grid-row.metatype-ethnic
+					each val in ['metatype', 'ethnicity']
+						h2(data-i18n=transName) #{val}
+						label(data-i18-title=val title=val)
+							input(data-i18n-placeholder=val name=`attr_${val}` placeholder=val title=`@{${val}}` type='text' value='')
+				.grid-row.age-weigth
+					each val in ['age', 'sex', 'height', 'weight']
+						- const transName = val === 'height' ? 'height-u' : va
+						h2(data-i18n=transName) #{val}
+						label(data-i18-title=transName title=val)
+							input(data-i18n-placeholder=transName name=`attr_${val}` placeholder=val title=`@{${val}}` type='text' value='')
+				.grid-row.rep-heat
+					each val in ['reputation', 'heat']
+						h2(data-i18n=transName) #{val}
+						label(data-i18-title=val title=val)
+							input(data-i18n-placeholder=val name=`attr_${val}` placeholder=val title=`@{${val}}` type='text' value='')
+				.grid-row.karma-misc
+					each val in ['karma', 'total karma', 'misc']
+						- const attrName = val.replace(' ', '_')
+						h2(data-i18n=transName) #{val}
+						label(data-i18-title=val title=val)
+							input(data-i18n-placeholder=val name=`attr_${val}` placeholder=val title=`@{${val}}` type='text' value='')
+
 		.border.grid-attributes
 			.grid.grid-header
 				button.pictos(data-i18n-title='player character attributes' name='act_toggle_attributes' title='player character attributes' type='action') y
@@ -159,10 +177,10 @@ input.display_string(name='attr_toggles' type='hidden' value='core,')
 					.grid.grid-row
 						+initiativeButton(val, attrName)
 						.display.bot-border
-							span(name='attr_'+attrName+'_base')
-							span.total(name='attr_'+attrName)
+							span(name=`attr_${attrName}_base`)
+							span.total(name=`attr_${attrName}`)
 							span +
-							span(name='attr_'+attrName+'_dice')
+							span(name=`attr_${attrName}_dice`)
 							span d6
 						.grid.settings
 							input(name='attr_'+attrName type='hidden' value='6')
@@ -183,10 +201,10 @@ input.display_string(name='attr_toggles' type='hidden' value='core,')
 				each val in ['composure', 'judge intentions', 'memory', 'lift/carry']
 					- const attrName = val.replace(' ', '_').replace('/', '_')
 					.grid.grid-row
-						+derivedButton(val, attrName)
+						+derivedButton({'name': val, 'attribute': attrName, 'formula': attrName})
 						.display.bot-border
-							span(name='attr_'+attrName+'_base')
-							span.total(name='attr_'+attrName)
+							span(name=`attr_${attrName}_base`)
+							span.total(name=`attr_${attrName}`)
 						.grid.settings
 							h2(data-i18n='base' data-i18-title='base' title='base') base
 							label(data-i18n-title=val+' base input' title=val+' base input')
@@ -228,35 +246,38 @@ input.display_string(name='attr_toggles' type='hidden' value='core,')
 			.grid.subheader.bot-border
 				h2(data-i18n='skill') skill
 				h2(data-i18n='rank') rank
-				h2(data-i18n='ATT') ATT
+				h2(data-i18n='att') att
 				h2(data-i18n='type') type
 			.repeating-container
 				fieldset.repeating_skills
-					.grid.body.bot-border
-						input.pictos(data-i18n-title='player character skills settings' name='attr_toggle' title='player character skills settings' type='checkbox' checked)
-						//span.pictos x
-						button(name='skill' type='roll' value!='@{gm_toggle} &{template:rolls}{{header=@{skill}}}{{base=^{attribute}}}{{dice=[[((@{dicepool}+@{attribute})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}')
-							span(name='attr_skill')
-						.skill-ranks
-							span(name='attr_rank')
-							span(name='attr_modification')
-						select(data-i18-title='' name='attr_attribute' title='')
-							+attrSelect()
-						select(name='attr_type')
-							optgroup(label='Skill Type') Skill Type
-								option(data-i18n='Active' value='Active' selected) Active
-								option(data-i18n='Language' value='Language') Language
-								option(data-i18n='Knowledge' value='Knowledge') Knowledge
-						.grid.settings
-							select(data-i18-title='' name='attr_skill' title='active skill' value='close combat')
-								+skillSelect()
-							each val, key in {'rank': '3', 'modification': '0', 'specialization': 'specialization', 'focus': 'focus'}
+					+rollButton({'name': 'skill', 'header': '@{name}', 'base': 'attribute', 'display': 'attr_name', 'formula': '@{dicepool}+@{attribute}'})
+					.skill-ranks
+						span(name='attr_rank')
+						span(name='attr_modification')
+					select(data-i18-title='' name='attr_attribute' title='')
+						+attrSelect()
+					span.center(name='attr_type')
+					+repeatingSectionFlags()
+					.grid.settings
+						select(name='attr_name' title='@{attr_name}' value='close combat')
+							+skillSelect()
+						h3(data-i18n=`rank`) `rank`
+						label(data-i18n-title=`rank` title='rank')
+							input(data-i18n-placeholder='3' name=`attr_rank` placeholder=3 type='number' value='')
+						.type
+							h3(data-i18n='type') type
+							select(name='attr_type')
+								optgroup(label='Skill Type') Skill Type
+									option(data-i18n='Active' value='Active' selected) Active
+									option(data-i18n='Language' value='Language') Language
+									option(data-i18n='Knowledge' value='Knowledge') Knowledge
+						each val, key in {'modification': '0', 'specialization': 'specialization', 'focus': 'focus'}
+							- const type = key === 'modification' ? 'number' : 'text';
+							.grid-row(class=key)
 								h3(data-i18n=key) #{key}
-								label(data-i18n-title='skill '+key title=key)
-									input(data-i18n-placeholder=val name='attr_'+key placeholder=val type='text' value='')
-							h3(data-i18n='notes') notes
-							label(data-i18n-title='skill notes' title='skill notes')
-								textarea(data-i18n-placeholder='notes' name='attr_notes' placeholder='notes')
+								label(data-i18n-title=`${key}` title=key)
+									input(data-i18n-placeholder=val name=`attr_${key}` placeholder=val type=type value='')
+						+repeatingSectionNotes('skills')
 	.flex.pc-flex.core
 		.border
 			.grid.grid-header

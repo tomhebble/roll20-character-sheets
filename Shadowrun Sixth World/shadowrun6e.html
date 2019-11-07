@@ -84,84 +84,65 @@ PC SHEET
       <div class="grid grid-header">
         <h1 data-i18n="personal data" data-i18-title="personal data" title="personal data">personal data</h1>
       </div>
-      <div class="grid grid-personal-data">
-        <div class="detail name_primary_alias">
+      <div class="personal-data">
+        <div class="grid-row name-alias">
           <h2 data-i18n="name/primary alias">name/primary alias</h2>
           <label data-i18-title="name/primary alias" title="name/primary alias">
             <input data-i18n-placeholder="name/primary alias" name="attr_name_primary_alias" placeholder="name/primary alias" title="@{name_primary_alias}" type="text" value=""/>
           </label>
         </div>
-        <div class="horz-line"></div>
-        <div class="detail metatype">
-          <h2 data-i18n="metatype">metatype</h2>
+        <div class="grid-row metatype-ethnic">
+          <h2>metatype</h2>
           <label data-i18-title="metatype" title="metatype">
             <input data-i18n-placeholder="metatype" name="attr_metatype" placeholder="metatype" title="@{metatype}" type="text" value=""/>
           </label>
-        </div>
-        <div class="detail ethnicity">
-          <h2 data-i18n="ethnicity">ethnicity</h2>
+          <h2>ethnicity</h2>
           <label data-i18-title="ethnicity" title="ethnicity">
             <input data-i18n-placeholder="ethnicity" name="attr_ethnicity" placeholder="ethnicity" title="@{ethnicity}" type="text" value=""/>
           </label>
         </div>
-        <div class="horz-line"></div>
-        <div class="detail age">
-          <h2 data-i18n="age">age</h2>
-          <label data-i18-title="age" title="age">
-            <input data-i18n-placeholder="age" name="attr_age" placeholder="age" title="@{age}" type="text" value=""/>
+        <div class="grid-row age-weigth">
+          <h2>age</h2>
+          <label title="age">
+            <input name="attr_age" placeholder="age" title="@{age}" type="text" value=""/>
           </label>
-        </div>
-        <div class="detail sex">
-          <h2 data-i18n="sex">sex</h2>
-          <label data-i18-title="sex" title="sex">
-            <input data-i18n-placeholder="sex" name="attr_sex" placeholder="sex" title="@{sex}" type="text" value=""/>
+          <h2>sex</h2>
+          <label title="sex">
+            <input name="attr_sex" placeholder="sex" title="@{sex}" type="text" value=""/>
           </label>
-        </div>
-        <div class="detail height">
           <h2 data-i18n="height-u">height</h2>
           <label data-i18-title="height-u" title="height">
             <input data-i18n-placeholder="height-u" name="attr_height" placeholder="height" title="@{height}" type="text" value=""/>
           </label>
-        </div>
-        <div class="detail weight">
-          <h2 data-i18n="weight">weight</h2>
-          <label data-i18-title="weight" title="weight">
-            <input data-i18n-placeholder="weight" name="attr_weight" placeholder="weight" title="@{weight}" type="text" value=""/>
+          <h2>weight</h2>
+          <label title="weight">
+            <input name="attr_weight" placeholder="weight" title="@{weight}" type="text" value=""/>
           </label>
         </div>
-        <div class="horz-line"></div>
-        <div class="detail reputation">
-          <h2 data-i18n="reputation">reputation</h2>
+        <div class="grid-row rep-heat">
+          <h2>reputation</h2>
           <label data-i18-title="reputation" title="reputation">
             <input data-i18n-placeholder="reputation" name="attr_reputation" placeholder="reputation" title="@{reputation}" type="text" value=""/>
           </label>
-        </div>
-        <div class="detail heat">
-          <h2 data-i18n="heat">heat</h2>
+          <h2>heat</h2>
           <label data-i18-title="heat" title="heat">
             <input data-i18n-placeholder="heat" name="attr_heat" placeholder="heat" title="@{heat}" type="text" value=""/>
           </label>
         </div>
-        <div class="horz-line"></div>
-        <div class="detail karma">
-          <h2 data-i18n="karma">karma</h2>
+        <div class="grid-row karma-misc">
+          <h2>karma</h2>
           <label data-i18-title="karma" title="karma">
             <input data-i18n-placeholder="karma" name="attr_karma" placeholder="karma" title="@{karma}" type="text" value=""/>
           </label>
-        </div>
-        <div class="detail total_karma">
-          <h2 data-i18n="total karma">total karma</h2>
+          <h2>total karma</h2>
           <label data-i18-title="total karma" title="total karma">
-            <input data-i18n-placeholder="total karma" name="attr_total_karma" placeholder="total karma" title="@{total_karma}" type="text" value=""/>
+            <input data-i18n-placeholder="total karma" name="attr_total karma" placeholder="total karma" title="@{total karma}" type="text" value=""/>
           </label>
-        </div>
-        <div class="detail misc">
-          <h2 data-i18n="misc">misc</h2>
+          <h2>misc</h2>
           <label data-i18-title="misc" title="misc">
             <input data-i18n-placeholder="misc" name="attr_misc" placeholder="misc" title="@{misc}" type="text" value=""/>
           </label>
         </div>
-        <div class="horz-line"></div>
       </div>
     </div>
     <div class="border grid-attributes">
@@ -172,7 +153,7 @@ PC SHEET
       <div class="grid grid-body">
         <div class="grid grid-row">
           <input name="attr_body" type="hidden" value=""/>
-          <button name="body" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{body}}}{{base=^{body}}}{{dice=[[(@{body}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+          <button name="body" type="roll" value="@{gm_toggle} &{template:rolls}{{mod=[[@{modifiers_toggle}]]}}{{wound=[[@{wounds_toggle}]]}}{{edge=[[@{edge_toggle}]]}}{{header=^{body}}}{{base=^{body}}}{{dice=[[(@{body}+@{attribute_roll})@{wounds_toggle}+@{modifiers_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}">
             <h2 class="alt-color" data-i18n="body">body</h2>
           </button>
           <div class="display bot-border"><span name="attr_" val="val" +="+" _base="_base"></span><span class="total" name="attr_body"></span></div>
@@ -189,7 +170,7 @@ PC SHEET
         </div>
         <div class="grid grid-row">
           <input name="attr_agility" type="hidden" value=""/>
-          <button name="agility" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{agility}}}{{base=^{agility}}}{{dice=[[(@{agility}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+          <button name="agility" type="roll" value="@{gm_toggle} &{template:rolls}{{mod=[[@{modifiers_toggle}]]}}{{wound=[[@{wounds_toggle}]]}}{{edge=[[@{edge_toggle}]]}}{{header=^{agility}}}{{base=^{agility}}}{{dice=[[(@{agility}+@{attribute_roll})@{wounds_toggle}+@{modifiers_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}">
             <h2 class="alt-color" data-i18n="agility">agility</h2>
           </button>
           <div class="display bot-border"><span name="attr_" val="val" +="+" _base="_base"></span><span class="total" name="attr_agility"></span></div>
@@ -206,7 +187,7 @@ PC SHEET
         </div>
         <div class="grid grid-row">
           <input name="attr_reaction" type="hidden" value=""/>
-          <button name="reaction" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{reaction}}}{{base=^{reaction}}}{{dice=[[(@{reaction}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+          <button name="reaction" type="roll" value="@{gm_toggle} &{template:rolls}{{mod=[[@{modifiers_toggle}]]}}{{wound=[[@{wounds_toggle}]]}}{{edge=[[@{edge_toggle}]]}}{{header=^{reaction}}}{{base=^{reaction}}}{{dice=[[(@{reaction}+@{attribute_roll})@{wounds_toggle}+@{modifiers_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}">
             <h2 class="alt-color" data-i18n="reaction">reaction</h2>
           </button>
           <div class="display bot-border"><span name="attr_" val="val" +="+" _base="_base"></span><span class="total" name="attr_reaction"></span></div>
@@ -223,7 +204,7 @@ PC SHEET
         </div>
         <div class="grid grid-row">
           <input name="attr_strength" type="hidden" value=""/>
-          <button name="strength" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{strength}}}{{base=^{strength}}}{{dice=[[(@{strength}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+          <button name="strength" type="roll" value="@{gm_toggle} &{template:rolls}{{mod=[[@{modifiers_toggle}]]}}{{wound=[[@{wounds_toggle}]]}}{{edge=[[@{edge_toggle}]]}}{{header=^{strength}}}{{base=^{strength}}}{{dice=[[(@{strength}+@{attribute_roll})@{wounds_toggle}+@{modifiers_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}">
             <h2 class="alt-color" data-i18n="strength">strength</h2>
           </button>
           <div class="display bot-border"><span name="attr_" val="val" +="+" _base="_base"></span><span class="total" name="attr_strength"></span></div>
@@ -240,7 +221,7 @@ PC SHEET
         </div>
         <div class="grid grid-row">
           <input name="attr_willpower" type="hidden" value=""/>
-          <button name="willpower" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{willpower}}}{{base=^{willpower}}}{{dice=[[(@{willpower}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+          <button name="willpower" type="roll" value="@{gm_toggle} &{template:rolls}{{mod=[[@{modifiers_toggle}]]}}{{wound=[[@{wounds_toggle}]]}}{{edge=[[@{edge_toggle}]]}}{{header=^{willpower}}}{{base=^{willpower}}}{{dice=[[(@{willpower}+@{attribute_roll})@{wounds_toggle}+@{modifiers_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}">
             <h2 data-i18n="willpower">willpower</h2>
           </button>
           <div class="display bot-border"><span name="attr_" val="val" +="+" _base="_base"></span><span class="total" name="attr_willpower"></span></div>
@@ -257,7 +238,7 @@ PC SHEET
         </div>
         <div class="grid grid-row">
           <input name="attr_logic" type="hidden" value=""/>
-          <button name="logic" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{logic}}}{{base=^{logic}}}{{dice=[[(@{logic}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+          <button name="logic" type="roll" value="@{gm_toggle} &{template:rolls}{{mod=[[@{modifiers_toggle}]]}}{{wound=[[@{wounds_toggle}]]}}{{edge=[[@{edge_toggle}]]}}{{header=^{logic}}}{{base=^{logic}}}{{dice=[[(@{logic}+@{attribute_roll})@{wounds_toggle}+@{modifiers_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}">
             <h2 data-i18n="logic">logic</h2>
           </button>
           <div class="display bot-border"><span name="attr_" val="val" +="+" _base="_base"></span><span class="total" name="attr_logic"></span></div>
@@ -274,7 +255,7 @@ PC SHEET
         </div>
         <div class="grid grid-row">
           <input name="attr_intuition" type="hidden" value=""/>
-          <button name="intuition" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{intuition}}}{{base=^{intuition}}}{{dice=[[(@{intuition}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+          <button name="intuition" type="roll" value="@{gm_toggle} &{template:rolls}{{mod=[[@{modifiers_toggle}]]}}{{wound=[[@{wounds_toggle}]]}}{{edge=[[@{edge_toggle}]]}}{{header=^{intuition}}}{{base=^{intuition}}}{{dice=[[(@{intuition}+@{attribute_roll})@{wounds_toggle}+@{modifiers_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}">
             <h2 data-i18n="intuition">intuition</h2>
           </button>
           <div class="display bot-border"><span name="attr_" val="val" +="+" _base="_base"></span><span class="total" name="attr_intuition"></span></div>
@@ -291,7 +272,7 @@ PC SHEET
         </div>
         <div class="grid grid-row">
           <input name="attr_charisma" type="hidden" value=""/>
-          <button name="charisma" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{charisma}}}{{base=^{charisma}}}{{dice=[[(@{charisma}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+          <button name="charisma" type="roll" value="@{gm_toggle} &{template:rolls}{{mod=[[@{modifiers_toggle}]]}}{{wound=[[@{wounds_toggle}]]}}{{edge=[[@{edge_toggle}]]}}{{header=^{charisma}}}{{base=^{charisma}}}{{dice=[[(@{charisma}+@{attribute_roll})@{wounds_toggle}+@{modifiers_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}">
             <h2 data-i18n="charisma">charisma</h2>
           </button>
           <div class="display bot-border"><span name="attr_" val="val" +="+" _base="_base"></span><span class="total" name="attr_charisma"></span></div>
@@ -308,7 +289,7 @@ PC SHEET
         </div>
         <!-- EDGE-->
         <div class="grid grid-row">
-          <button name="edge" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{edge}}}{{base=^{edge}}}{{dice=[[(@{edge}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+          <button name="edge" type="roll" value="@{gm_toggle} &{template:rolls}{{mod=[[@{modifiers_toggle}]]}}{{wound=[[@{wounds_toggle}]]}}{{edge=[[@{edge_toggle}]]}}{{header=^{edge}}}{{base=^{edge}}}{{dice=[[(@{edge}+@{attribute_roll})@{wounds_toggle}+@{modifiers_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}">
             <h2 data-i18n="edge">edge</h2>
           </button>
           <div class="display bot-border"><span name="attr_edge_max"></span></div>
@@ -358,7 +339,7 @@ PC SHEET
         <!-- UNARMED-->
         <div class="grid grid-row">
           <input name="attr_unarmed" type="hidden" value=""/>
-          <button name="unarmed" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{unarmed}}}{{base=^{unarmed}}}{{dice=[[(@{unarmed}+@{attribute_roll}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+          <button name="unarmed" type="roll" value="@{gm_toggle} &{template:rolls}{{mod=[[@{modifiers_toggle}]]}}{{wound=[[@{wounds_toggle}]]}}{{edge=[[@{edge_toggle}]]}}{{header=^{unarmed}}}{{base=^{unarmed}}}{{dice=[[(@{unarmed}+@{attribute_roll})@{wounds_toggle}+@{modifiers_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}">
             <h2 data-i18n="unarmed">unarmed</h2>
           </button>
           <div class="display bot-border"><span name="attr_unarmed"></span></div>
@@ -408,7 +389,7 @@ PC SHEET
         </div>
         <!-- INITIATIVE-->
         <div class="grid grid-row">
-          <button name="initiative" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{initiative}}}{{base=^{base}}}{{dice=[[(@{initiative_modifier}+@{wound_toggle}+@{modifier_toggle})+(@{initiative_dice})d6cf0 &amp;{tracker}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+          <button name="initiative" type="roll" value="rollBeginging{{header=^{initiative}}}{{base=^{base}}}{{dice=[[(@{initiative_modifier}+@{wound_toggle}+@{modifier_toggle})+(@{initiative_dice})d6cf0 &{tracker}]]}}">
             <h2 class="alt-color" data-i18n="initiative">initiative</h2>
           </button>
           <div class="display bot-border"><span name="attr_initiative_base"></span><span class="total" name="attr_initiative"></span><span>+</span><span name="attr_initiative_dice"></span><span>d6</span></div>
@@ -430,7 +411,7 @@ PC SHEET
           </div>
         </div>
         <div class="grid grid-row">
-          <button name="matrix initiative" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{matrix initiative}}}{{base=^{base}}}{{dice=[[(@{matrix_initiative_modifier}+@{wound_toggle}+@{modifier_toggle})+(@{matrix_initiative_dice})d6cf0 &amp;{tracker}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+          <button name="matrix initiative" type="roll" value="rollBeginging{{header=^{matrix initiative}}}{{base=^{base}}}{{dice=[[(@{matrix_initiative_modifier}+@{wound_toggle}+@{modifier_toggle})+(@{matrix_initiative_dice})d6cf0 &{tracker}]]}}">
             <h2 class="alt-color" data-i18n="matrix initiative">matrix initiative</h2>
           </button>
           <div class="display bot-border"><span name="attr_matrix_initiative_base"></span><span class="total" name="attr_matrix_initiative"></span><span>+</span><span name="attr_matrix_initiative_dice"></span><span>d6</span></div>
@@ -452,7 +433,7 @@ PC SHEET
           </div>
         </div>
         <div class="grid grid-row">
-          <button name="astral initiative" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{astral initiative}}}{{base=^{base}}}{{dice=[[(@{astral_initiative_modifier}+@{wound_toggle}+@{modifier_toggle})+(@{astral_initiative_dice})d6cf0 &amp;{tracker}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+          <button name="astral initiative" type="roll" value="rollBeginging{{header=^{astral initiative}}}{{base=^{base}}}{{dice=[[(@{astral_initiative_modifier}+@{wound_toggle}+@{modifier_toggle})+(@{astral_initiative_dice})d6cf0 &{tracker}]]}}">
             <h2 class="alt-color" data-i18n="astral initiative">astral initiative</h2>
           </button>
           <div class="display bot-border"><span name="attr_astral_initiative_base"></span><span class="total" name="attr_astral_initiative"></span><span>+</span><span name="attr_astral_initiative_dice"></span><span>d6</span></div>
@@ -475,7 +456,7 @@ PC SHEET
         </div>
         <!-- COMMON ROLLS-->
         <div class="grid grid-row">
-          <button name="composure" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{composure}}}{{base=^{attributes}}}{{dice=[[(@{composure}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+          <button name="composure" type="roll" value="rollBeginging{{header=^{composure}}}{{base=^{attributes}}}{{dice=[[(@{composure})@{wounds_toggle}+@{modifiers_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}">
             <h2 data-i18n="composure">composure</h2>
           </button>
           <div class="display bot-border"><span name="attr_composure_base"></span><span class="total" name="attr_composure"></span></div>
@@ -491,7 +472,7 @@ PC SHEET
           </div>
         </div>
         <div class="grid grid-row">
-          <button name="judge intentions" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{judge intentions}}}{{base=^{attributes}}}{{dice=[[(@{judge_intentions}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+          <button name="judge intentions" type="roll" value="rollBeginging{{header=^{judge intentions}}}{{base=^{attributes}}}{{dice=[[(@{judge_intentions})@{wounds_toggle}+@{modifiers_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}">
             <h2 data-i18n="judge intentions">judge intentions</h2>
           </button>
           <div class="display bot-border"><span name="attr_judge_intentions_base"></span><span class="total" name="attr_judge_intentions"></span></div>
@@ -507,7 +488,7 @@ PC SHEET
           </div>
         </div>
         <div class="grid grid-row">
-          <button name="memory" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{memory}}}{{base=^{attributes}}}{{dice=[[(@{memory}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+          <button name="memory" type="roll" value="rollBeginging{{header=^{memory}}}{{base=^{attributes}}}{{dice=[[(@{memory})@{wounds_toggle}+@{modifiers_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}">
             <h2 data-i18n="memory">memory</h2>
           </button>
           <div class="display bot-border"><span name="attr_memory_base"></span><span class="total" name="attr_memory"></span></div>
@@ -523,7 +504,7 @@ PC SHEET
           </div>
         </div>
         <div class="grid grid-row">
-          <button name="lift/carry" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{lift/carry}}}{{base=^{attributes}}}{{dice=[[(@{lift_carry}+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6&gt;5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}">
+          <button name="lift/carry" type="roll" value="rollBeginging{{header=^{lift/carry}}}{{base=^{attributes}}}{{dice=[[(@{lift_carry})@{wounds_toggle}+@{modifiers_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}">
             <h2 data-i18n="lift/carry">lift/carry</h2>
           </button>
           <div class="display bot-border"><span name="attr_lift_carry_base"></span><span class="total" name="attr_lift_carry"></span></div>
@@ -581,81 +562,88 @@ PC SHEET
       <div class="grid subheader bot-border">
         <h2 data-i18n="skill">skill</h2>
         <h2 data-i18n="rank">rank</h2>
-        <h2 data-i18n="ATT">ATT</h2>
+        <h2 data-i18n="att">att</h2>
         <h2 data-i18n="type">type</h2>
       </div>
       <div class="repeating-container">
         <fieldset class="repeating_skills">
-          <div class="grid body bot-border">
-            <input class="pictos" data-i18n-title="player character skills settings" name="attr_toggle" title="player character skills settings" type="checkbox" checked="checked"/>
-            <!--span.pictos x-->
-            <button name="skill" type="roll" value="@{gm_toggle} &{template:rolls}{{header=@{skill}}}{{base=^{attribute}}}{{dice=[[((@{dicepool}+@{attribute})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}"><span name="attr_skill"></span></button>
-            <div class="skill-ranks"><span name="attr_rank"></span><span name="attr_modification"></span></div>
-            <select data-i18-title="" name="attr_attribute" title="">
-              <option value="" selected="selected">-</option>
-              <optgroup label="Attribute">Attribute
-                <option data-i18n="body" value="body">body</option>
-                <option data-i18n="agility" value="agility">agility</option>
-                <option data-i18n="reaction" value="reaction">reaction</option>
-                <option data-i18n="strength" value="strength">strength</option>
-                <option data-i18n="willpower" value="willpower">willpower</option>
-                <option data-i18n="logic" value="logic">logic</option>
-                <option data-i18n="intuition" value="intuition">intuition</option>
-                <option data-i18n="charisma" value="charisma">charisma</option>
+          <button name="skill" type="roll" value="@{gm_toggle} &{template:rolls}{{mod=[[@{modifiers_toggle}]]}}{{edge=[[@{edge_toggle}]]}}{{header=@{name}}}{{base=^{attribute}}}{{dice=[[((@{dicepool}+@{attribute})++@{modifiers_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}"><span name="attr_name">attr_name</span></button>
+          <div class="skill-ranks"><span name="attr_rank"></span><span name="attr_modification"></span></div>
+          <select data-i18-title="" name="attr_attribute" title="">
+            <optgroup label="Attribute">Attribute
+              <option data-i18n="body" value="body">body</option>
+              <option data-i18n="agility" value="agility" selected="selected">agility</option>
+              <option data-i18n="reaction" value="reaction">reaction</option>
+              <option data-i18n="strength" value="strength">strength</option>
+              <option data-i18n="willpower" value="willpower">willpower</option>
+              <option data-i18n="logic" value="logic">logic</option>
+              <option data-i18n="intuition" value="intuition">intuition</option>
+              <option data-i18n="charisma" value="charisma">charisma</option>
+            </optgroup>
+          </select><span class="center" name="attr_type"></span>
+          <input class="flag collapse-flag" name="attr_display_flag" type="checkbox"/><span class="pictos">i</span>
+          <input class="flag settings-flag" name="attr_flag" title="settings toggle" type="checkbox" checked="checked"/><span class="pictos">y</span>
+          <div class="collapse"><span name="attr_notes"></span></div>
+          <div class="grid settings">
+            <select name="attr_name" title="@{attr_name}" value="close combat">
+              <optgroup label="Skill">Skill
+                <option data-i18n="astral" value="astral">astral</option>
+                <option data-i18n="athletics" value="athletics">athletics</option>
+                <option data-i18n="biotech" value="biotech">biotech</option>
+                <option data-i18n="close combat" value="close combat">close combat</option>
+                <option data-i18n="con" value="con">con</option>
+                <option data-i18n="conjuring" value="conjuring">conjuring</option>
+                <option data-i18n="cracking" value="cracking">cracking</option>
+                <option data-i18n="electronics" value="electronics">electronics</option>
+                <option data-i18n="enchanting" value="enchanting">enchanting</option>
+                <option data-i18n="engineering" value="engineering">engineering</option>
+                <option data-i18n="exotic weapons" value="exotic weapons">exotic weapons</option>
+                <option data-i18n="firearms" value="firearms">firearms</option>
+                <option data-i18n="influence" value="influence">influence</option>
+                <option data-i18n="outdoors" value="outdoors">outdoors</option>
+                <option data-i18n="perception" value="perception">perception</option>
+                <option data-i18n="piloting" value="piloting">piloting</option>
+                <option data-i18n="sorcery" value="sorcery">sorcery</option>
+                <option data-i18n="stealth" value="stealth">stealth</option>
+                <option data-i18n="tasking" value="tasking">tasking</option>
               </optgroup>
             </select>
-            <select name="attr_type">
-              <optgroup label="Skill Type">Skill Type
-                <option data-i18n="Active" value="Active" selected="selected">Active</option>
-                <option data-i18n="Language" value="Language">Language</option>
-                <option data-i18n="Knowledge" value="Knowledge">Knowledge</option>
-              </optgroup>
-            </select>
-            <div class="grid settings">
-              <select data-i18-title="" name="attr_skill" title="active skill" value="close combat">
-                <optgroup label="Skill">Skill
-                  <option data-i18n="astral" value="astral">astral</option>
-                  <option data-i18n="athletics" value="athletics">athletics</option>
-                  <option data-i18n="biotech" value="biotech">biotech</option>
-                  <option data-i18n="close combat" value="close combat">close combat</option>
-                  <option data-i18n="con" value="con">con</option>
-                  <option data-i18n="conjuring" value="conjuring">conjuring</option>
-                  <option data-i18n="cracking" value="cracking">cracking</option>
-                  <option data-i18n="electronics" value="electronics">electronics</option>
-                  <option data-i18n="enchanting" value="enchanting">enchanting</option>
-                  <option data-i18n="engineering" value="engineering">engineering</option>
-                  <option data-i18n="exotic weapons" value="exotic weapons">exotic weapons</option>
-                  <option data-i18n="firearms" value="firearms">firearms</option>
-                  <option data-i18n="influence" value="influence">influence</option>
-                  <option data-i18n="outdoors" value="outdoors">outdoors</option>
-                  <option data-i18n="perception" value="perception">perception</option>
-                  <option data-i18n="piloting" value="piloting">piloting</option>
-                  <option data-i18n="sorcery" value="sorcery">sorcery</option>
-                  <option data-i18n="stealth" value="stealth">stealth</option>
-                  <option data-i18n="tasking" value="tasking">tasking</option>
+            <h3 data-i18n="rank">`rank`</h3>
+            <label data-i18n-title="rank" title="rank">
+              <input data-i18n-placeholder="3" name="attr_rank" placeholder="3" type="number" value=""/>
+            </label>
+            <div class="type">
+              <h3 data-i18n="type">type</h3>
+              <select name="attr_type">
+                <optgroup label="Skill Type">Skill Type
+                  <option data-i18n="Active" value="Active" selected="selected">Active</option>
+                  <option data-i18n="Language" value="Language">Language</option>
+                  <option data-i18n="Knowledge" value="Knowledge">Knowledge</option>
                 </optgroup>
               </select>
-              <h3 data-i18n="rank">rank</h3>
-              <label data-i18n-title="skill rank" title="rank">
-                <input data-i18n-placeholder="3" name="attr_rank" placeholder="3" type="text" value=""/>
-              </label>
+            </div>
+            <div class="grid-row modification">
               <h3 data-i18n="modification">modification</h3>
-              <label data-i18n-title="skill modification" title="modification">
-                <input data-i18n-placeholder="0" name="attr_modification" placeholder="0" type="text" value=""/>
-              </label>
-              <h3 data-i18n="specialization">specialization</h3>
-              <label data-i18n-title="skill specialization" title="specialization">
-                <input data-i18n-placeholder="specialization" name="attr_specialization" placeholder="specialization" type="text" value=""/>
-              </label>
-              <h3 data-i18n="focus">focus</h3>
-              <label data-i18n-title="skill focus" title="focus">
-                <input data-i18n-placeholder="focus" name="attr_focus" placeholder="focus" type="text" value=""/>
-              </label>
-              <h3 data-i18n="notes">notes</h3>
-              <label data-i18n-title="skill notes" title="skill notes">
-                <textarea data-i18n-placeholder="notes" name="attr_notes" placeholder="notes"></textarea>
+              <label data-i18n-title="modification" title="modification">
+                <input data-i18n-placeholder="0" name="attr_modification" placeholder="0" type="number" value=""/>
               </label>
             </div>
+            <div class="grid-row specialization">
+              <h3 data-i18n="specialization">specialization</h3>
+              <label data-i18n-title="specialization" title="specialization">
+                <input data-i18n-placeholder="specialization" name="attr_specialization" placeholder="specialization" type="text" value=""/>
+              </label>
+            </div>
+            <div class="grid-row focus">
+              <h3 data-i18n="focus">focus</h3>
+              <label data-i18n-title="focus" title="focus">
+                <input data-i18n-placeholder="focus" name="attr_focus" placeholder="focus" type="text" value=""/>
+              </label>
+            </div>
+            <h3 data-i18n="notes">notes</h3>
+            <label data-i18n-title="notes" title="notes">
+              <textarea name="attr_notes" placeholder="notes" title="@{repeating_skills_${x}_notes}" type="text" value=""></textarea>
+            </label>
           </div>
         </fieldset>
       </div>

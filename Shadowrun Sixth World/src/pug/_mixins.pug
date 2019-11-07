@@ -1,31 +1,36 @@
 //-	ROLL BUTTONS
 mixin attributeButton(attribute)
-	button(name=attribute type='roll' value=buttonPrefix+'{{header=^{'+attribute+'}}}{{base=^{'+attribute+'}}}{{dice=[[(@{'+attribute+'}+@{attribute_roll}'+buttonSuffix)
+	button(name=attribute type='roll' value!=rollBeginging+'{{header=^{'+attribute+'}}}{{base=^{'+attribute+'}}}{{dice=[[(@{'+attribute+'}+@{attribute_roll})'+rollEnding)
 		if attribute === "body" || attribute === "agility" || attribute === "reaction" || attribute === "strength"
 			h2.alt-color(data-i18n=attribute) #{attribute}
 		else
 			h2(data-i18n=attribute) #{attribute}
 
 mixin initiativeButton(name, attrName)
-	button(name=name type='roll' value=buttonPrefix+'{{header=^{'+name+'}}}{{base=^{base}}}{{dice=[[(@{'+attrName+'_modifier}+@{wound_toggle}+@{modifier_toggle})+(@{'+attrName+'_dice})d6cf0 &{tracker}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}')
+	button(name=name type='roll' value!=`rollBeginging{{header=^{${name}}}}{{base=^{base}}}{{dice=[[(@{${attrName}_modifier}+@{wound_toggle}+@{modifier_toggle})+(@{${attrName}_dice})d6cf0 &{tracker}]]}}`)
 		h2.alt-color(data-i18n=name) #{name}
 
-//- COMPOSURE, JUDGE INTENTIONS...
-mixin derivedButton(name, attrName)
-	button(name=name type='roll' value=buttonPrefix+'{{header=^{'+name+'}}}{{base=^{attributes}}}{{dice=[[(@{'+attrName+'}'+buttonSuffix)
-		h2(data-i18n=name) #{name}
+//- BUTONS
+mixin rollButton(object)
+	- const woundsModifier = wounds ? '+@{wounds_toggle}' : '';
+	- const rollPrefix = wounds ? rollBeginging : noWoundsRollBegining;
+	button(name=object['name'] type='roll' value!=`${rollPrefix}{{header=${object['header']}}}{{base=^{${object['base']}}}}{{dice=[[((${object['formula']})+${woundsModifier}+@{modifiers_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}`)
+		span(name=object['display']) #{object['display']}
 
-//- All Skills
-mixin skillButton(skill, attribute)
-	- const attrName = key.replace(' ', '_');
-	button(name=skill type='roll' value=buttonPrefix+'{{header=^{skill}}}{{base=^{'+attribute+'}}}{{dice=[[((@{'+attrName+'}+@{attribute})'+buttonSuffix)
+//- COMPOSURE, JUDGE INTENTIONS...
+mixin derivedButton(object)
+	button(name=object['name'] type='roll' value!=`rollBeginging{{header=^{${object['name']}}}}{{base=^{attributes}}}{{dice=[[(@{${object['formula']}})${rollEnding}`)
+		h2(data-i18n=object['name']) #{object['name']}
+
 
 //- ATTRIBUTE SELECT
 mixin attrSelect()
-	option(value='' selected) -
 	optgroup(label='Attribute') Attribute
 		each val in ['body', 'agility', 'reaction', 'strength', 'willpower', 'logic', 'intuition', 'charisma']
-			option(data-i18n=val value=val) #{val}
+			if (val == 'agility')
+				option(data-i18n=val value=val selected) #{val}
+			else
+				option(data-i18n=val value=val) #{val}
 
 //- SKILL SELECT
 mixin skillSelect()
@@ -33,3 +38,18 @@ mixin skillSelect()
 		each val, key in skills
 			- const attrName = key.replace(' ', '_');
 			option(data-i18n=key value=key) #{key}
+
+//- REPEATING SECTIONS FLAGS
+mixin repeatingSectionFlags()
+	input.flag.collapse-flag(name='attr_display_flag' type='checkbox')
+	span.pictos i
+	input.flag.settings-flag(name='attr_flag' title='settings toggle' type='checkbox' checked)
+	span.pictos y
+	.collapse
+		span(name='attr_notes')
+
+//- REPEATING SECTIONS NOTES
+mixin repeatingSectionNotes(section)   
+	h3(data-i18n='notes') notes
+	label(data-i18n-title='notes' title='notes')
+		textarea(name='attr_notes' placeholder='notes' title=`@{repeating_${section}_`+'${x}_notes}' type='text' value='')
