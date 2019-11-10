@@ -1,0 +1,104 @@
+/* General Styling */
+
+input[type="text"] {
+   background-color: transparent;
+   border-style: none none dotted none;
+   border-color: black;
+}
+
+input[type="number"] {
+   background-color: transparent;
+   border-style: none none dotted none;
+   border-color: black;
+}
+
+textarea {
+  background-color: transparent;
+  background-image:
+      linear-gradient(to right, transparent 5px, transparent 5px),
+      linear-gradient(to left, transparent 5px, transparent 5px),
+      repeating-linear-gradient(transparent, transparent 20px, #030303 20px, #000 22px, transparent 21px);
+  line-height: 21px;
+  padding: 3px 10px;
+  border-style: none;
+  width: 80%;
+  height: 90%;
+  margin-bottom: 0px;
+}
+
+/* Button */
+button[type="roll"].sheet-d6:before{
+  content: 'f';
+  font-family: dicefontd6;
+}
+
+button[type="roll"].sheet-d6{
+  border-style: none;
+  background-color: transparent;
+  margin-left: 5px;
+}
+
+
+
+/*   Tabs    */
+.sheet-card,
+.sheet-full {
+   display: none;
+}
+
+/* show the selected tab */
+.sheet-tabstoggle[value="card"] ~ div.sheet-full,
+.sheet-tabstoggle[value="full"] ~ .sheet-full {
+   display: block;
+}
+
+
+
+/* Card Sized Sheet */
+.sheet-card {
+   display: grid;
+   grid-template-columns: 3fr 2fr 2fr;
+   grid-template-rows: 4fr 5fr 4fr;
+   grid-template-areas: "logo    name    name"
+                        "cliches cliches xp  "
+                        "other   other   xp  ";
+   width: 750px;
+   height: 450px;
+}
+
+/* Full Sized Character Sheet */
+
+.sheet-full {
+   display: grid;
+   width: 800px;
+   height: 1000px;
+}
+
+
+/* Card Styling */
+
+.sheet-logo{
+   grid-area: logo;
+   background-image: url(https://raw.githubusercontent.com/Anduh/roll20-character-sheets/risus/Risus/logo.png);
+   background-size: 315px 120px;
+   background-repeat: no-repeat;
+}
+
+.sheet-name{
+   grid-area: name;
+}
+
+.sheet-cliches{
+   grid-area: cliches;
+}
+
+.sheet-xp{
+   grid-area: xp;
+}
+
+.sheet-other{
+   grid-area: other;
+}
+
+/* Full Sheet Styling */
+

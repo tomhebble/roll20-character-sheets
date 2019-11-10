@@ -1,0 +1,75 @@
+
+<div>
+    <button type="action" name="act_card" >Card</button>
+    <button type="action" name="act_full" >Full Character Sheet</button>
+</div>
+
+<input type="hidden" class="sheet-tabstoggle" name="attr_sheetTab"  value="card"  />
+
+<div class="card">
+
+    <div class="logo"></div>
+
+    <div class="name">
+        <label>Name: <input type="text" name="attr_character_name" /></label>
+        <textarea name="attr_description" placeholder="Description"></textarea>
+    </div>
+
+    <div class="cliches">
+        <div class="flexrow">
+            <input name="attr_cliche1_name" type="text">
+            <input name="attr_cliche1" type="number" value="">
+            <input name="attr_cliche1_max" type="number" value="">
+            <button name="roll_cliche1" type="roll" value="" class="d6"></button>
+        </div>
+        <div class="flexrow">
+            <input name="attr_cliche2_name" type="text">
+            <input name="attr_cliche2" type="number" value="">
+            <input name="attr_cliche2_max" type="number" value="">
+            <button name="roll_cliche2" type="roll" value="" class="d6"></button>
+        </div>
+        <div class="flexrow">
+            <input name="attr_cliche_name" type="text">
+            <input name="attr_cliche" type="number" value="">
+            <input name="attr_cliche_max" type="number" value="">
+            <button name="roll_cliche" type="roll" value="" class="d6"></button>
+        </div>
+        <div class="flexrow">
+            <input name="attr_cliche_name" type="text">
+            <input name="attr_cliche" type="number" value="">
+            <input name="attr_cliche_max" type="number" value="">
+            <button name="roll_cliche" type="roll" value="" class="d6"></button>
+        </div>
+    </div>
+
+    <div class="xp">
+        <label>XP: <input type="number" name="attr_experience"/></label>
+    </div>
+
+    <div class="other">
+        <label>Other Stuff</label>
+        <textarea name="attr_other"></textarea>
+    </div>
+    
+</div>
+
+<div class="full">
+    <div class="logo"></div>
+
+    <div class="name"></div>  
+</div>
+
+
+
+<!-- Sheetworkers -->
+
+<script type="text/worker">
+    const buttonlist = ["card","full"];
+    buttonlist.forEach(button => {
+        on(`clicked:${button}`, function() {
+            setAttrs({
+                sheetTab: button
+            });
+        });
+    });
+</script>
