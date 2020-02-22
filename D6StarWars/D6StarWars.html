@@ -683,43 +683,156 @@
 
 	<!-- ---------------------------------------------------------- Ship Core info------------------------------------ -->
 
-		<div class="section ship shipinfo">
-			<span class="bold">Starship:<input type="text" name="attr_ship_name" style="width:350px"></span>
-			<br>
-			<span class="bold">Craft:<input type="text" name="attr_ship_craft"></span>
-			<span class="bold">Type:<input type="text" name="attr_ship_type"></span>
-			<br>
-			<span class="bold">Scale:<input type="text" name="attr_ship_scale" ></span>
-			<span class="bold">Length:<input type="text" name="attr_ship_length" ></span>
-			<br>
-			<span class="bold">Crew:<input type="number" name="attr_ship_crew" class="mediumnumber"></span>
-			<span class="bold">Skill:<input type="text" name="attr_ship_skill"></span>
-			<br>
-			<span class="bold">Passangers:<input type="number" name="attr_ship_passangers" class="mediumnumber"></span>
-			<span class="bold">Cargo Capacity:<input type="text" name="attr_ship_cargo_capacity"></span>
-			<span class="bold">Consumables:<input type="text" name="attr_ship_consumables"></span>
-			<br>
-			<span class="bold">Hyperdrive Multipiler:<input type="text" name="attr_hyperdrive_multi" step="any"></span>
-			<span class="bold">Hyperdrive Backup:<input type="text" name="attr_hyperdrive_backup"></span>
-			<span class="bold">Nav Computer:<input type="text" name="attr_nav_computer"></span>
-			<br>
-			<span class="bold">Maneuverability:<input type="text" name="attr_maneuverability"></span>
-			<br>
-			<span class="bold">Space:<input type="text" name="attr_ship_space"></span>
-			<span class="bold">Athmosphere:<input type="text" name="attr_ship_athmosphere"></span>
-			<br>
-			<span class="bold">Hull:<input type="text" name="attr_ship_hull"></span>
-			<span class="bold">Shields:<input type="text" name="attr_ship_shields"></span>
-		</div>
 
-	<!-- ---------------------------------------------------------- Ship Sensors------------------------------------ -->
+        <div class="section ship shipheader">
+            <span class="bold">Starship:<input type="text" name="attr_ship_name"></span>
+            <span class="bold">Scale:<input type="text" name="attr_ship_scale" ></span>
+            <span class="bold">Length:<input type="text" name="attr_ship_length" ></span>
+        </div>
 
-		<div class="section ship">
-			<label>Sensors</label>
-			<span class="bold">Passive:<input type="number" name="attr_sensor_passive" class="smallnumber"/>/<input type="number" name="attr_sensor_passive_max" class="smallnumber"/></span>
-			<span class="bold">Scan:<input type="number" name="attr_sensor_scan" class="smallnumber"/>/<input type="number" name="attr_sensor_scan_max" class="smallnumber"/></span>
-			<span class="bold">Search:<input type="number" name="attr_sensor_search" class="smallnumber"/>/<input type="number" name="attr_sensor_search_max" class="smallnumber"/></span>
-			<span class="bold">Focus:<input type="number" name="attr_sensor_focus" class="smallnumber"/>/<input type="number" name="attr_sensor_focus_max" class="smallnumber"/></span>
+
+		<div class="section ship shipblock">
+            <div class="price wborder">
+                <label>Pricing:</label>
+                <label>Introduction Era</label>
+                <div class="priceblock wborder">
+                    <div class="flex-row">
+                        <span>Era</span>
+                        <input name="attr_intro_era_name" type="text">
+                    </div>
+                    <div class="flex-row">
+                        <span>New</span>
+                        <input name="attr_intro_era_price_new" type="text">
+                    </div>
+                    <div class="flex-row">
+                        <span>Used</span>
+                        <input name="attr_intro_era_price_used" type="text">
+                    </div>
+                </div>
+                <label>Current Era:</label>
+                <div class="priceblock wborder">
+                    <div class="flex-row">
+                        <span>Era</span>
+                        <input name="attr_current_era_name" type="text">
+                    </div>
+                    <div class="flex-row">
+                        <span>Reproduction</span>
+                        <input name="attr_current_era_reproduction" type="text">
+                    </div>
+                    <div class="flex-row">
+                        <span>New-Old-Stock</span>
+                        <input name="attr_current_era_new_old" type="text">
+                    </div>
+                    <div class="flex-row">
+                        <span>Restored</span>
+                        <input name="attr_current_era_price_restored" type="text">
+                    </div>
+                    <div class="flex-row">
+                        <span>Used</span>
+                        <input name="attr_current_era_price_used" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="perf wborder">
+                <label class="title">Performance</label>
+                <div class="perf-block">
+                    <div class="flex-col wborder" style="margin-right: 7px;">
+                        <label style="width:80px;">Crew Station:</label>
+                        <input name="attr_crew_station_performance" type="text" class="medium">
+                    </div>
+                    <div class="flex-col">
+                        <label>Maneuverability:</label>
+                        <input name="attr_maneuverability" type="text" class="medium">
+                    </div>
+                    <div class="flex-col">
+                        <label>Move(Space Units)</label>
+                        <input name="attr_ship_space" type="text" class="medium">
+                    </div>
+                    <div class="flex-col">
+                        <label>Move(Ground units)</label>
+                        <input name="attr_ship_ground" type="text" class="medium">
+                    </div>
+                    <div class="flex-col">
+                        <label>Speed(Athmospheric)</label>
+                        <input name="attr_ship_athmosphere" type="text" class="medium">
+                    </div>
+                </div>
+            </div>
+
+            <div class="sensor wborder">
+                <label>Sensors</label>
+                <div class="flex-row">
+                    <div class="wborder">
+                        <label>Crew Station</label>
+                        <input name="attr_crew_station_sensors" type="text" class="medium">
+                    </div>
+                    <div class="grid">
+                        <div></div><!-- empty placeholder in the grid-->
+                        <span>Search</span>
+                        <span>Scan</span>
+                        <span>Passive</span>
+                        <span>Focus</span>
+
+                        <span>Range</span>
+                        <input type="number" name="attr_sensor_search" class="smallnumber"/>
+                        <input type="number" name="attr_sensor_scan" class="smallnumber"/>
+                        <input type="number" name="attr_sensor_passive" class="smallnumber"/>
+                        <input type="number" name="attr_sensor_focus" class="smallnumber"/>
+
+                        <span>Sensitivity</span>
+                        <input type="number" name="attr_sensor_search_max" class="smallnumber"/>
+                        <input type="number" name="attr_sensor_scan_max" class="smallnumber"/>
+                        <input type="number" name="attr_sensor_passive_max" class="smallnumber"/>
+                        <input type="number" name="attr_sensor_focus_max" class="smallnumber"/>
+                    </div>               
+                </div>
+            </div>
+            
+            <div class="hyperdrive wborder">
+                <label>Hyperdrive System</label>
+                <div class="wborder">
+                    <div class="wborder crew">
+                        <label>Crew Station</label>
+                        <input name="attr_crew_station_hyperdrive" type="text" class="medium">
+                    </div>
+                    <div class="hyper-grid">
+                        <label>Astrogation System</label>
+                        <label>Hyperdrive Integration</label>
+                        <label>Hyperdrive Rating</label>
+                        
+                        <input name="attr_astrogation_system" type="text">
+                        <input name="attr_hyperdrive_integration" type="text">
+                        <input name="attr_hyperdrive_rating" type="text">
+
+                        <label>Astromech</label>
+                        <label>Jump Route Capacity</label>
+                        <label>Kilo-Parsecs / Hour</label>
+
+                        <input name="attr_astromech" type="text">
+                        <input name="attr_jump_capacity" type="text">
+                        <input name="attr_parsec_speed" type="text">
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="consume wborder">
+                <div>
+                   <label>Consumables:</label>
+                   <input name="attr_ship_consumables" type="text">
+                </div>
+                
+                <div>
+                    <label>Max:</label>
+                    <input name="attr_ship_consumables_max" type="text">
+                </div>   
+            </div>
+
+            <div class="dura wborder">
+                <label>Durability:</label>
+                <input name="attr_ship_durability" type="text">
+            </div>
 		</div>
 
 	<!-- ---------------------------------------------------------- Ship Weapons------------------------------------ -->
@@ -742,6 +855,24 @@
 			</fieldset>
 		</div>
 
+<!-- ---------------------------------------------------------- Unused ship stats------------------------------------ -->
+        <div class="section ship">
+            <label>Old stats</label>  
+            <span class="bold">Craft:<input type="text" name="attr_ship_craft"></span>
+            <span class="bold">Type:<input type="text" name="attr_ship_type"></span>
+            <span class="bold">Crew:<input type="number" name="attr_ship_crew" class="mediumnumber"></span>
+            <span class="bold">Skill:<input type="text" name="attr_ship_skill"></span>
+            <br>
+            <span class="bold">Passangers:<input type="number" name="attr_ship_passangers" class="mediumnumber"></span>
+            <span class="bold">Cargo Capacity:<input type="text" name="attr_ship_cargo_capacity"></span>
+            <br>
+            <span class="bold">Hyperdrive Multipiler:<input type="text" name="attr_hyperdrive_multi" step="any"></span>
+            <span class="bold">Hyperdrive Backup:<input type="text" name="attr_hyperdrive_backup"></span>
+            <span class="bold">Nav Computer:<input type="text" name="attr_nav_computer"></span>
+            <span class="bold">Hull:<input type="text" name="attr_ship_hull"></span>
+            <span class="bold">Shields:<input type="text" name="attr_ship_shields"></span>
+        </div>
+            
 <!-- -----------------------------------------------Generic Ship&Vehicle section -------------------------------- -->
 
 		<div class="section ship"> 
